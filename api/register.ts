@@ -14,7 +14,6 @@ type VercelResponse = ServerResponse & {
 };
 
 let nextRegistrationId = 1;
-const registrations = new Map<number, unknown>();
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -33,7 +32,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
       createdAt: new Date(),
     };
 
-    registrations.set(registration.id, registration);
     return res.status(201).json({ success: true, data: registration });
   } catch (error) {
     if (error instanceof ZodError) {
