@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "title": "Immigratiepunt | Start Your Life in the Netherlands",
+    "description": "Immigratiepunt helps international newcomers with banking, housing, employment, and administrative matters in the Netherlands."
+  },
+  "header": {
+    "services": "Services",
+    "howItWorks": "How it works",
+    "faq": "FAQ",
+    "register": "Register"
+  },
+  "hero": {
+    "title": "Start your life in the Netherlands quickly and safely",
+    "subtitle": "We help international newcomers with banking, housing, employment, and administrative matters.",
+    "servicesButton": "Our Services",
+    "getStartedButton": "Get Started"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We provide comprehensive support to make your transition to the Netherlands smooth and hassle-free.",
+    "learnMore": "Learn more",
+    "banking": {
+      "title": "Banking Assistance",
+      "description": "We help you set up Dutch bank accounts and understand the local financial system.",
+      "imageAlt": "Banking services in the Netherlands"
+    },
+    "housing": {
+      "title": "Housing Support",
+      "description": "Find suitable accommodation with our guidance on rental procedures and housing regulations.",
+      "imageAlt": "Housing in the Netherlands"
+    },
+    "employment": {
+      "title": "Employment Assistance",
+      "description": "Navigate the Dutch job market with our CV preparation, job search, and interview coaching.",
+      "imageAlt": "Employment services in the Netherlands"
+    },
+    "administrative": {
+      "title": "Administrative Support",
+      "description": "Get help with residence permits, registration procedures, and other bureaucratic requirements.",
+      "imageAlt": "Administrative services in the Netherlands"
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Our simple process to help you settle in the Netherlands with ease.",
+    "step1": {
+      "title": "Register",
+      "description": "Sign up for an account and tell us about your specific needs and timeline."
+    },
+    "step2": {
+      "title": "Get Matched",
+      "description": "We'll connect you with a personal advisor specialized in your situation."
+    },
+    "step3": {
+      "title": "Receive Support",
+      "description": "Your advisor guides you through each step of settling in the Netherlands."
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Hear from international newcomers who have successfully settled in the Netherlands with our help.",
+    "testimonial1": {
+      "text": "Immigratiepunt made my transition to Amsterdam so much easier. Their banking and housing assistance saved me weeks of frustration."
+    },
+    "testimonial2": {
+      "text": "The administrative support was exceptional. They walked me through every document and made the residence permit process painless."
+    },
+    "testimonial3": {
+      "text": "Finding a job was my biggest concern, but their employment assistance connected me with the right opportunities and prepared me for Dutch interviews."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our services and settling in the Netherlands.",
+    "question1": "How long does the entire settlement process take?",
+    "answer1": "The timeline varies depending on your specific situation and needs. On average, our clients complete the essential settling steps within 4-8 weeks. Our advisors work to expedite the process wherever possible while ensuring everything is done correctly.",
+    "question2": "Do I need to speak Dutch to use your services?",
+    "answer2": "No, all of our services are available in English. Our advisors are bilingual in Dutch and English, and can assist with translation of important documents and communications. We also offer support in several other languages upon request.",
+    "question3": "What types of housing can you help me find?",
+    "answer3": "We assist with finding various types of accommodations based on your preferences and budget, including apartments, houses, shared housing, and temporary accommodations. We work with reputable agencies and landlords and can help explain Dutch rental agreements and procedures.",
+    "question4": "How do your banking services work?",
+    "answer4": "We have partnerships with several Dutch banks and can facilitate the account opening process. We'll explain the different banking options available, help you prepare the necessary documentation, and in many cases, accompany you to your banking appointment to ensure smooth communication."
+  },
+  "registration": {
+    "title": "Start Your Journey Today",
+    "subtitle": "Join Immigratiepunt and make your transition to the Netherlands smooth and stress-free. Complete the form to get started with our personalized assistance.",
+    "formTitle": "Register for Assistance",
+    "benefits": {
+      "personal": "Personalized support from experienced advisors",
+      "streamlined": "Streamlined administrative processes",
+      "access": "Access to trusted networks of service providers",
+      "bilingual": "Bilingual support throughout your journey"
+    },
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "country": "Country of Origin",
+      "selectCountry": "Select your country",
+      "servicesNeeded": "Services Needed",
+      "privacyPolicy": "I agree to the <a href='#' class='text-primary hover:underline'>privacy policy</a> and terms of service.",
+      "register": "Register Now",
+      "submitting": "Submitting..."
+    },
+    "successTitle": "Registration Successful!",
+    "successMessage": "Thank you for registering with Immigratiepunt. We will contact you soon to discuss your needs.",
+    "errorTitle": "Registration Failed",
+    "errorMessage": "There was an error processing your registration. Please try again later."
+  },
+  "footer": {
+    "about": "Your trusted partner for settling in the Netherlands with ease and confidence.",
+    "services": "Services",
+    "quickLinks": "Quick Links",
+    "aboutUs": "About Us",
+    "faq": "FAQ",
+    "testimonials": "Testimonials",
+    "blog": "Blog",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "chooseLanguage": "Choose Language",
+    "copyright": "© 2023 Immigratiepunt. All rights reserved."
+  }
+}

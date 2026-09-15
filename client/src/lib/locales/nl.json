@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "title": "Immigratiepunt | Start Je Leven in Nederland",
+    "description": "Immigratiepunt helpt internationale nieuwkomers met bankzaken, huisvesting, werkgelegenheid en administratieve zaken in Nederland."
+  },
+  "header": {
+    "services": "Diensten",
+    "howItWorks": "Hoe het werkt",
+    "faq": "FAQ",
+    "register": "Registreren"
+  },
+  "hero": {
+    "title": "Start snel en veilig je leven in Nederland",
+    "subtitle": "Wij helpen internationale nieuwkomers met bankzaken, huisvesting, werk en administratieve zaken.",
+    "servicesButton": "Onze Diensten",
+    "getStartedButton": "Aan de slag"
+  },
+  "services": {
+    "title": "Onze Diensten",
+    "subtitle": "Wij bieden uitgebreide ondersteuning om je overgang naar Nederland soepel en probleemloos te laten verlopen.",
+    "learnMore": "Meer informatie",
+    "banking": {
+      "title": "Bankondersteuning",
+      "description": "We helpen je bij het openen van Nederlandse bankrekeningen en het begrijpen van het lokale financiële systeem.",
+      "imageAlt": "Bankdiensten in Nederland"
+    },
+    "housing": {
+      "title": "Huisvestingsondersteuning",
+      "description": "Vind geschikte accommodatie met onze begeleiding bij huurprocedures en huisvestingsvoorschriften.",
+      "imageAlt": "Huisvesting in Nederland"
+    },
+    "employment": {
+      "title": "Werkgelegenheidsondersteuning",
+      "description": "Navigeer op de Nederlandse arbeidsmarkt met onze CV-voorbereiding, het zoeken naar werk en interviewcoaching.",
+      "imageAlt": "Werkgelegenheidsdiensten in Nederland"
+    },
+    "administrative": {
+      "title": "Administratieve Ondersteuning",
+      "description": "Krijg hulp bij verblijfsvergunningen, registratieprocedures en andere bureaucratische vereisten.",
+      "imageAlt": "Administratieve diensten in Nederland"
+    }
+  },
+  "howItWorks": {
+    "title": "Hoe Het Werkt",
+    "subtitle": "Ons eenvoudige proces om je te helpen met gemak te vestigen in Nederland.",
+    "step1": {
+      "title": "Registreren",
+      "description": "Maak een account aan en vertel ons over je specifieke behoeften en tijdlijn."
+    },
+    "step2": {
+      "title": "Krijg een Match",
+      "description": "We verbinden je met een persoonlijke adviseur die gespecialiseerd is in jouw situatie."
+    },
+    "step3": {
+      "title": "Ontvang Ondersteuning",
+      "description": "Je adviseur begeleidt je bij elke stap van je vestiging in Nederland."
+    }
+  },
+  "testimonials": {
+    "title": "Wat Onze Klanten Zeggen",
+    "subtitle": "Hoor van internationale nieuwkomers die zich met succes in Nederland hebben gevestigd met onze hulp.",
+    "testimonial1": {
+      "text": "Immigratiepunt maakte mijn overgang naar Amsterdam veel gemakkelijker. Hun hulp bij bankzaken en huisvesting bespaarde me weken van frustratie."
+    },
+    "testimonial2": {
+      "text": "De administratieve ondersteuning was uitzonderlijk. Ze hebben me door elk document geloodst en het proces voor de verblijfsvergunning pijnloos gemaakt."
+    },
+    "testimonial3": {
+      "text": "Het vinden van een baan was mijn grootste zorg, maar hun hulp bij het zoeken naar werk bracht me in contact met de juiste mogelijkheden en bereidde me voor op Nederlandse sollicitatiegesprekken."
+    }
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Vind antwoorden op veelgestelde vragen over onze diensten en vestiging in Nederland.",
+    "question1": "Hoe lang duurt het volledige vestigingsproces?",
+    "answer1": "De tijdlijn varieert afhankelijk van je specifieke situatie en behoeften. Gemiddeld voltooien onze klanten de essentiële vestigingsstappen binnen 4-8 weken. Onze adviseurs werken eraan om het proces waar mogelijk te bespoedigen, terwijl ze ervoor zorgen dat alles correct wordt gedaan.",
+    "question2": "Moet ik Nederlands spreken om gebruik te maken van jullie diensten?",
+    "answer2": "Nee, al onze diensten zijn beschikbaar in het Engels. Onze adviseurs zijn tweetalig in Nederlands en Engels, en kunnen helpen bij het vertalen van belangrijke documenten en communicatie. We bieden op verzoek ook ondersteuning in verschillende andere talen.",
+    "question3": "Wat voor soort huisvesting kunnen jullie me helpen vinden?",
+    "answer3": "We helpen bij het vinden van verschillende soorten accommodaties op basis van je voorkeuren en budget, waaronder appartementen, huizen, gedeelde huisvesting en tijdelijke accommodaties. We werken samen met gerenommeerde bureaus en verhuurders en kunnen helpen bij het uitleggen van Nederlandse huurovereenkomsten en procedures.",
+    "question4": "Hoe werken jullie bankdiensten?",
+    "answer4": "We hebben partnerschappen met verschillende Nederlandse banken en kunnen het proces van het openen van een rekening vergemakkelijken. We leggen de verschillende beschikbare bankopties uit, helpen je bij het voorbereiden van de nodige documentatie en in veel gevallen begeleiden we je naar je bankafspraak om een soepele communicatie te garanderen."
+  },
+  "registration": {
+    "title": "Begin Vandaag Je Reis",
+    "subtitle": "Word lid van Immigratiepunt en maak je overgang naar Nederland soepel en stressvrij. Vul het formulier in om te beginnen met onze persoonlijke assistentie.",
+    "formTitle": "Registreer voor Hulp",
+    "benefits": {
+      "personal": "Persoonlijke ondersteuning van ervaren adviseurs",
+      "streamlined": "Gestroomlijnde administratieve processen",
+      "access": "Toegang tot betrouwbare netwerken van dienstverleners",
+      "bilingual": "Tweetalige ondersteuning gedurende je hele reis"
+    },
+    "form": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mailadres",
+      "phone": "Telefoonnummer",
+      "country": "Land van Herkomst",
+      "selectCountry": "Selecteer je land",
+      "servicesNeeded": "Benodigde Diensten",
+      "privacyPolicy": "Ik ga akkoord met het <a href='#' class='text-primary hover:underline'>privacybeleid</a> en de servicevoorwaarden.",
+      "register": "Nu Registreren",
+      "submitting": "Bezig met verzenden..."
+    },
+    "successTitle": "Registratie succesvol!",
+    "successMessage": "Bedankt voor je registratie bij Immigratiepunt. We nemen binnenkort contact met je op om je behoeften te bespreken.",
+    "errorTitle": "Registratie mislukt",
+    "errorMessage": "Er is een fout opgetreden bij het verwerken van je registratie. Probeer het later opnieuw."
+  },
+  "footer": {
+    "about": "Uw betrouwbare partner voor het vestigen in Nederland met gemak en vertrouwen.",
+    "services": "Diensten",
+    "quickLinks": "Snelle Links",
+    "aboutUs": "Over Ons",
+    "faq": "FAQ",
+    "testimonials": "Getuigenissen",
+    "blog": "Blog",
+    "contact": "Contact",
+    "contactUs": "Neem Contact Op",
+    "chooseLanguage": "Kies Taal",
+    "copyright": "© 2023 Immigratiepunt. Alle rechten voorbehouden."
+  }
+}
