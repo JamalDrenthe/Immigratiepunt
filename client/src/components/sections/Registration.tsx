@@ -111,15 +111,16 @@ export function Registration() {
   ];
 
   return (
-    <section id="register" className="py-16 md:py-24">
+    <section id="register" className="relative overflow-hidden py-20 md:py-28">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+              <div className="section-kicker">Klaar voor de volgende stap?</div>
+              <h2 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-[#082335] md:text-5xl">
                 {t('registration.title')}
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="mb-8 text-lg leading-8 text-slate-500">
                 {t('registration.subtitle')}
               </p>
               
@@ -127,19 +128,19 @@ export function Registration() {
               <div className="space-y-4 mb-8">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 h-6 w-6 text-primary">
+                  <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                       <CheckCircle className="h-6 w-6" />
                     </div>
-                    <p className="ml-3 text-gray-600">{t(benefit)}</p>
+                    <p className="ml-3 leading-7 text-slate-600">{t(benefit)}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Registration Form */}
-            <Card className="bg-white p-8 rounded-xl shadow-sm">
+            <Card className="rounded-3xl border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/60 md:p-10">
               <CardContent className="p-0">
-                <h3 className="text-2xl font-semibold mb-6">
+                <h3 className="mb-6 text-2xl font-extrabold text-[#082335]">
                   {t('registration.formTitle')}
                 </h3>
                 

@@ -46,25 +46,26 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-16 md:py-24 bg-primary/5">
+    <section id="faq" className="bg-slate-100/70 py-20 md:py-28">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+        <div className="mb-14 max-w-2xl">
+          <div className="section-kicker">Veelgestelde vragen</div>
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-[#082335] md:text-5xl">
             {t('faq.title')}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg leading-8 text-slate-500">
             {t('faq.subtitle')}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           {faqs.map((faq) => (
-            <Card key={faq.id} className="mb-6 bg-white rounded-xl shadow-sm overflow-hidden">
+            <Card key={faq.id} className="mb-4 overflow-hidden rounded-2xl border-slate-200/80 bg-white shadow-sm">
               <button 
-                className="w-full flex justify-between items-center p-6 focus:outline-none"
+                className="flex w-full items-center justify-between p-6 text-left focus:outline-none"
                 onClick={() => toggleFAQ(faq.id)}
               >
-                <h3 className="text-lg font-medium text-left">
+                <h3 className="text-lg font-bold text-[#082335]">
                   {t(faq.question)}
                 </h3>
                 <ChevronDown 
@@ -73,7 +74,7 @@ export function FAQ() {
               </button>
               {faq.isOpen && (
                 <CardContent className="px-6 pb-6 pt-0">
-                  <p className="text-gray-600">{t(faq.answer)}</p>
+                  <p className="leading-7 text-slate-500">{t(faq.answer)}</p>
                 </CardContent>
               )}
             </Card>
