@@ -1,30 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 220 33% 98%;
-  --foreground: 20 14.3% 4.1%;
-  --muted: 60 4.8% 95.9%;
-  --muted-foreground: 25 5.3% 44.7%;
+  --background: 210 40% 98%;
+  --foreground: 218 38% 15%;
+  --muted: 210 30% 94%;
+  --muted-foreground: 215 16% 45%;
   --popover: 0 0% 100%;
-  --popover-foreground: 20 14.3% 4.1%;
+  --popover-foreground: 218 38% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 20 14.3% 4.1%;
-  --border: 20 5.9% 90%;
-  --input: 20 5.9% 90%;
-  --primary: 217 73% 53%;
+  --card-foreground: 218 38% 15%;
+  --border: 214 25% 88%;
+  --input: 214 25% 88%;
+  --primary: 187 78% 34%;
   --primary-foreground: 211 100% 99%;
-  --secondary: 60 4.8% 95.9%;
-  --secondary-foreground: 24 9.8% 10%;
-  --accent: 151 58% 75%;
-  --accent-foreground: 24 9.8% 10%;
+  --secondary: 210 32% 93%;
+  --secondary-foreground: 218 38% 15%;
+  --accent: 39 92% 61%;
+  --accent-foreground: 218 38% 15%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 20 14.3% 4.1%;
-  --radius: 0.5rem;
+  --ring: 187 78% 34%;
+  --radius: 1rem;
 }
 
 .dark {
@@ -56,6 +56,7 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image: radial-gradient(circle at 10% 0%, hsl(187 78% 34% / 0.06), transparent 28rem);
   }
 }
 
@@ -64,8 +65,26 @@ html {
 }
 
 .bg-hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800&q=80');
+  background-image: linear-gradient(110deg, rgba(8, 31, 48, 0.96) 0%, rgba(8, 31, 48, 0.82) 48%, rgba(8, 31, 48, 0.24) 100%), url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1000&q=85');
   background-size: cover;
-  background-position: center;
+  background-position: center 52%;
   background-repeat: no-repeat;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+a {
+  font-family: "Manrope", sans-serif;
+}
+
+.section-kicker {
+  @apply mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary;
+}
+
+.section-kicker::before {
+  content: "";
+  @apply h-1.5 w-1.5 rounded-full bg-accent;
 }
