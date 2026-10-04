@@ -1,15 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Hero } from "@/components/sections/Hero";
+import { AudienceTabs } from "@/components/sections/AudienceTabs";
 import { Services } from "@/components/sections/Services";
+import { PostadresCallout } from "@/components/sections/PostadresCallout";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
-import { Registration } from "@/components/sections/Registration";
+import { CtaBand } from "@/components/sections/CtaBand";
 import { Helmet } from "react-helmet";
 
 export default function Home() {
   const { t, i18n } = useTranslation();
-  
+
   return (
     <>
       <Helmet>
@@ -23,11 +25,13 @@ export default function Home() {
         <meta property="og:site_name" content="Immigratiepunt" />
       </Helmet>
       <Hero />
+      <AudienceTabs />
       <Services />
+      <PostadresCallout />
       <HowItWorks />
       <Testimonials />
       <FAQ />
-      <Registration />
+      <CtaBand />
     </>
   );
 }

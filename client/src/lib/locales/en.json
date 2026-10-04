@@ -5,17 +5,62 @@
   },
   "header": {
     "services": "Services",
+    "helpMee": "Get involved",
     "howItWorks": "How it works",
     "faq": "FAQ",
     "register": "Register"
   },
   "hero": {
+    "badge": "For newcomers and helpers",
     "title": "Start your life in the Netherlands quickly and safely",
     "subtitle": "We help international newcomers with banking, housing, employment, and administrative matters.",
     "servicesButton": "Our Services",
-    "getStartedButton": "Get Started"
+    "getStartedButton": "Get Started",
+    "helpButton": "I want to help",
+    "trustPoints": [
+      "Personal advisor",
+      "NL & EN",
+      "Postal address programme"
+    ],
+    "mockTitle": "Immigratiepunt",
+    "mockHeading": "From postal address to BSN",
+    "mockMail": "Piece of mail received",
+    "mockBanking": "Open bank account",
+    "mockHousing": "Arrange housing",
+    "mockWork": "Find work",
+    "mockFootnote": "Every piece of mail via a postal address earns the helper €0.50 to €5."
+  },
+  "audience": {
+    "kicker": "Who it's for",
+    "title": "Two sides, one platform",
+    "subtitle": "Newcomers get personal guidance. Helpers offer their address as a postal address and earn per piece of mail.",
+    "newcomer": {
+      "tab": "I'm new to the Netherlands",
+      "heading": "Everything arranged for your new start",
+      "text": "From BSN to bank account: your advisor guides you through every step, at your pace and in your language.",
+      "bullets": [
+        "BSN application and municipal registration",
+        "Opening a Dutch bank account",
+        "Finding housing and work",
+        "Documents and permits arranged"
+      ],
+      "cta": "Register as a newcomer"
+    },
+    "helper": {
+      "tab": "I want to help",
+      "heading": "Offer your address as a postal address",
+      "text": "Many newcomers cannot apply for a BSN without a fixed address. With your address as a postal address, you help them get started.",
+      "bullets": [
+        "€0.50 to €5 per piece of mail received",
+        "Not a residential registration — postal address only",
+        "€5 per month donation, which you earn back",
+        "You decide how much mail you receive"
+      ],
+      "cta": "Become a postal address helper"
+    }
   },
   "services": {
+    "kicker": "Services",
     "title": "Our Services",
     "subtitle": "We provide comprehensive support to make your transition to the Netherlands smooth and hassle-free.",
     "learnMore": "Learn more",
@@ -40,7 +85,15 @@
       "imageAlt": "Administrative services in the Netherlands"
     }
   },
+  "postadres": {
+    "badge": "Postal address programme",
+    "calloutTitle": "Your address as a postal address. Their start in the Netherlands.",
+    "calloutText": "Without a fixed address, a newcomer cannot apply for a BSN. Offer your address as a postal address — NOT a residential registration — and receive compensation per piece of mail.",
+    "perMail": "per piece of mail",
+    "calloutCta": "More about helping"
+  },
   "howItWorks": {
+    "kicker": "The process",
     "title": "How It Works",
     "subtitle": "Our simple process to help you settle in the Netherlands with ease.",
     "step1": {
@@ -57,6 +110,7 @@
     }
   },
   "testimonials": {
+    "kicker": "Testimonials",
     "title": "What Our Clients Say",
     "subtitle": "Hear from international newcomers who have successfully settled in the Netherlands with our help.",
     "testimonial1": {
@@ -70,6 +124,7 @@
     }
   },
   "faq": {
+    "kicker": "FAQ",
     "title": "Frequently Asked Questions",
     "subtitle": "Find answers to common questions about our services and settling in the Netherlands.",
     "question1": "How long does the entire settlement process take?",
@@ -79,7 +134,17 @@
     "question3": "What types of housing can you help me find?",
     "answer3": "We assist with finding various types of accommodations based on your preferences and budget, including apartments, houses, shared housing, and temporary accommodations. We work with reputable agencies and landlords and can help explain Dutch rental agreements and procedures.",
     "question4": "How do your banking services work?",
-    "answer4": "We have partnerships with several Dutch banks and can facilitate the account opening process. We'll explain the different banking options available, help you prepare the necessary documentation, and in many cases, accompany you to your banking appointment to ensure smooth communication."
+    "answer4": "We have partnerships with several Dutch banks and can facilitate the account opening process. We'll explain the different banking options available, help you prepare the necessary documentation, and in many cases, accompany you to your banking appointment to ensure smooth communication.",
+    "question5": "What exactly is a postal address?",
+    "answer5": "A postal address is an address where you receive mail without registering as a resident. Newcomers without a fixed home address use it to apply for a BSN at the municipality.",
+    "question6": "What does offering a postal address earn me?",
+    "answer6": "You receive €0.50 to €5 per piece of mail arriving via your address — the more mail, the higher the amount. Helpers also donate €5 per month to support newcomers; you can earn that donation back through the mail compensation."
+  },
+  "cta": {
+    "title": "Ready for a new start?",
+    "subtitle": "Register as a newcomer or offer your address as a postal address and help someone obtain a BSN.",
+    "newcomerButton": "Register now",
+    "helperButton": "Get involved"
   },
   "registration": {
     "title": "Start Your Journey Today",
@@ -108,10 +173,99 @@
     "errorTitle": "Registration Failed",
     "errorMessage": "There was an error processing your registration. Please try again later."
   },
+  "helperForm": {
+    "title": "Offer your address",
+    "subtitle": "Register as a postal address helper. You receive €0.50 to €5 per piece of mail and support newcomers with a monthly donation of €5.",
+    "city": "City",
+    "donationTitle": "Monthly donation of €5",
+    "donationText": "This supports the Immigratiepunt programme. You can earn this donation back through the per-mail compensation.",
+    "submit": "Sign up as a helper",
+    "successTitle": "Application received!",
+    "successMessage": "Thank you for signing up as a postal address helper. We will contact you soon to go over the details.",
+    "errorTitle": "Application failed",
+    "errorMessage": "There was an error processing your application. Please try again later."
+  },
+  "registerPage": {
+    "meta": {
+      "title": "Register | Immigratiepunt",
+      "description": "Register with Immigratiepunt as a newcomer or offer your address as a postal address."
+    },
+    "kicker": "Register",
+    "seekerTab": "I need help",
+    "helperTab": "I want to offer a postal address"
+  },
+  "helpMee": {
+    "meta": {
+      "title": "Get involved — Postal address | Immigratiepunt",
+      "description": "Offer your address as a postal address for newcomers so they can apply for a BSN. Earn €0.50 to €5 per piece of mail."
+    },
+    "badge": "Postal address programme",
+    "title": "Get involved: offer your address as a postal address",
+    "subtitle": "Without a fixed address, a newcomer in the Netherlands cannot apply for a BSN — and without a BSN, no bank account, job or health insurance. You can help by offering your address as a postal address.",
+    "cta": "Offer your address",
+    "explain": {
+      "what": {
+        "title": "What is a postal address?",
+        "text": "An address where a newcomer's mail is sent. The municipality uses it as a correspondence address so someone without a fixed home address can still apply for a BSN."
+      },
+      "not": {
+        "title": "What it is not",
+        "text": "A postal address is NOT a residential registration at your address. Nothing changes about your living situation, rental contract or benefits — it is purely an address for mail."
+      },
+      "why": {
+        "title": "Why it helps",
+        "text": "With a BSN a newcomer can open a bank account, work and get insured. Your address is often the first step that sets everything in motion."
+      }
+    },
+    "steps": {
+      "kicker": "How it works",
+      "title": "Helper in three steps",
+      "subtitle": "From sign-up to first piece of mail — we arrange the match and the handling.",
+      "step1": {
+        "title": "Sign up",
+        "description": "Register as a postal address helper. We verify your details and explain the programme personally."
+      },
+      "step2": {
+        "title": "We match you",
+        "description": "You are matched with one or more newcomers who use your address as a postal address for their BSN application."
+      },
+      "step3": {
+        "title": "Receive mail and compensation",
+        "description": "For every piece of mail arriving via your address you receive €0.50 to €5. The more mail, the higher the amount."
+      }
+    },
+    "earnings": {
+      "kicker": "Compensation",
+      "title": "Earn per piece of mail",
+      "subtitle": "Compensation starts at €0.50 per piece of mail and rises to €5. You also donate €5 per month to support the programme — a donation you can earn back through the compensation.",
+      "start": {
+        "label": "Starting rate",
+        "amount": "€0.50",
+        "text": "Per piece of mail received, from the very first one. The baseline to get started."
+      },
+      "growth": {
+        "label": "Maximum rate",
+        "amount": "€5",
+        "text": "The more mail you receive, the higher the amount per piece — up to a maximum of €5."
+      },
+      "donation": {
+        "label": "Monthly donation",
+        "amount": "€5",
+        "text": "Every helper contributes €5 per month to support newcomers — so you are partly a donor too."
+      },
+      "note": "The maths: you donate €5 per month, but earn it back through the per-mail compensation. At ten pieces of mail a month at €0.50 your donation is already covered — everything above that is net earnings, and you help someone obtain a BSN."
+    },
+    "ctaBand": {
+      "title": "One address can change someone's start",
+      "subtitle": "Sign up as a postal address helper and help a newcomer obtain a BSN.",
+      "button": "Offer your address"
+    }
+  },
   "footer": {
     "about": "Your trusted partner for settling in the Netherlands with ease and confidence.",
     "services": "Services",
     "quickLinks": "Quick Links",
+    "helpMee": "Get involved",
     "aboutUs": "About Us",
     "faq": "FAQ",
     "testimonials": "Testimonials",

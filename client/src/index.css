@@ -1,52 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 210 40% 98%;
-  --foreground: 218 38% 15%;
-  --muted: 210 30% 94%;
-  --muted-foreground: 215 16% 45%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 218 38% 15%;
-  --card: 0 0% 100%;
-  --card-foreground: 218 38% 15%;
-  --border: 214 25% 88%;
-  --input: 214 25% 88%;
-  --primary: 187 78% 34%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 210 32% 93%;
-  --secondary-foreground: 218 38% 15%;
-  --accent: 39 92% 61%;
-  --accent-foreground: 218 38% 15%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 187 78% 34%;
-  --radius: 1rem;
+  /* Immigratiepunt — DESIGN.md (awesome-design-md / Claude-style) */
+  --background: 45 29% 97%;        /* canvas #faf9f5 */
+  --foreground: 60 4% 8%;          /* ink #141413 */
+  --muted: 40 33% 94%;             /* surface-soft #f5f0e8 */
+  --muted-foreground: 45 7% 42%;   /* muted #6c6a64 */
+  --popover: 45 29% 97%;
+  --popover-foreground: 60 4% 8%;
+  --card: 44 30% 90%;              /* surface-card #efe9de */
+  --card-foreground: 60 4% 8%;
+  --border: 40 15% 87%;            /* hairline #e6dfd8 */
+  --input: 40 15% 87%;
+  --primary: 15 54% 58%;           /* coral #cc785c */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 45 29% 97%;
+  --secondary-foreground: 60 4% 8%;
+  --accent: 30 75% 63%;            /* amber #e8a55a */
+  --accent-foreground: 60 4% 8%;
+  --destructive: 8 52% 53%;        /* #c64545 */
+  --destructive-foreground: 45 29% 97%;
+  --ring: 15 54% 58%;
+  --radius: 0.75rem;
+
+  --surface-dark: 45 6% 9%;        /* #181715 */
+  --surface-dark-elevated: 40 7% 14%;
+  --surface-dark-soft: 45 7% 11%;
+  --on-dark: 45 29% 97%;
+  --on-dark-soft: 40 6% 60%;
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 217 73% 53%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 151 58% 75%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 240 4.9% 83.9%;
+  --background: 45 6% 9%;
+  --foreground: 45 29% 97%;
+  --muted: 40 7% 14%;
+  --muted-foreground: 40 6% 60%;
+  --popover: 45 6% 9%;
+  --popover-foreground: 45 29% 97%;
+  --card: 40 7% 14%;
+  --card-foreground: 45 29% 97%;
+  --border: 40 7% 18%;
+  --input: 40 7% 18%;
+  --primary: 15 54% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 40 7% 14%;
+  --secondary-foreground: 45 29% 97%;
+  --accent: 30 75% 63%;
+  --accent-foreground: 60 4% 8%;
+  --destructive: 8 52% 53%;
+  --destructive-foreground: 45 29% 97%;
+  --ring: 15 54% 58%;
 }
 
 @layer base {
@@ -56,7 +63,6 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background-image: radial-gradient(circle at 10% 0%, hsl(187 78% 34% / 0.06), transparent 28rem);
   }
 }
 
@@ -64,27 +70,22 @@ html {
   scroll-behavior: smooth;
 }
 
-.bg-hero {
-  background-image: linear-gradient(110deg, rgba(8, 31, 48, 0.96) 0%, rgba(8, 31, 48, 0.82) 48%, rgba(8, 31, 48, 0.24) 100%), url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1000&q=85');
-  background-size: cover;
-  background-position: center 52%;
-  background-repeat: no-repeat;
+.font-display {
+  font-family: "Cormorant Garamond", Garamond, serif;
+  letter-spacing: -0.02em;
 }
 
-h1,
-h2,
-h3,
-h4,
-button,
-a {
-  font-family: "Manrope", sans-serif;
+h1, h2, h3, h4 {
+  font-family: "Cormorant Garamond", Garamond, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .section-kicker {
-  @apply mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary;
+  @apply mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-primary;
 }
 
 .section-kicker::before {
   content: "";
-  @apply h-1.5 w-1.5 rounded-full bg-accent;
+  @apply h-1.5 w-1.5 rounded-full bg-primary;
 }

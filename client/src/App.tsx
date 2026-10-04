@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import HelpMee from "@/pages/HelpMee";
+import Registreren from "@/pages/Registreren";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/hooks/use-language";
@@ -14,6 +16,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/help-mee" component={HelpMee} />
+      <Route path="/registreren" component={Registreren} />
       <Route component={NotFound} />
     </Switch>
   );
