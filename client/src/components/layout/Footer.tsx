@@ -1,136 +1,81 @@
+import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/hooks/use-language";
-import { Facebook, Twitter, Linkedin, Instagram, MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   const { t } = useTranslation();
   const { language, setLanguage } = useLanguage();
 
   return (
-    <footer className="bg-[#082335] pb-8 pt-16 text-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          {/* Column 1: About */}
+    <footer className="bg-[#181715] pb-8 pt-16 text-[#a09d96]">
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="mb-12 grid gap-10 md:grid-cols-4">
           <div>
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent text-lg font-extrabold text-[#082335]">i</div>
-              <h4 className="text-xl font-extrabold">Immigratiepunt</h4>
+            <div className="mb-4">
+              <Logo inverted />
             </div>
-            <p className="mb-4 max-w-xs leading-7 text-white/60">{t('footer.about')}</p>
-            <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="text-white/50 transition-colors hover:text-accent">
-                <Facebook size={20} />
-              </a>
-              <a href="#" aria-label="Twitter" className="text-white/50 transition-colors hover:text-accent">
-                <Twitter size={20} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="text-white/50 transition-colors hover:text-accent">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" aria-label="Instagram" className="text-white/50 transition-colors hover:text-accent">
-                <Instagram size={20} />
-              </a>
-            </div>
+            <p className="mb-4 max-w-xs text-sm leading-6">{t('footer.about')}</p>
           </div>
-          
-          {/* Column 2: Services */}
+
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-white/50">{t('footer.services')}</h4>
-            <ul className="space-y-2">
-              <li>
-                  <a href="#services" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('services.banking.title')}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  {t('services.housing.title')}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  {t('services.employment.title')}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  {t('services.administrative.title')}
-                </a>
-              </li>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.services')}</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="/#services" className="transition-colors hover:text-[#faf9f5]">{t('services.banking.title')}</a></li>
+              <li><a href="/#services" className="transition-colors hover:text-[#faf9f5]">{t('services.housing.title')}</a></li>
+              <li><a href="/#services" className="transition-colors hover:text-[#faf9f5]">{t('services.employment.title')}</a></li>
+              <li><a href="/#services" className="transition-colors hover:text-[#faf9f5]">{t('services.administrative.title')}</a></li>
             </ul>
           </div>
-          
-          {/* Column 3: Quick Links */}
+
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-white/50">{t('footer.quickLinks')}</h4>
-            <ul className="space-y-2">
-              <li>
-                  <a href="#register" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('footer.aboutUs')}
-                </a>
-              </li>
-              <li>
-                  <a href="#faq" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('footer.faq')}
-                </a>
-              </li>
-              <li>
-                  <a href="#testimonials" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('footer.testimonials')}
-                </a>
-              </li>
-              <li>
-                  <a href="#register" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('footer.blog')}
-                </a>
-              </li>
-              <li>
-                  <a href="#register" className="text-white/65 transition-colors duration-200 hover:text-accent">
-                  {t('footer.contact')}
-                </a>
-              </li>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.quickLinks')}</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/help-mee" className="transition-colors hover:text-[#faf9f5]">{t('header.helpMee')}</Link></li>
+              <li><a href="/#faq" className="transition-colors hover:text-[#faf9f5]">{t('footer.faq')}</a></li>
+              <li><a href="/#testimonials" className="transition-colors hover:text-[#faf9f5]">{t('footer.testimonials')}</a></li>
+              <li><Link href="/registreren" className="transition-colors hover:text-[#faf9f5]">{t('header.register')}</Link></li>
             </ul>
           </div>
-          
-          {/* Column 4: Contact */}
+
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-white/50">{t('footer.contactUs')}</h4>
-            <ul className="space-y-2">
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.contactUs')}</h4>
+            <ul className="space-y-3 text-sm">
               <li className="flex items-start">
-                <MapPin className="mr-2 mt-0.5 h-5 w-5 text-accent" />
-                <span className="text-white/65">Herengracht 341, 1016 AZ Amsterdam</span>
+                <MapPin className="mr-2 mt-0.5 h-4 w-4 text-primary" />
+                <span>Herengracht 341, 1016 AZ Amsterdam</span>
               </li>
               <li className="flex items-start">
-                <Mail className="mr-2 mt-0.5 h-5 w-5 text-accent" />
-                <span className="text-white/65">info@immigratiepunt.nl</span>
+                <Mail className="mr-2 mt-0.5 h-4 w-4 text-primary" />
+                <span>info@immigratiepunt.nl</span>
               </li>
               <li className="flex items-start">
-                <Phone className="mr-2 mt-0.5 h-5 w-5 text-accent" />
-                <span className="text-white/65">+31 (0)20 123 4567</span>
+                <Phone className="mr-2 mt-0.5 h-4 w-4 text-primary" />
+                <span>+31 (0)20 123 4567</span>
               </li>
             </ul>
           </div>
         </div>
-        
-        {/* Language and Copyright */}
+
         <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 md:flex-row">
-          <div className="flex items-center mb-4 md:mb-0">
-            <span className="mr-4 text-white/45">{t('footer.chooseLanguage')}:</span>
-            <button 
+          <div className="mb-4 flex items-center md:mb-0">
+            <span className="mr-4 text-sm text-[#6c6a64]">{t('footer.chooseLanguage')}:</span>
+            <button
               onClick={() => setLanguage('en')}
-              className={`${language === 'en' ? 'text-white' : 'text-white/45'} mx-2 transition-colors duration-200 hover:text-accent`}
+              className={`mx-2 text-sm transition-colors hover:text-[#faf9f5] ${language === 'en' ? 'text-[#faf9f5]' : 'text-[#6c6a64]'}`}
             >
               English
             </button>
-            <span className="text-gray-600">|</span>
-            <button 
+            <span className="text-[#3d3d3a]">|</span>
+            <button
               onClick={() => setLanguage('nl')}
-              className={`${language === 'nl' ? 'text-white' : 'text-white/45'} mx-2 transition-colors duration-200 hover:text-accent`}
+              className={`mx-2 text-sm transition-colors hover:text-[#faf9f5] ${language === 'nl' ? 'text-[#faf9f5]' : 'text-[#6c6a64]'}`}
             >
               Nederlands
             </button>
           </div>
-          <div className="text-sm text-white/45">
+          <div className="text-sm text-[#6c6a64]">
             <span>{t('footer.copyright')}</span>
           </div>
         </div>

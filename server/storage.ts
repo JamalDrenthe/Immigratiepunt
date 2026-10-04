@@ -1,4 +1,4 @@
-import { users, type User, type InsertUser, type Registration, type InsertRegistration } from "@shared/schema";
+import { users, type User, type InsertUser, type Registration, type InsertRegistration, type Helper, type InsertHelper } from "@shared/schema";
 import { DatabaseStorage } from "./storage-db";
 
 // modify the interface with any CRUD methods
@@ -9,19 +9,24 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   createRegistration(registration: InsertRegistration): Promise<Registration>;
+  createHelper(helper: InsertHelper): Promise<Helper>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private registrations: Map<number, Registration>;
+  private helpers: Map<number, Helper>;
   currentId: number;
   currentRegistrationId: number;
+  currentHelperId: number;
 
   constructor() {
     this.users = new Map();
     this.registrations = new Map();
+    this.helpers = new Map();
     this.currentId = 1;
     this.currentRegistrationId = 1;
+    this.currentHelperId = 1;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -62,6 +67,19 @@ export class MemStorage implements IStorage {
     
     this.registrations.set(id, registration);
     return registration;
+  }
+
+  async createHelper(insertHelper: InsertHelper): Promise<Helper> {
+    const id = this.currentHelperId++;
+    const helper: Helper = {
+      id,
+      ...insertHelper,
+      monthlyDonation: insertHelper.monthlyDonation ?? false,
+      createdAt: new Date(),
+    };
+
+    this.helpers.set(id, helper);
+    return helper;
   }
 }
 

@@ -37,3 +37,19 @@ export type User = typeof users.$inferSelect;
 
 export type InsertRegistration = z.infer<typeof insertRegistrationSchema>;
 export type Registration = typeof registrations.$inferSelect;
+
+export const insertHelperSchema = z.object({
+  firstName: z.string().min(2),
+  lastName: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(6),
+  city: z.string().min(2),
+  monthlyDonation: z.boolean().default(false),
+});
+
+export type InsertHelper = z.infer<typeof insertHelperSchema>;
+
+export type Helper = InsertHelper & {
+  id: number;
+  createdAt: Date;
+};

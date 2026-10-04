@@ -5,17 +5,62 @@
   },
   "header": {
     "services": "Diensten",
+    "helpMee": "Help mee",
     "howItWorks": "Hoe het werkt",
     "faq": "FAQ",
     "register": "Registreren"
   },
   "hero": {
+    "badge": "Voor nieuwkomers én helpers",
     "title": "Start snel en veilig je leven in Nederland",
     "subtitle": "Wij helpen internationale nieuwkomers met bankzaken, huisvesting, werk en administratieve zaken.",
     "servicesButton": "Onze Diensten",
-    "getStartedButton": "Aan de slag"
+    "getStartedButton": "Aan de slag",
+    "helpButton": "Ik wil helpen",
+    "trustPoints": [
+      "Persoonlijke adviseur",
+      "NL & EN",
+      "Postadres-programma"
+    ],
+    "mockTitle": "Immigratiepunt",
+    "mockHeading": "Van postadres naar BSN",
+    "mockMail": "Poststuk ontvangen",
+    "mockBanking": "Bankrekening openen",
+    "mockHousing": "Huisvesting regelen",
+    "mockWork": "Werk vinden",
+    "mockFootnote": "Elk poststuk via een postadres levert de helper €0,50 tot €5 op."
+  },
+  "audience": {
+    "kicker": "Voor wie",
+    "title": "Twee kanten, één platform",
+    "subtitle": "Nieuwkomers krijgen persoonlijke begeleiding. Helpers zetten hun adres in als postadres en verdienen per poststuk.",
+    "newcomer": {
+      "tab": "Ik ben nieuw in Nederland",
+      "heading": "Alles geregeld voor je nieuwe start",
+      "text": "Van BSN tot bankrekening: je adviseur begeleidt je door elke stap, in jouw tempo en in je eigen taal.",
+      "bullets": [
+        "BSN-aanvraag en gemeentelijke registratie",
+        "Nederlandse bankrekening openen",
+        "Huisvesting en werk zoeken",
+        "Documenten en vergunningen regelen"
+      ],
+      "cta": "Registreer als nieuwkomer"
+    },
+    "helper": {
+      "tab": "Ik wil helpen",
+      "heading": "Bied je adres aan als postadres",
+      "text": "Veel nieuwkomers kunnen zonder vast adres geen BSN aanvragen. Met jouw adres als postadres help je hen op weg.",
+      "bullets": [
+        "€0,50 tot €5 per ontvangen poststuk",
+        "Geen inschrijving als wonende — alleen postadres",
+        "€5 per maand donatie, die je terugverdient",
+        "Je beslist zelf hoeveel post je ontvangt"
+      ],
+      "cta": "Word postadres-helper"
+    }
   },
   "services": {
+    "kicker": "Diensten",
     "title": "Onze Diensten",
     "subtitle": "Wij bieden uitgebreide ondersteuning om je overgang naar Nederland soepel en probleemloos te laten verlopen.",
     "learnMore": "Meer informatie",
@@ -40,7 +85,15 @@
       "imageAlt": "Administratieve diensten in Nederland"
     }
   },
+  "postadres": {
+    "badge": "Postadres-programma",
+    "calloutTitle": "Jouw adres als postadres. Hun start in Nederland.",
+    "calloutText": "Zonder vast adres kan een nieuwkomer geen BSN aanvragen. Bied je adres aan als postadres — géén inschrijving als wonende — en ontvang per poststuk een vergoeding.",
+    "perMail": "per poststuk",
+    "calloutCta": "Meer over helpen"
+  },
   "howItWorks": {
+    "kicker": "Het proces",
     "title": "Hoe Het Werkt",
     "subtitle": "Ons eenvoudige proces om je te helpen met gemak te vestigen in Nederland.",
     "step1": {
@@ -57,6 +110,7 @@
     }
   },
   "testimonials": {
+    "kicker": "Ervaringen",
     "title": "Wat Onze Klanten Zeggen",
     "subtitle": "Hoor van internationale nieuwkomers die zich met succes in Nederland hebben gevestigd met onze hulp.",
     "testimonial1": {
@@ -70,6 +124,7 @@
     }
   },
   "faq": {
+    "kicker": "FAQ",
     "title": "Veelgestelde Vragen",
     "subtitle": "Vind antwoorden op veelgestelde vragen over onze diensten en vestiging in Nederland.",
     "question1": "Hoe lang duurt het volledige vestigingsproces?",
@@ -79,7 +134,17 @@
     "question3": "Wat voor soort huisvesting kunnen jullie me helpen vinden?",
     "answer3": "We helpen bij het vinden van verschillende soorten accommodaties op basis van je voorkeuren en budget, waaronder appartementen, huizen, gedeelde huisvesting en tijdelijke accommodaties. We werken samen met gerenommeerde bureaus en verhuurders en kunnen helpen bij het uitleggen van Nederlandse huurovereenkomsten en procedures.",
     "question4": "Hoe werken jullie bankdiensten?",
-    "answer4": "We hebben partnerschappen met verschillende Nederlandse banken en kunnen het proces van het openen van een rekening vergemakkelijken. We leggen de verschillende beschikbare bankopties uit, helpen je bij het voorbereiden van de nodige documentatie en in veel gevallen begeleiden we je naar je bankafspraak om een soepele communicatie te garanderen."
+    "answer4": "We hebben partnerschappen met verschillende Nederlandse banken en kunnen het proces van het openen van een rekening vergemakkelijken. We leggen de verschillende beschikbare bankopties uit, helpen je bij het voorbereiden van de nodige documentatie en in veel gevallen begeleiden we je naar je bankafspraak om een soepele communicatie te garanderen.",
+    "question5": "Wat is een postadres precies?",
+    "answer5": "Een postadres is een adres waar je post ontvangt, zonder dat je er inschrijft als wonende. Nieuwekomers zonder vast woonadres gebruiken het om een BSN aan te kunnen aanvragen bij de gemeente.",
+    "question6": "Wat levert het aanbieden van een postadres mij op?",
+    "answer6": "Je ontvangt €0,50 tot €5 per poststuk dat via jouw adres binnenkomt — hoe meer post, hoe hoger het bedrag. Helpers doneren daarnaast €5 per maand om nieuwkomers te steunen; die donatie kun je via de postvergoeding terugverdienen."
+  },
+  "cta": {
+    "title": "Klaar voor een nieuwe start?",
+    "subtitle": "Registreer je als nieuwkomer of bied je adres aan als postadres en help iemand aan een BSN.",
+    "newcomerButton": "Registreer nu",
+    "helperButton": "Help mee"
   },
   "registration": {
     "title": "Begin Vandaag Je Reis",
@@ -108,10 +173,99 @@
     "errorTitle": "Registratie mislukt",
     "errorMessage": "Er is een fout opgetreden bij het verwerken van je registratie. Probeer het later opnieuw."
   },
+  "helperForm": {
+    "title": "Bied je adres aan",
+    "subtitle": "Registreer je als postadres-helper. Je ontvangt €0,50 tot €5 per poststuk en steunt nieuwkomers met een maandelijkse donatie van €5.",
+    "city": "Woonplaats",
+    "donationTitle": "Maandelijkse donatie van €5",
+    "donationText": "Hiermee steun je het Immigratiepunt-programma. Deze donatie kun je terugverdienen via de vergoeding per poststuk.",
+    "submit": "Aanmelden als helper",
+    "successTitle": "Aanmelding ontvangen!",
+    "successMessage": "Bedankt voor je aanmelding als postadres-helper. We nemen binnenkort contact met je op om de details door te nemen.",
+    "errorTitle": "Aanmelding mislukt",
+    "errorMessage": "Er is een fout opgetreden bij het verwerken van je aanmelding. Probeer het later opnieuw."
+  },
+  "registerPage": {
+    "meta": {
+      "title": "Registreren | Immigratiepunt",
+      "description": "Registreer je bij Immigratiepunt als nieuwkomer of bied je adres aan als postadres."
+    },
+    "kicker": "Registreren",
+    "seekerTab": "Ik zoek hulp",
+    "helperTab": "Ik bied een postadres aan"
+  },
+  "helpMee": {
+    "meta": {
+      "title": "Help mee — Postadres | Immigratiepunt",
+      "description": "Bied je adres aan als postadres voor nieuwkomers, zodat zij een BSN kunnen aanvragen. Verdien €0,50 tot €5 per poststuk."
+    },
+    "badge": "Postadres-programma",
+    "title": "Help mee: bied je adres aan als postadres",
+    "subtitle": "Zonder vast adres kan een nieuwkomer in Nederland geen BSN aanvragen — en zonder BSN geen bankrekening, werk of zorgverzekering. Jij kunt helpen door je adres aan te bieden als postadres.",
+    "cta": "Bied je adres aan",
+    "explain": {
+      "what": {
+        "title": "Wat is een postadres?",
+        "text": "Een adres waar de post van een nieuwkomer naartoe gaat. De gemeente gebruikt het als correspondentieadres zodat iemand zonder vast woonadres toch een BSN kan aanvragen."
+      },
+      "not": {
+        "title": "Wat het níet is",
+        "text": "Een postadres is géén inschrijving als wonende op jouw adres. Er verandert niets aan je woonsituatie, huurovereenkomst of toeslagen — het is uitsluitend een adres voor post."
+      },
+      "why": {
+        "title": "Waarom het helpt",
+        "text": "Met een BSN kan een nieuwkomer een bankrekening openen, werken en zich verzekeren. Jouw adres is vaak de eerste stap die alles op gang brengt."
+      }
+    },
+    "steps": {
+      "kicker": "Zo werkt het",
+      "title": "In drie stappen helper",
+      "subtitle": "Van aanmelding tot eerste poststuk — wij regelen de match en de afhandeling.",
+      "step1": {
+        "title": "Meld je aan",
+        "description": "Registreer je als postadres-helper. Wij controleren je gegevens en leggen het programma persoonlijk uit."
+      },
+      "step2": {
+        "title": "Wij koppelen je",
+        "description": "Je wordt gekoppeld aan één of meer nieuwkomers die jouw adres als postadres gebruiken voor hun BSN-aanvraag."
+      },
+      "step3": {
+        "title": "Ontvang post en vergoeding",
+        "description": "Voor elk poststuk dat via jouw adres binnenkomt ontvang je €0,50 tot €5. Hoe meer post, hoe hoger het bedrag."
+      }
+    },
+    "earnings": {
+      "kicker": "Vergoeding",
+      "title": "Verdien per poststuk",
+      "subtitle": "De vergoeding begint bij €0,50 per poststuk en loopt op tot €5. Daarnaast doneer je €5 per maand om het programma te steunen — die donatie kun je via de vergoeding terugverdienen.",
+      "start": {
+        "label": "Startvergoeding",
+        "amount": "€0,50",
+        "text": "Per ontvangen poststuk, vanaf het eerste stuk. De basis om mee te beginnen."
+      },
+      "growth": {
+        "label": "Maximale vergoeding",
+        "amount": "€5",
+        "text": "Hoe meer post je ontvangt, hoe hoger het bedrag per poststuk wordt — tot maximaal €5."
+      },
+      "donation": {
+        "label": "Maandelijkse donatie",
+        "amount": "€5",
+        "text": "Elke helper draagt €5 per maand bij om nieuwkomers te steunen. Je bent dus ook deels donateur."
+      },
+      "note": "Het rekensommetje: je doneert €5 per maand, maar verdient dit terug met de vergoeding per poststuk. Bij tien poststukken per maand tegen €0,50 heb je je donatie er al uit — alles daarboven is netto verdienste én je helpt iemand aan een BSN."
+    },
+    "ctaBand": {
+      "title": "Eén adres kan iemands start veranderen",
+      "subtitle": "Meld je aan als postadres-helper en help een nieuwkomer aan een BSN.",
+      "button": "Bied je adres aan"
+    }
+  },
   "footer": {
     "about": "Uw betrouwbare partner voor het vestigen in Nederland met gemak en vertrouwen.",
     "services": "Diensten",
     "quickLinks": "Snelle Links",
+    "helpMee": "Help mee",
     "aboutUs": "Over Ons",
     "faq": "FAQ",
     "testimonials": "Getuigenissen",
