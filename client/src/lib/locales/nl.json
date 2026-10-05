@@ -193,8 +193,8 @@
       "description": "Registreer je bij Immigratiepunt als nieuwkomer of bied je adres aan als postadres."
     },
     "kicker": "Registreren",
-    "seekerTab": "Ik zoek hulp",
-    "helperTab": "Ik bied een postadres aan"
+    "seekerTab": "Immigrant",
+    "helperTab": "Hulpverlener"
   },
   "helpMee": {
     "meta": {
