@@ -8,7 +8,9 @@
     "helpMee": "Help mee",
     "howItWorks": "Hoe het werkt",
     "faq": "FAQ",
-    "register": "Registreren"
+    "register": "Registreren",
+    "login": "Inloggen",
+    "account": "Account"
   },
   "hero": {
     "badge": "Voor nieuwkomers én helpers",
@@ -259,6 +261,48 @@
       "title": "Eén adres kan iemands start veranderen",
       "subtitle": "Meld je aan als postadres-helper en help een nieuwkomer aan een BSN.",
       "button": "Bied je adres aan"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Inloggen | Immigratiepunt",
+      "description": "Log in op je Immigratiepunt-account."
+    },
+    "title": "Welkom terug",
+    "subtitle": "Log in om je account en integratie-opties te bekijken.",
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "submit": "Inloggen",
+    "errorInvalid": "Voer een geldig e-mailadres en wachtwoord in.",
+    "noAccount": "Nog geen account?",
+    "registerLink": "Registreer hier"
+  },
+  "account": {
+    "meta": {
+      "title": "Mijn Account | Immigratiepunt",
+      "description": "Je Immigratiepunt-account met integratie-opties voor werk, verblijf en bankzaken."
+    },
+    "kicker": "Mijn account",
+    "title": "Welkom, {{name}}",
+    "signOut": "Uitloggen",
+    "servicesTitle": "Jouw integratie-opties",
+    "servicesSubtitle": "Immigratiepunt werkt samen met gespecialiseerde partners voor werk, verblijf en bankzaken.",
+    "partners": {
+      "djobba": {
+        "label": "Werk",
+        "title": "Werk via Djobba",
+        "text": "Vind passend werk in Nederland via onze partner Djobba — vacatures, matching en begeleiding naar je eerste baan."
+      },
+      "woningvry": {
+        "label": "Verblijf",
+        "title": "Verblijf via WoningVry",
+        "text": "Via WoningVry vind je passende huisvesting — van tijdelijke opvang tot een eigen woning."
+      },
+      "xabiworld": {
+        "label": "Bank",
+        "title": "Bank via Xabi World",
+        "text": "Open een bankrekening en regel je financiën via Xabi World, onze bankpartner voor nieuwkomers."
+      }
     }
   },
   "footer": {

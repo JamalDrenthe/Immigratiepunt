@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Logo } from "@/components/Logo";
+import { getMember } from "@/lib/auth";
 
 export function Header() {
   const { t } = useTranslation();
@@ -52,6 +53,12 @@ export function Header() {
             ),
           )}
           <Link
+            href={getMember() ? "/account" : "/inloggen"}
+            className="ml-1 text-sm font-medium text-[#6c6a64] transition-colors hover:text-[#141413]"
+          >
+            {getMember() ? t('header.account') : t('header.login')}
+          </Link>
+          <Link
             href="/registreren"
             className="ml-1 inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-[#a9583e]"
           >
@@ -98,6 +105,13 @@ export function Header() {
                 </Link>
               ),
             )}
+            <Link
+              href={getMember() ? "/account" : "/inloggen"}
+              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#3d3d3a] hover:bg-[#efe9de]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {getMember() ? t('header.account') : t('header.login')}
+            </Link>
             <Link
               href="/registreren"
               className="mt-2 block rounded-lg bg-primary px-3 py-2.5 text-center text-sm font-medium text-white"
