@@ -193,8 +193,8 @@
       "description": "Register with Immigratiepunt as a newcomer or offer your address as a postal address."
     },
     "kicker": "Register",
-    "seekerTab": "I need help",
-    "helperTab": "I want to offer a postal address"
+    "seekerTab": "Immigrant",
+    "helperTab": "Helper"
   },
   "helpMee": {
     "meta": {
