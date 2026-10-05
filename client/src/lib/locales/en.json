@@ -8,7 +8,9 @@
     "helpMee": "Get involved",
     "howItWorks": "How it works",
     "faq": "FAQ",
-    "register": "Register"
+    "register": "Register",
+    "login": "Sign in",
+    "account": "Account"
   },
   "hero": {
     "badge": "For newcomers and helpers",
@@ -259,6 +261,48 @@
       "title": "One address can change someone's start",
       "subtitle": "Sign up as a postal address helper and help a newcomer obtain a BSN.",
       "button": "Offer your address"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Sign in | Immigratiepunt",
+      "description": "Sign in to your Immigratiepunt account."
+    },
+    "title": "Welcome back",
+    "subtitle": "Sign in to view your account and integration options.",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Sign in",
+    "errorInvalid": "Please enter a valid email address and password.",
+    "noAccount": "No account yet?",
+    "registerLink": "Register here"
+  },
+  "account": {
+    "meta": {
+      "title": "My Account | Immigratiepunt",
+      "description": "Your Immigratiepunt account with integration options for work, housing and banking."
+    },
+    "kicker": "My account",
+    "title": "Welcome, {{name}}",
+    "signOut": "Sign out",
+    "servicesTitle": "Your integration options",
+    "servicesSubtitle": "Immigratiepunt works with specialised partners for work, housing and banking.",
+    "partners": {
+      "djobba": {
+        "label": "Work",
+        "title": "Work via Djobba",
+        "text": "Find suitable work in the Netherlands through our partner Djobba — vacancies, matching and guidance to your first job."
+      },
+      "woningvry": {
+        "label": "Housing",
+        "title": "Housing via WoningVry",
+        "text": "Through WoningVry you can find suitable housing — from temporary shelter to your own home."
+      },
+      "xabiworld": {
+        "label": "Bank",
+        "title": "Bank via Xabi World",
+        "text": "Open a bank account and manage your finances via Xabi World, our banking partner for newcomers."
+      }
     }
   },
   "footer": {
