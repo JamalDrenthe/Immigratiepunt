@@ -66,8 +66,51 @@ export type LetterLogDoc = {
   sender: string;
   recipientName: string;
   dateReceived: string;
+  status?: "binnengekomen" | "doorgestuurd" | "opgehaald";
   notes?: string;
   createdAt: string | number;
+};
+
+export type UserDocument = {
+  id: string;
+  userEmail: string;
+  title: string;
+  category: "Identiteit & Paspoort" | "Gemeente & BSN" | "IND & Verblijf" | "Huisvesting & Contract" | "Overig";
+  status: "goedgekeurd" | "in_behandeling" | "afgekeurd";
+  uploadedAt: string;
+  fileSize?: string;
+};
+
+export type SupportMessage = {
+  id: string;
+  fromEmail: string;
+  fromName: string;
+  subject: string;
+  message: string;
+  status: "open" | "in_behandeling" | "beantwoord";
+  reply?: string;
+  createdAt: number;
+};
+
+export type HelperSettings = {
+  email: string;
+  street: string;
+  houseNumber: string;
+  postalCode: string;
+  city: string;
+  maxCapacity: number;
+  isAvailable: boolean;
+  iban: string;
+  accountHolder: string;
+};
+
+export type InAppNotification = {
+  id: string;
+  title: string;
+  message: string;
+  date: string;
+  read: boolean;
+  targetRole?: "all" | "admin" | "helper" | "newcomer";
 };
 
 // Local storage fallback keys
@@ -348,3 +391,278 @@ export function fetchLettersForHelper(helperEmail: string): LetterLogDoc[] {
   }
   return [];
 }
+
+// -------------------------------------------------------------
+// Document Management
+// -------------------------------------------------------------
+const LS_DOCUMENTS = "ip_documents_cache";
+
+const SEED_DOCUMENTS: UserDocument[] = [
+  {
+    id: "doc-1",
+    userEmail: "fatima.almansoor@demo.nl",
+    title: "Kopie Paspoort & Visum",
+    category: "Identiteit & Paspoort",
+    status: "goedgekeurd",
+    uploadedAt: "05-10-2026",
+    fileSize: "1.8 MB",
+  },
+  {
+    id: "doc-2",
+    userEmail: "fatima.almansoor@demo.nl",
+    title: "Toestemmingsverklaring Briefadres (Jan de Vries)",
+    category: "Gemeente & BSN",
+    status: "goedgekeurd",
+    uploadedAt: "08-10-2026",
+    fileSize: "640 KB",
+  },
+  {
+    id: "doc-3",
+    userEmail: "fatima.almansoor@demo.nl",
+    title: "Bevestiging Verblijfsaanvraag IND",
+    category: "IND & Verblijf",
+    status: "in_behandeling",
+    uploadedAt: "11-10-2026",
+    fileSize: "920 KB",
+  },
+];
+
+export function fetchDocumentsForUser(userEmail: string): UserDocument[] {
+  const all = getLocal<UserDocument>(LS_DOCUMENTS);
+  const userDocs = all.filter((d) => d.userEmail.toLowerCase() === userEmail.toLowerCase());
+  if (userDocs.length > 0) return userDocs;
+
+  if (userEmail.toLowerCase() === "fatima.almansoor@demo.nl") {
+    saveLocal(LS_DOCUMENTS, [...all, ...SEED_DOCUMENTS]);
+    return SEED_DOCUMENTS;
+  }
+  return [];
+}
+
+export function saveUserDocument(docData: Omit<UserDocument, "id" | "uploadedAt">): UserDocument {
+  const newDoc: UserDocument = {
+    ...docData,
+    id: "doc-" + Date.now(),
+    uploadedAt: new Date().toLocaleDateString("nl-NL"),
+  };
+  const all = getLocal<UserDocument>(LS_DOCUMENTS);
+  saveLocal(LS_DOCUMENTS, [newDoc, ...all]);
+  return newDoc;
+}
+
+export function deleteUserDocument(id: string): void {
+  const all = getLocal<UserDocument>(LS_DOCUMENTS);
+  saveLocal(LS_DOCUMENTS, all.filter((d) => d.id !== id));
+}
+
+// -------------------------------------------------------------
+// Support & Messages
+// -------------------------------------------------------------
+const LS_MESSAGES = "ip_messages_cache";
+
+const SEED_MESSAGES: SupportMessage[] = [
+  {
+    id: "msg-1",
+    fromEmail: "fatima.almansoor@demo.nl",
+    fromName: "Fatima Al-Mansoor",
+    subject: "Vraag over brief van Gemeente Amsterdam",
+    message: "Ik heb vandaag een brief ontvangen van de gemeente met een afspraakdatum voor de BSN balie. Moet ik zelf nog documenten meenemen behalve mijn paspoort?",
+    status: "beantwoord",
+    reply: "Beste Fatima, neem je paspoort, de ondertekende briefadresverklaring van Jan en je geboorteakte mee. Wij zijn beschikbaar als je vragen hebt!",
+    createdAt: Date.now() - 86400000 * 2,
+  },
+];
+
+export function fetchSupportMessages(fromEmail?: string): SupportMessage[] {
+  const all = getLocal<SupportMessage>(LS_MESSAGES);
+  if (all.length === 0) {
+    saveLocal(LS_MESSAGES, SEED_MESSAGES);
+    return fromEmail
+      ? SEED_MESSAGES.filter((m) => m.fromEmail.toLowerCase() === fromEmail.toLowerCase())
+      : SEED_MESSAGES;
+  }
+  return fromEmail
+    ? all.filter((m) => m.fromEmail.toLowerCase() === fromEmail.toLowerCase())
+    : all;
+}
+
+export function sendSupportMessage(msgData: Omit<SupportMessage, "id" | "status" | "createdAt">): SupportMessage {
+  const newMsg: SupportMessage = {
+    ...msgData,
+    id: "msg-" + Date.now(),
+    status: "open",
+    createdAt: Date.now(),
+  };
+  const all = getLocal<SupportMessage>(LS_MESSAGES);
+  saveLocal(LS_MESSAGES, [newMsg, ...all]);
+  return newMsg;
+}
+
+export function replySupportMessage(id: string, replyText: string): void {
+  const all = getLocal<SupportMessage>(LS_MESSAGES);
+  const updated = all.map((m) =>
+    m.id === id ? { ...m, status: "beantwoord" as const, reply: replyText } : m
+  );
+  saveLocal(LS_MESSAGES, updated);
+}
+
+// -------------------------------------------------------------
+// Helper Settings & Payout Data
+// -------------------------------------------------------------
+const LS_HELPER_SETTINGS = "ip_helper_settings_cache";
+
+const DEFAULT_HELPER_SETTINGS: HelperSettings = {
+  email: "jan.devries@demo.nl",
+  street: "Hoofdstraat",
+  houseNumber: "42",
+  postalCode: "1011 AA",
+  city: "Amsterdam",
+  maxCapacity: 2,
+  isAvailable: true,
+  iban: "NL91 ABNA 0412 3456 78",
+  accountHolder: "J. de Vries",
+};
+
+export function fetchHelperSettings(helperEmail: string): HelperSettings {
+  const all = getLocal<HelperSettings>(LS_HELPER_SETTINGS);
+  const found = all.find((s) => s.email.toLowerCase() === helperEmail.toLowerCase());
+  if (found) return found;
+
+  if (helperEmail.toLowerCase() === "jan.devries@demo.nl") {
+    return DEFAULT_HELPER_SETTINGS;
+  }
+  return {
+    email: helperEmail,
+    street: "",
+    houseNumber: "",
+    postalCode: "",
+    city: "Nederland",
+    maxCapacity: 1,
+    isAvailable: true,
+    iban: "",
+    accountHolder: "",
+  };
+}
+
+export function saveHelperSettings(settings: HelperSettings): void {
+  const all = getLocal<HelperSettings>(LS_HELPER_SETTINGS);
+  const filtered = all.filter((s) => s.email.toLowerCase() !== settings.email.toLowerCase());
+  saveLocal(LS_HELPER_SETTINGS, [settings, ...filtered]);
+}
+
+// -------------------------------------------------------------
+// Matching: Match Newcomer to Helper
+// -------------------------------------------------------------
+export async function matchNewcomerToHelper(
+  registrationId: string,
+  helperEmail: string,
+  helperName: string,
+  newcomerName: string
+): Promise<void> {
+  // 1. Update registration
+  await updateRegistrationStatusInDb(
+    registrationId,
+    "gekoppeld",
+    `Gekoppeld aan postadres-helper ${helperName} (${helperEmail}).`
+  );
+
+  // 2. Update helper
+  const helpers = getLocal<HelperDoc>(LS_HELPERS);
+  const updatedHelpers = helpers.map((h) =>
+    h.email.toLowerCase() === helperEmail.toLowerCase()
+      ? { ...h, status: "gekoppeld" as const, matchedNewcomer: newcomerName }
+      : h
+  );
+  saveLocal(LS_HELPERS, updatedHelpers);
+}
+
+// -------------------------------------------------------------
+// Letter status updating
+// -------------------------------------------------------------
+export function updateLetterStatus(
+  id: string,
+  status: "binnengekomen" | "doorgestuurd" | "opgehaald"
+): void {
+  const all = getLocal<LetterLogDoc>(LS_LETTERS);
+  const updated = all.map((l) => (l.id === id ? { ...l, status } : l));
+  saveLocal(LS_LETTERS, updated);
+}
+
+// -------------------------------------------------------------
+// In-App Notifications
+// -------------------------------------------------------------
+const LS_NOTIFICATIONS = "ip_notifications_cache";
+
+const SEED_NOTIFICATIONS: InAppNotification[] = [
+  {
+    id: "notif-1",
+    title: "Postadres Geverifieerd",
+    message: "Jouw postadres-koppeling is succesvol geverifieerd door Immigratiepunt.",
+    date: "Vandaag",
+    read: false,
+    targetRole: "all",
+  },
+  {
+    id: "notif-2",
+    title: "Gemeente Brief Binnengekomen",
+    message: "Er is een nieuw poststuk geregistreerd voor afspraakbevestiging BSN balie.",
+    date: "Gisteren",
+    read: false,
+    targetRole: "newcomer",
+  },
+  {
+    id: "notif-3",
+    title: "Maandelijkse Postvergoeding",
+    message: "Je hebt deze maand 7 brieven verwerkt. Je netto vergoeding staat klaar.",
+    date: "3 dagen geleden",
+    read: true,
+    targetRole: "helper",
+  },
+];
+
+export function fetchNotificationsForRole(role: "admin" | "helper" | "newcomer"): InAppNotification[] {
+  const all = getLocal<InAppNotification>(LS_NOTIFICATIONS);
+  if (all.length === 0) {
+    saveLocal(LS_NOTIFICATIONS, SEED_NOTIFICATIONS);
+    return SEED_NOTIFICATIONS.filter((n) => !n.targetRole || n.targetRole === "all" || n.targetRole === role);
+  }
+  return all.filter((n) => !n.targetRole || n.targetRole === "all" || n.targetRole === role);
+}
+
+export function markNotificationRead(id: string): void {
+  const all = getLocal<InAppNotification>(LS_NOTIFICATIONS);
+  const updated = all.map((n) => (n.id === id ? { ...n, read: true } : n));
+  saveLocal(LS_NOTIFICATIONS, updated);
+}
+
+// -------------------------------------------------------------
+// CSV Exporter for Admin Reporting
+// -------------------------------------------------------------
+export function exportRegistrationsToCsv(registrations: RegistrationDoc[]): void {
+  const headers = ["ID", "Voornaam", "Achternaam", "Email", "Telefoon", "Herkomst", "Status", "Bank", "Wonen", "Werk", "BSN", "Aangemaakt"];
+  const rows = registrations.map((r) => [
+    r.id || "",
+    `"${r.firstName}"`,
+    `"${r.lastName}"`,
+    `"${r.email}"`,
+    `"${r.phone}"`,
+    `"${r.countryOfOrigin}"`,
+    r.status,
+    r.bankingAssistance ? "Ja" : "Nee",
+    r.housingSupport ? "Ja" : "Nee",
+    r.employmentAssistance ? "Ja" : "Nee",
+    r.administrativeSupport ? "Ja" : "Nee",
+    new Date(r.createdAt).toLocaleDateString("nl-NL"),
+  ]);
+
+  const csvContent = [headers.join(","), ...rows.map((e) => e.join(","))].join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", `immigratiepunt_registraties_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
