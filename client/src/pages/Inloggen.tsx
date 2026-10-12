@@ -200,7 +200,7 @@ export default function Inloggen() {
                 <input
                   type="email"
                   value={email}
-                  placeholder="bijv. info@jamaldrenthe.com"
+                  placeholder="uw@email.nl"
                   onChange={(e) => setEmail(e.target.value)}
                   className={inputClass}
                   required

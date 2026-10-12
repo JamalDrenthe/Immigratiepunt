@@ -10,6 +10,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { useLocation } from "wouter";
+import { saveRegistration } from "@/lib/firebase";
+import { signIn } from "@/lib/auth";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
@@ -31,6 +34,7 @@ type FormValues = z.infer<typeof formSchema>;
 export function SeekerForm() {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const [, navigate] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormValues>({
@@ -53,7 +57,8 @@ export function SeekerForm() {
     try {
       setIsSubmitting(true);
 
-      const response = await apiRequest("POST", "/api/register", {
+      // 1. Save to Firebase Firestore (with local fallback)
+      await saveRegistration({
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
@@ -65,21 +70,41 @@ export function SeekerForm() {
         administrativeSupport: data.administrativeSupport,
       });
 
-      if (response.ok) {
-        toast({
-          title: t('registration.successTitle'),
-          description: t('registration.successMessage'),
-          variant: "default",
+      // 2. Also send to API endpoint as fallback
+      try {
+        await apiRequest("POST", "/api/register", {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          countryOfOrigin: data.countryOfOrigin,
+          bankingAssistance: data.bankingAssistance,
+          housingSupport: data.housingSupport,
+          employmentAssistance: data.employmentAssistance,
+          administrativeSupport: data.administrativeSupport,
         });
-        form.reset();
-      } else {
-        const errorData = await response.json();
-        toast({
-          title: t('registration.errorTitle'),
-          description: errorData.error || t('registration.errorMessage'),
-          variant: "destructive",
-        });
+      } catch (e) {
+        console.warn("API register fallback:", e);
       }
+
+      // 3. Auto login new immigrant and direct to personalized account
+      signIn({
+        email: data.email,
+        name: `${data.firstName} ${data.lastName}`,
+        role: "newcomer",
+        title: "Nieuwkomer / Immigrant",
+        phone: data.phone,
+        countryOrCity: data.countryOfOrigin,
+        provider: "registration",
+      });
+
+      toast({
+        title: t('registration.successTitle'),
+        description: t('registration.successMessage'),
+        variant: "default",
+      });
+
+      navigate("/account");
     } catch (error) {
       toast({
         title: t('registration.errorTitle'),

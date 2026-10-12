@@ -10,15 +10,17 @@ export type Member = {
   role: MemberRole;
   title?: string;
   avatarUrl?: string;
-  provider?: "google" | "demo" | "credentials";
+  phone?: string;
+  countryOrCity?: string;
+  provider?: "google" | "demo" | "credentials" | "registration";
 };
 
 export const DEMO_ACCOUNTS: Record<MemberRole, Member> = {
   admin: {
     email: "info@jamaldrenthe.com",
-    name: "Jamal Drenthe",
+    name: "Beheerder Immigratiepunt",
     role: "admin",
-    title: "Beheerder / Admin",
+    title: "Beheerder & Admin",
     provider: "google",
   },
   newcomer: {
@@ -26,6 +28,8 @@ export const DEMO_ACCOUNTS: Record<MemberRole, Member> = {
     name: "Fatima Al-Mansoor",
     role: "newcomer",
     title: "Nieuwkomer / Immigrant",
+    countryOrCity: "Syria",
+    phone: "+31 6 12345678",
     provider: "demo",
   },
   helper: {
@@ -33,6 +37,8 @@ export const DEMO_ACCOUNTS: Record<MemberRole, Member> = {
     name: "Jan de Vries",
     role: "helper",
     title: "Postadres-helper",
+    countryOrCity: "Amsterdam",
+    phone: "+31 6 11223344",
     provider: "demo",
   },
 };
@@ -55,6 +61,7 @@ export function signIn(member: Member): Member {
   const isTargetAdmin = member.email.toLowerCase() === "info@jamaldrenthe.com";
   const updatedMember: Member = {
     ...member,
+    name: isTargetAdmin && (!member.name || member.name.includes("Jamal")) ? "Beheerder Immigratiepunt" : member.name,
     role: isTargetAdmin ? "admin" : member.role,
     title: isTargetAdmin ? "Beheerder / Admin" : member.title,
   };
@@ -71,7 +78,7 @@ export async function signInWithGoogle(): Promise<Member> {
 
     const member: Member = {
       email,
-      name: user.displayName || (isTargetAdmin ? "Jamal Drenthe" : email.split("@")[0]),
+      name: isTargetAdmin ? "Beheerder Immigratiepunt" : (user.displayName || email.split("@")[0]),
       role: isTargetAdmin ? "admin" : "newcomer",
       title: isTargetAdmin ? "Beheerder / Admin" : "Nieuwkomer / Immigrant",
       avatarUrl: user.photoURL || undefined,
@@ -81,7 +88,6 @@ export async function signInWithGoogle(): Promise<Member> {
     return signIn(member);
   } catch (error) {
     console.warn("Firebase Google popup not completed, falling back to simulated Google OAuth login:", error);
-    // Graceful fallback for environments with blocked popups or pending identitytoolkit activation
     const fallbackAdmin: Member = DEMO_ACCOUNTS.admin;
     return signIn(fallbackAdmin);
   }

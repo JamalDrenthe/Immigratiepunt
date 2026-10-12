@@ -20,6 +20,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   };
 
   // Initialize language from localStorage if available

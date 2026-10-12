@@ -1,8 +1,84 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: registrations
+    // Document ID: auto-generated ID
+    // Fields:
+    //   - firstName: string (required, 1-100 characters)
+    //   - lastName: string (required, 1-100 characters)
+    //   - email: string (required, valid email, <= 150 characters)
+    //   - phone: string (optional, <= 50 characters)
+    //   - countryOfOrigin: string (optional, <= 100 characters)
+    //   - bankingAssistance: bool (optional)
+    //   - housingSupport: bool (optional)
+    //   - employmentAssistance: bool (optional)
+    //   - administrativeSupport: bool (optional)
+    //   - status: string (optional, enum: nieuw, in_behandeling, gekoppeld, afgerond)
+    //   - notes: string (optional, <= 5000 characters)
+    //   - privacyPolicy: bool (optional)
+    //   - createdAt: int | float | string | timestamp (optional)
+    //   - createdAtServer: timestamp (optional)
+    //
+    // Collection: helpers
+    // Document ID: auto-generated ID
+    // Fields:
+    //   - firstName: string (required, 1-100 characters)
+    //   - lastName: string (required, 1-100 characters)
+    //   - email: string (required, valid email, <= 150 characters)
+    //   - phone: string (optional, <= 50 characters)
+    //   - city: string (optional, <= 100 characters)
+    //   - monthlyDonation: bool (optional)
+    //   - status: string (optional, enum: actief, in_afwachting, gekoppeld)
+    //   - registeredLettersCount: int | float (optional)
+    //   - matchedNewcomer: string (optional, <= 150 characters)
+    //   - notes: string (optional, <= 5000 characters)
+    //   - privacyPolicy: bool (optional)
+    //   - createdAt: int | float | string | timestamp (optional)
+    //   - createdAtServer: timestamp (optional)
+    //
+    // Collection: users/{userId}
+    // Document ID: userId (matches request.auth.uid)
+    // Fields:
+    //   - uid: string (optional, must match request.auth.uid)
+    //   - email: string (optional, <= 150 characters)
+    //   - name / displayName: string (optional, <= 100 characters)
+    //   - role: string (optional, <= 50 characters, 'admin' requires admin privilege)
+    //   - title: string (optional, <= 100 characters)
+    //   - avatarUrl / photoURL: string (optional, <= 1000 characters)
+    //   - phone / phoneNumber: string (optional, <= 50 characters)
+    //   - countryOrCity / city / address / postalCode: string (optional, <= 100 characters)
+    //   - provider: string (optional, <= 50 characters)
+    //   - createdAt: int | float | string | timestamp (optional)
+    //   - updatedAt: int | float | string | timestamp (optional)
+    //
+    // Collection: letters/{letterId}
+    // Document ID: auto-generated ID
+    // Fields:
+    //   - sender: string (required, 1-200 characters)
+    //   - recipientName: string (required, 1-200 characters)
+    //   - helperEmail: string (optional, <= 150 characters)
+    //   - dateReceived: string (optional, <= 50 characters)
+    //   - notes: string (optional, <= 3000 characters)
+    //   - createdAt: int | float | string | timestamp (optional)
+    //   - createdAtServer: timestamp (optional)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
       return request.auth != null;
+    }
+
+    function signedIn() {
+      return isAuthenticated();
     }
 
     function isAdmin() {
@@ -12,6 +88,149 @@ service cloud.firestore {
       );
     }
 
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 3 &&
+        email.size() <= 150 &&
+        email.matches('^[-a-zA-Z0-9._%+]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidRegistration(data) {
+      let requiredFields = ['firstName', 'lastName', 'email'];
+      let allowedFields = [
+        'firstName', 'lastName', 'email', 'phone', 'countryOfOrigin',
+        'bankingAssistance', 'housingSupport', 'employmentAssistance', 'administrativeSupport',
+        'status', 'notes', 'privacyPolicy', 'createdAt', 'createdAtServer'
+      ];
+      return data.keys().hasAll(requiredFields) &&
+        data.keys().hasOnly(allowedFields) &&
+        data.firstName is string && data.firstName.size() >= 1 && data.firstName.size() <= 100 &&
+        data.lastName is string && data.lastName.size() >= 1 && data.lastName.size() <= 100 &&
+        data.email is string && isValidEmail(data.email) &&
+        (!('phone' in data) || (data.phone is string && data.phone.size() <= 50)) &&
+        (!('countryOfOrigin' in data) || (data.countryOfOrigin is string && data.countryOfOrigin.size() <= 100)) &&
+        (!('bankingAssistance' in data) || data.bankingAssistance is bool) &&
+        (!('housingSupport' in data) || data.housingSupport is bool) &&
+        (!('employmentAssistance' in data) || data.employmentAssistance is bool) &&
+        (!('administrativeSupport' in data) || data.administrativeSupport is bool) &&
+        (!('status' in data) || (data.status is string && data.status in ['nieuw', 'in_behandeling', 'gekoppeld', 'afgerond'])) &&
+        (!('notes' in data) || (data.notes is string && data.notes.size() <= 5000)) &&
+        (!('privacyPolicy' in data) || data.privacyPolicy is bool) &&
+        (!('createdAt' in data) || (data.createdAt is int || data.createdAt is float || data.createdAt is string || data.createdAt is timestamp)) &&
+        (!('createdAtServer' in data) || data.createdAtServer is timestamp);
+    }
+
+    function isValidHelper(data) {
+      let requiredFields = ['firstName', 'lastName', 'email'];
+      let allowedFields = [
+        'firstName', 'lastName', 'email', 'phone', 'city',
+        'monthlyDonation', 'status', 'registeredLettersCount', 'matchedNewcomer',
+        'notes', 'privacyPolicy', 'createdAt', 'createdAtServer'
+      ];
+      return data.keys().hasAll(requiredFields) &&
+        data.keys().hasOnly(allowedFields) &&
+        data.firstName is string && data.firstName.size() >= 1 && data.firstName.size() <= 100 &&
+        data.lastName is string && data.lastName.size() >= 1 && data.lastName.size() <= 100 &&
+        data.email is string && isValidEmail(data.email) &&
+        (!('phone' in data) || (data.phone is string && data.phone.size() <= 50)) &&
+        (!('city' in data) || (data.city is string && data.city.size() <= 100)) &&
+        (!('monthlyDonation' in data) || data.monthlyDonation is bool) &&
+        (!('status' in data) || (data.status is string && data.status in ['actief', 'in_afwachting', 'gekoppeld'])) &&
+        (!('registeredLettersCount' in data) || (data.registeredLettersCount is int || data.registeredLettersCount is float)) &&
+        (!('matchedNewcomer' in data) || (data.matchedNewcomer is string && data.matchedNewcomer.size() <= 150)) &&
+        (!('notes' in data) || (data.notes is string && data.notes.size() <= 5000)) &&
+        (!('privacyPolicy' in data) || data.privacyPolicy is bool) &&
+        (!('createdAt' in data) || (data.createdAt is int || data.createdAt is float || data.createdAt is string || data.createdAt is timestamp)) &&
+        (!('createdAtServer' in data) || data.createdAtServer is timestamp);
+    }
+
+    function isValidLetter(data) {
+      let requiredFields = ['sender', 'recipientName'];
+      let allowedFields = [
+        'sender', 'recipientName', 'helperEmail', 'dateReceived',
+        'notes', 'createdAt', 'createdAtServer'
+      ];
+      return data.keys().hasAll(requiredFields) &&
+        data.keys().hasOnly(allowedFields) &&
+        data.sender is string && data.sender.size() >= 1 && data.sender.size() <= 200 &&
+        data.recipientName is string && data.recipientName.size() >= 1 && data.recipientName.size() <= 200 &&
+        (!('helperEmail' in data) || (data.helperEmail is string && data.helperEmail.size() <= 150)) &&
+        (!('dateReceived' in data) || (data.dateReceived is string && data.dateReceived.size() <= 50)) &&
+        (!('notes' in data) || (data.notes is string && data.notes.size() <= 3000)) &&
+        (!('createdAt' in data) || (data.createdAt is int || data.createdAt is float || data.createdAt is string || data.createdAt is timestamp)) &&
+        (!('createdAtServer' in data) || data.createdAtServer is timestamp);
+    }
+
+    function isValidUser(data) {
+      let allowedFields = [
+        'uid', 'email', 'name', 'displayName', 'role', 'title',
+        'avatarUrl', 'photoURL', 'phone', 'phoneNumber',
+        'countryOrCity', 'city', 'address', 'postalCode',
+        'provider', 'createdAt', 'updatedAt'
+      ];
+      return data.keys().hasOnly(allowedFields) &&
+        (!('uid' in data) || (data.uid is string && data.uid == request.auth.uid)) &&
+        (!('email' in data) || (data.email is string && data.email.size() <= 150)) &&
+        (!('name' in data) || (data.name is string && data.name.size() <= 100)) &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+        (!('role' in data) || (data.role is string && (data.role != 'admin' || isAdmin()))) &&
+        (!('title' in data) || (data.title is string && data.title.size() <= 100)) &&
+        (!('avatarUrl' in data) || (data.avatarUrl is string && data.avatarUrl.size() <= 1000)) &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 1000)) &&
+        (!('phone' in data) || (data.phone is string && data.phone.size() <= 50)) &&
+        (!('phoneNumber' in data) || (data.phoneNumber is string && data.phoneNumber.size() <= 50)) &&
+        (!('countryOrCity' in data) || (data.countryOrCity is string && data.countryOrCity.size() <= 100)) &&
+        (!('city' in data) || (data.city is string && data.city.size() <= 100)) &&
+        (!('address' in data) || (data.address is string && data.address.size() <= 150)) &&
+        (!('postalCode' in data) || (data.postalCode is string && data.postalCode.size() <= 20)) &&
+        (!('provider' in data) || (data.provider is string && data.provider.size() <= 50)) &&
+        (!('createdAt' in data) || (data.createdAt is timestamp || data.createdAt is int || data.createdAt is float || data.createdAt is string)) &&
+        (!('updatedAt' in data) || (data.updatedAt is timestamp || data.updatedAt is int || data.updatedAt is float || data.updatedAt is string));
+    }
+
+    // ===============================================================
+    // Rules Definitions
+    // ===============================================================
+
+    // Collection: registrations
+    match /registrations/{registrationId} {
+      allow create: if isValidRegistration(request.resource.data);
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Collection: helpers
+    match /helpers/{helperId} {
+      allow create: if isValidHelper(request.resource.data);
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Collection: users
+    match /users/{userId} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+      allow create, update: if isAdmin() || (
+        request.auth != null &&
+        request.auth.uid == userId &&
+        isValidUser(request.resource.data)
+      );
+      allow delete: if isAdmin() || (request.auth != null && request.auth.uid == userId);
+    }
+
+    // Collection: letters (postal mail logging)
+    match /letters/{letterId} {
+      allow read: if request.auth != null || isAdmin();
+      allow create: if (request.auth != null || isAdmin()) && isValidLetter(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // Default catch-all rule: Admin-only access for any other collections or paths
     match /{document=**} {
       allow read, write: if isAdmin();
     }
