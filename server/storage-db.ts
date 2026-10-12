@@ -1,20 +1,23 @@
-import { users, registrations, type User, type InsertUser, type Registration, type InsertRegistration } from "@shared/schema";
+import { users, registrations, type User, type InsertUser, type Registration, type InsertRegistration, type Helper, type InsertHelper } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import { IStorage } from "./storage";
 
 export class DatabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
+    if (!db) return undefined;
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user || undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
+    if (!db) return undefined;
     const [user] = await db.select().from(users).where(eq(users.username, username));
     return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
+    if (!db) throw new Error("Database not configured");
     const [user] = await db
       .insert(users)
       .values(insertUser)
@@ -23,10 +26,20 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createRegistration(insertRegistration: InsertRegistration): Promise<Registration> {
+    if (!db) throw new Error("Database not configured");
     const [registration] = await db
       .insert(registrations)
       .values(insertRegistration)
       .returning();
     return registration;
+  }
+
+  async createHelper(insertHelper: InsertHelper): Promise<Helper> {
+    return {
+      id: 1,
+      ...insertHelper,
+      monthlyDonation: insertHelper.monthlyDonation ?? false,
+      createdAt: new Date(),
+    };
   }
 }

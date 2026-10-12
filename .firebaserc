@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "immigratiepunt-dev",
+    "dev": "immigratiepunt-dev",
+    "prod": "immigratiepunt-prod"
+  }
+}

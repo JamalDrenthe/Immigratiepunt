@@ -54,9 +54,18 @@ export function Header() {
           )}
           <Link
             href={getMember() ? "/account" : "/inloggen"}
-            className="ml-1 text-sm font-medium text-[#6c6a64] transition-colors hover:text-[#141413]"
+            className="ml-1 inline-flex items-center gap-1.5 text-sm font-medium text-[#6c6a64] transition-colors hover:text-[#141413]"
           >
-            {getMember() ? t('header.account') : t('header.login')}
+            {getMember() ? (
+              <>
+                <span>{t('header.account')}</span>
+                {getMember()?.role === "admin" && (
+                  <span className="rounded bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700">Admin</span>
+                )}
+              </>
+            ) : (
+              t('header.login')
+            )}
           </Link>
           <Link
             href="/registreren"
@@ -107,10 +116,13 @@ export function Header() {
             )}
             <Link
               href={getMember() ? "/account" : "/inloggen"}
-              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#3d3d3a] hover:bg-[#efe9de]"
+              className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-[#3d3d3a] hover:bg-[#efe9de]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {getMember() ? t('header.account') : t('header.login')}
+              <span>{getMember() ? t('header.account') : t('header.login')}</span>
+              {getMember()?.role === "admin" && (
+                <span className="rounded bg-purple-100 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700">Admin</span>
+              )}
             </Link>
             <Link
               href="/registreren"
