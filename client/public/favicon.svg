@@ -1,1 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 2 L18.4 13.6 L30 16 L18.4 18.4 L16 30 L13.6 18.4 L2 16 L13.6 13.6 Z" fill="#cc785c"/><circle cx="16" cy="16" r="2.4" fill="#faf9f5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="favPrimary" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#cc785c"/>
+      <stop offset="50%" stopColor="#d96b43"/>
+      <stop offset="100%" stopColor="#e8a55a"/>
+    </linearGradient>
+    <linearGradient id="favSlate" x1="42" y1="6" x2="6" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#3d3a36"/>
+      <stop offset="100%" stopColor="#181715"/>
+    </linearGradient>
+    <radialGradient id="favGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#e8a55a"/>
+      <stop offset="70%" stopColor="#cc785c"/>
+      <stop offset="100%" stopColor="#cc785c" stopOpacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Welcoming arch ribbon (newcomer journey) -->
+  <path
+    d="M10 24C10 16.268 16.268 10 24 10C28.5 10 32.5 12.2 35 15.5L31.2 18.8C29.4 16.5 26.8 15 24 15C19.029 15 15 19.029 15 24C15 28.971 19.029 33 24 33C27.2 33 30 31.3 31.6 28.7L35.4 31.9C32.8 35.7 28.6 38 24 38C16.268 38 10 31.732 10 24Z"
+    fill="url(#favPrimary)"
+  />
+
+  <!-- Anchoring bridge ribbon (helper / Dutch community) -->
+  <path
+    d="M38 24C38 21.6 37.3 19.4 36.1 17.5L32.2 20.6C32.7 21.7 33 22.8 33 24C33 28.971 28.971 33 24 33V38C31.732 38 38 31.732 38 24Z"
+    fill="url(#favSlate)"
+  />
+
+  <!-- Central Beacon - "Het Punt" -->
+  <circle cx="24" cy="24" r="5.5" fill="url(#favGlow)"/>
+  <circle cx="24" cy="24" r="3.2" fill="#faf9f5"/>
+  <circle cx="24" cy="24" r="1.6" fill="#cc785c"/>
+
+  <!-- Cardinal navigation sparks -->
+  <path d="M24 3V7" stroke="url(#favPrimary)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M45 24H41" stroke="url(#favPrimary)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M24 45V41" stroke="url(#favPrimary)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M3 24H7" stroke="url(#favPrimary)" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
