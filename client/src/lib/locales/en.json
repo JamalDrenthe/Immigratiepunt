@@ -68,24 +68,53 @@
     "title": "Our Services",
     "subtitle": "We provide comprehensive support to make your transition to the Netherlands smooth and hassle-free.",
     "learnMore": "Learn more",
+    "startNow": "Get started",
     "banking": {
       "title": "Banking Assistance",
-      "description": "We help you set up Dutch bank accounts and understand the local financial system.",
+      "partnerBadge": "Partner Xabi World",
+      "stat": "IBAN in 48 hours",
+      "description": "We help you set up Dutch bank accounts and understand the local financial system with total ease.",
+      "bullets": [
+        "Dutch IBAN checking account active within 48 hours of BSN",
+        "Full activation of iDEAL, DigiD & mobile banking apps",
+        "Transparent advice on savings and credit with zero hidden fees"
+      ],
       "imageAlt": "Banking services in the Netherlands"
     },
     "housing": {
       "title": "Housing Support",
-      "description": "Find suitable accommodation with our guidance on rental procedures and housing regulations.",
+      "partnerBadge": "Partner WoningVry",
+      "stat": "100% Tenant Protection",
+      "description": "Find suitable accommodation with our guidance on rental procedures, contract screening, and housing regulations.",
+      "bullets": [
+        "Verified listings for rooms, studios, and apartments via WoningVry",
+        "Legal lease contract review & protection against unlawful clauses and scams",
+        "Guaranteed municipal registration eligibility & rent subsidy assistance"
+      ],
       "imageAlt": "Housing in the Netherlands"
     },
     "employment": {
       "title": "Employment Assistance",
-      "description": "Navigate the Dutch job market with our CV preparation, job search, and interview coaching.",
+      "partnerBadge": "Partner Djobba",
+      "stat": "92% interview rate in 30d",
+      "description": "Navigate the Dutch job market with our tailored CV localization, job matching via Djobba, and interview coaching.",
+      "bullets": [
+        "Dutch-standard CV and cover letter adaptation matching recruiter expectations",
+        "Direct matching with verified employers open to international newcomers",
+        "Interview preparation, collective agreement (CAO) advice & salary negotiation"
+      ],
       "imageAlt": "Employment services in the Netherlands"
     },
     "administrative": {
       "title": "Administrative Support",
-      "description": "Get help with residence permits, registration procedures, and other bureaucratic requirements.",
+      "partnerBadge": "Immigratiepunt",
+      "stat": "BSN Guaranteed",
+      "description": "Get professional assistance with residence permits, municipal registrations, and bureaucratic requirements.",
+      "bullets": [
+        "Priority BSN appointment booking & municipal registration assistance",
+        "Guidance on IND residence permit applications & document tracking",
+        "Sworn legal translations and apostilles for vital certificates"
+      ],
       "imageAlt": "Administrative services in the Netherlands"
     }
   },

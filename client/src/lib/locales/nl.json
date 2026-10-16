@@ -68,24 +68,53 @@
     "title": "Onze Diensten",
     "subtitle": "Wij bieden uitgebreide ondersteuning om je overgang naar Nederland soepel en probleemloos te laten verlopen.",
     "learnMore": "Meer informatie",
+    "startNow": "Direct starten",
     "banking": {
       "title": "Bankondersteuning",
+      "partnerBadge": "Partner Xabi World",
+      "stat": "IBAN in 48 uur",
       "description": "We helpen je bij het openen van Nederlandse bankrekeningen en het begrijpen van het lokale financiële systeem.",
+      "bullets": [
+        "Nederlandse betaalrekening (IBAN) binnen 48 uur na BSN",
+        "Volledige activatie van iDEAL & mobiel bankieren",
+        "Heldere uitleg over spaaropties zonder verborgen kosten"
+      ],
       "imageAlt": "Bankdiensten in Nederland"
     },
     "housing": {
       "title": "Huisvestingsondersteuning",
-      "description": "Vind geschikte accommodatie met onze begeleiding bij huurprocedures en huisvestingsvoorschriften.",
+      "partnerBadge": "Partner WoningVry",
+      "stat": "100% Huurbescherming",
+      "description": "Vind geschikte accommodatie met onze begeleiding bij huurprocedures, contractscreening en huisvestingsvoorschriften.",
+      "bullets": [
+        "Geverifieerd woning- en kameraanbod via partner WoningVry",
+        "Juridische huurcontractcontrole & bescherming tegen oplichting",
+        "Zekerheid over gemeentelijke inschrijving & aanvraag huurtoeslag"
+      ],
       "imageAlt": "Huisvesting in Nederland"
     },
     "employment": {
       "title": "Werkgelegenheidsondersteuning",
-      "description": "Navigeer op de Nederlandse arbeidsmarkt met onze CV-voorbereiding, het zoeken naar werk en interviewcoaching.",
+      "partnerBadge": "Partner Djobba",
+      "stat": "92% binnen 30d op gesprek",
+      "description": "Navigeer op de Nederlandse arbeidsmarkt met onze CV-voorbereiding, het zoeken naar werk en gerichte interviewcoaching.",
+      "bullets": [
+        "Nederlands CV & motivatiebrief volgens lokale wervingsnormen",
+        "Directe vacaturematching via ons partnernetwerk Djobba",
+        "Interviewtraining, CAO-advies & salarisonderhandeling"
+      ],
       "imageAlt": "Werkgelegenheidsdiensten in Nederland"
     },
     "administrative": {
       "title": "Administratieve Ondersteuning",
-      "description": "Krijg hulp bij verblijfsvergunningen, registratieprocedures en andere bureaucratische vereisten.",
+      "partnerBadge": "Immigratiepunt",
+      "stat": "BSN-garantie",
+      "description": "Krijg professionele hulp bij verblijfsvergunningen, registratieprocedures en andere bureaucratische vereisten.",
+      "bullets": [
+        "BSN-afspraak boeken en gemeentelijke registratie begeleiden",
+        "Ondersteuning bij IND-aanvragen en verblijfsdocumenten",
+        "Beëdigde vertalingen en legalisaties van officiële aktes"
+      ],
       "imageAlt": "Administratieve diensten in Nederland"
     }
   },

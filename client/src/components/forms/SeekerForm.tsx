@@ -37,6 +37,9 @@ export function SeekerForm() {
   const [, navigate] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+  const initialService = searchParams?.get("service") || "";
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,10 +48,10 @@ export function SeekerForm() {
       email: "",
       phone: "",
       countryOfOrigin: "",
-      bankingAssistance: false,
-      housingSupport: false,
-      employmentAssistance: false,
-      administrativeSupport: false,
+      bankingAssistance: initialService === "banking",
+      housingSupport: initialService === "housing",
+      employmentAssistance: initialService === "employment",
+      administrativeSupport: initialService === "administrative",
       privacyPolicy: false,
     },
   });
