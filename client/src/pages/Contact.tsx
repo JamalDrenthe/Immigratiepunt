@@ -300,20 +300,20 @@ export default function Contact() {
                 </ThreeDCard>
               </MotionReveal>
 
-              {/* Office & Hours Card */}
+              {/* Service & Hours Card */}
               <MotionReveal direction="up" delay={0.2}>
                 <ThreeDCard depth={8} className="rounded-2xl">
                   <div className="rounded-2xl border border-[#e6dfd8] bg-white p-6 shadow-sm">
                     <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#5db8a6]/15 text-[#5db8a6]">
-                      <MapPin className="h-5 w-5" />
+                      <Clock className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-xs font-semibold uppercase tracking-wider text-[#6c6a64]">
-                      {t('contactPage.info.address', 'Bezoekadres')}
+                      Bereikbaarheid
                     </div>
                     <div className="font-display mt-1 text-2xl font-medium tracking-tight text-[#141413]">
-                      Herengracht 341
+                      Landelijk Actief
                     </div>
-                    <div className="text-sm text-[#3d3d3a]">1016 AZ Amsterdam, Nederland</div>
+                    <div className="text-sm text-[#3d3d3a]">Digitaal loket voor heel Nederland</div>
 
                     <div className="mt-6 border-t border-[#e6dfd8] pt-4">
                       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#6c6a64]">
@@ -339,44 +339,23 @@ export default function Contact() {
                 </ThreeDCard>
               </MotionReveal>
 
-              {/* Styled Interactive Map Card */}
+              {/* Nationwide Coverage Network Card */}
               <MotionReveal direction="up" delay={0.3}>
                 <div className="overflow-hidden rounded-2xl border border-[#e6dfd8] bg-[#181715] p-6 text-white shadow-md">
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#a09d96]">Centrum Amsterdam</span>
-                    <span className="flex items-center gap-1 text-[11px] text-emerald-400">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#a09d96]">Landelijk Netwerk</span>
+                    <span className="flex items-center gap-1.5 text-[11px] text-emerald-400">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Goed bereikbaar
+                      Actief in 12 provincies
                     </span>
                   </div>
-                  <div className="relative my-3 h-32 w-full rounded-xl overflow-hidden border border-white/10 bg-[#252320]">
-                    {/* Stylized SVG Map preview */}
-                    <svg className="h-full w-full" viewBox="0 0 300 120" preserveAspectRatio="none">
-                      <path d="M0,40 Q100,20 200,60 T300,50" stroke="#333" strokeWidth="12" fill="none" />
-                      <path d="M0,90 Q80,110 180,80 T300,90" stroke="#333" strokeWidth="8" fill="none" />
-                      <path d="M120,0 Q130,60 140,120" stroke="#444" strokeWidth="6" fill="none" />
-                      <path d="M180,0 Q170,60 190,120" stroke="#555" strokeWidth="8" fill="none" />
-                      {/* Water canals */}
-                      <path d="M50,0 Q80,60 60,120" stroke="#1f2d3d" strokeWidth="14" fill="none" />
-                      {/* Marker */}
-                      <circle cx="150" cy="55" r="9" fill="#cc785c" />
-                      <circle cx="150" cy="55" r="4" fill="#faf9f5" />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="rounded-lg bg-black/70 px-3 py-1.5 text-xs font-semibold backdrop-blur-sm border border-white/15">
-                        📍 Herengracht 341
-                      </div>
-                    </div>
+                  <p className="text-xs leading-relaxed text-[#a09d96] mb-4">
+                    Immigratiepunt verbindt nieuwkomers en gecertificeerde postadres-helpers in alle Nederlandse gemeenten via een centraal gecoördineerd netwerk.
+                  </p>
+                  <div className="flex items-center justify-between border-t border-white/10 pt-3 text-xs text-[#faf9f5]">
+                    <span className="text-[#a09d96]">Gemiddelde reactietijd:</span>
+                    <span className="font-semibold text-emerald-400">Binnen 2 tot 4 uur</span>
                   </div>
-                  <a
-                    href="https://maps.google.com/?q=Herengracht+341+Amsterdam"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#e8a55a] hover:underline"
-                  >
-                    <span>Openen in Google Maps</span>
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
                 </div>
               </MotionReveal>
             </div>

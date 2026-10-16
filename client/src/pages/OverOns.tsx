@@ -336,7 +336,7 @@ export default function OverOns() {
                 href="/contact"
                 className="inline-flex h-12 items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20"
               >
-                Neem contact op
+                Contact opnemen
               </Link>
             </div>
           </MotionReveal>

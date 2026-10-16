@@ -24,7 +24,7 @@ export function Footer() {
                 className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary hover:underline"
               >
                 <MessageSquare className="h-3.5 w-3.5" />
-                <span>Neem direct contact op</span>
+                <span>Stuur ons een bericht</span>
               </Link>
             </div>
           </div>
@@ -51,12 +51,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.contactUs')}</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.contact', 'Contact')}</h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-start">
-                <MapPin className="mr-2 mt-0.5 h-4 w-4 text-primary shrink-0" />
-                <span>Herengracht 341, 1016 AZ Amsterdam</span>
-              </li>
               <li className="flex items-start">
                 <Mail className="mr-2 mt-0.5 h-4 w-4 text-primary shrink-0" />
                 <a href="mailto:info@immigratiepunt.nl" className="hover:text-white transition-colors">info@immigratiepunt.nl</a>
