@@ -1,8 +1,9 @@
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/hooks/use-language";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, ArrowRight, MessageSquare } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { SUPPORTED_LANGUAGES } from "@/components/ui/language-switcher";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -17,6 +18,15 @@ export function Footer() {
               <Logo inverted />
             </div>
             <p className="mb-4 max-w-xs text-sm leading-6">{t('footer.about')}</p>
+            <div className="mt-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary hover:underline"
+              >
+                <MessageSquare className="h-3.5 w-3.5" />
+                <span>Neem direct contact op</span>
+              </Link>
+            </div>
           </div>
 
           <div>
@@ -32,10 +42,11 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2 text-sm">
+              <li><Link href="/over-ons" className="transition-colors hover:text-[#faf9f5]">{t('header.about', 'Over ons')}</Link></li>
               <li><Link href="/help-mee" className="transition-colors hover:text-[#faf9f5]">{t('header.helpMee')}</Link></li>
-              <li><a href="/#faq" className="transition-colors hover:text-[#faf9f5]">{t('footer.faq')}</a></li>
-              <li><a href="/#testimonials" className="transition-colors hover:text-[#faf9f5]">{t('footer.testimonials')}</a></li>
+              <li><Link href="/contact" className="transition-colors hover:text-[#faf9f5]">{t('header.contact', 'Contact')}</Link></li>
               <li><Link href="/registreren" className="transition-colors hover:text-[#faf9f5]">{t('header.register')}</Link></li>
+              <li><a href="/#faq" className="transition-colors hover:text-[#faf9f5]">{t('footer.faq')}</a></li>
             </ul>
           </div>
 
@@ -43,39 +54,53 @@ export function Footer() {
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.contactUs')}</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
-                <MapPin className="mr-2 mt-0.5 h-4 w-4 text-primary" />
+                <MapPin className="mr-2 mt-0.5 h-4 w-4 text-primary shrink-0" />
                 <span>Herengracht 341, 1016 AZ Amsterdam</span>
               </li>
               <li className="flex items-start">
-                <Mail className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                <span>info@immigratiepunt.nl</span>
+                <Mail className="mr-2 mt-0.5 h-4 w-4 text-primary shrink-0" />
+                <a href="mailto:info@immigratiepunt.nl" className="hover:text-white transition-colors">info@immigratiepunt.nl</a>
               </li>
-              <li className="flex items-start">
-                <Phone className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                <span>+31 (0)20 123 4567</span>
+              <li className="pt-2">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-[#faf9f5] hover:bg-white/10 transition-colors"
+                >
+                  <span>Stel een vraag</span>
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 md:flex-row">
-          <div className="mb-4 flex items-center md:mb-0">
-            <span className="mr-4 text-sm text-[#6c6a64]">{t('footer.chooseLanguage')}:</span>
-            <button
-              onClick={() => setLanguage('en')}
-              className={`mx-2 text-sm transition-colors hover:text-[#faf9f5] ${language === 'en' ? 'text-[#faf9f5]' : 'text-[#6c6a64]'}`}
-            >
-              English
-            </button>
-            <span className="text-[#3d3d3a]">|</span>
-            <button
-              onClick={() => setLanguage('nl')}
-              className={`mx-2 text-sm transition-colors hover:text-[#faf9f5] ${language === 'nl' ? 'text-[#faf9f5]' : 'text-[#6c6a64]'}`}
-            >
-              Nederlands
-            </button>
+        {/* Multilingual Selector Bar */}
+        <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 gap-4 md:flex-row">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs">
+            <span className="text-[#6c6a64] font-medium">{t('footer.chooseLanguage')}:</span>
+            {SUPPORTED_LANGUAGES.map((lang, idx) => {
+              const isCurrent = language === lang.code;
+              return (
+                <div key={lang.code} className="flex items-center gap-2">
+                  <button
+                    onClick={() => setLanguage(lang.code)}
+                    className={`flex items-center gap-1 transition-colors ${
+                      isCurrent
+                        ? "text-[#faf9f5] font-bold underline underline-offset-4 decoration-primary"
+                        : "text-[#6c6a64] hover:text-[#faf9f5]"
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                  {idx < SUPPORTED_LANGUAGES.length - 1 && (
+                    <span className="text-[#3d3d3a] hidden sm:inline">·</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
-          <div className="text-sm text-[#6c6a64]">
+          <div className="text-xs text-[#6c6a64]">
             <span>{t('footer.copyright')}</span>
           </div>
         </div>

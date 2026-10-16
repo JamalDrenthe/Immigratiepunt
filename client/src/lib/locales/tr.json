@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "title": "Immigratiepunt | Hollanda'daki Yeni Hayatınıza Başlayın",
+    "description": "Immigratiepunt, Hollanda'ya yeni gelen uluslararası bireylere bankacılık, barınma, iş ve resmi işlemlerde rehberlik eder."
+  },
+  "header": {
+    "services": "Hizmetler",
+    "about": "Hakkımızda",
+    "helpMee": "Destek Ol",
+    "howItWorks": "Nasıl Çalışır",
+    "contact": "İletişim",
+    "faq": "SSS",
+    "register": "Kayıt Ol",
+    "login": "Giriş Yap",
+    "account": "Hesabım"
+  },
+  "hero": {
+    "badge": "Yeni gelenler ve destekçiler için",
+    "title": "Hollanda'daki hayatınıza hızlı ve güvenle başlayın",
+    "subtitle": "Yeni gelenlere banka hesabı, konut, iş ve belediye evraklarında kişisel danışmanlık sağlıyoruz.",
+    "servicesButton": "Hizmetlerimiz",
+    "getStartedButton": "Hemen Başla",
+    "helpButton": "Destek Olmak İstiyorum",
+    "trustPoints": [
+      "Kişisel danışman",
+      "Çok dilli destek",
+      "Posta adresi programı"
+    ],
+    "mockTitle": "Immigratiepunt",
+    "mockHeading": "Posta adresinden BSN numarasına",
+    "mockMail": "Mektup teslim alındı",
+    "mockBanking": "Banka hesabı aç",
+    "mockHousing": "Konut ayarla",
+    "mockWork": "İş bul",
+    "mockFootnote": "Posta adresi aracılığıyla gelen her resmi mektup için destekçiye 0,50 € ile 5 € arası ödeme yapılır."
+  },
+  "audience": {
+    "kicker": "Kimin için",
+    "title": "İki taraf, tek platform",
+    "subtitle": "Yeni gelenler bireysel rehberlik alır; destekçiler ev adreslerini posta adresi olarak sunup mektup başına kazanç sağlar.",
+    "newcomer": {
+      "tab": "Hollanda'da yeniyim",
+      "heading": "Yeni başlangıcınız için her şey hazır",
+      "text": "BSN'den banka hesabına kadar tüm süreçlerde danışmanınız kendi dilinizde ve hızınızda size eşlik eder.",
+      "bullets": [
+        "BSN başvurusu ve belediye kaydı",
+        "Hollanda banka hesabı açılışı",
+        "Kiralık konut ve iş arama desteği",
+        "Resmi izinler ve evrak takibi"
+      ],
+      "cta": "Yeni gelen olarak kaydol"
+    },
+    "helper": {
+      "tab": "Destek olmak istiyorum",
+      "heading": "Adresinizi posta adresi olarak sunun",
+      "text": "Birçok yeni gelen, sabit bir adresi olmadan BSN alamaz. Adresinizi posta adresi yaparak onların ilk adımını kolaylaştırın.",
+      "bullets": [
+        "Alınan mektup başına 0,50 € - 5 €",
+        "İkamet kaydı değildir — sadece resmi tebligat adresi",
+        "Aylık 5 € bağış, gelen mektuplarla fazlasıyla geri kazanılır",
+        "Ne kadar posta kabul edeceğinizi siz belirlersiniz"
+      ],
+      "cta": "Posta adresi destekçisi ol"
+    }
+  },
+  "services": {
+    "kicker": "Hizmetler",
+    "title": "Hizmetlerimiz",
+    "subtitle": "Hollanda'ya yerleşim sürecinizi kolay ve sorunsuz kılacak kapsamlı çözümler sunuyoruz.",
+    "learnMore": "Daha fazla bilgi",
+    "banking": {
+      "title": "Bankacılık Yardımı",
+      "description": "Hollanda bankalarında hesap açmanıza ve yerel finansal sistemi anlamanıza yardımcı oluyoruz.",
+      "imageAlt": "Hollanda bankacılık hizmetleri"
+    },
+    "housing": {
+      "title": "Konut ve Kiralama Desteği",
+      "description": "Kira sözleşmeleri ve yasal düzenlemeler konusunda danışmanlıkla güvenli ev bulun.",
+      "imageAlt": "Hollanda'da konut"
+    },
+    "employment": {
+      "title": "İstihdam Desteği",
+      "description": "Hollanda iş piyasasında CV hazırlama, iş başvuruları ve mülakat koçluğu ile öne geçin.",
+      "imageAlt": "Hollanda'da iş imkanları"
+    },
+    "administrative": {
+      "title": "İdari ve Resmi İşlemler",
+      "description": "Oturum izinleri, belediye kayıtları ve resmi bürokrasi süreçlerinde profesyonel yardım.",
+      "imageAlt": "Hollanda idari hizmetler"
+    }
+  },
+  "postadres": {
+    "badge": "Posta adresi programı",
+    "calloutTitle": "Sizin adresiniz bir posta adresi, onların Hollanda'daki geleceği olsun.",
+    "calloutText": "Sabit bir adres olmadan yeni gelen biri BSN alamaz. Adresinizi sadece yazışma adresi olarak paylaşın ve mektup başına kazanç elde edin.",
+    "perMail": "mektup başına",
+    "calloutCta": "Destek olmak hakkında bilgi al"
+  },
+  "howItWorks": {
+    "kicker": "Süreç",
+    "title": "Nasıl Çalışır",
+    "subtitle": "Hollanda'da rahatça yerleşmeniz için tasarlanan adım adım rehberlik süreci.",
+    "step1": {
+      "title": "Kayıt Olun",
+      "description": "Hesap oluşturup ihtiyaçlarınızı ve geliş tarihinizi bize iletin."
+    },
+    "step2": {
+      "title": "Eşleşme Sağlansın",
+      "description": "Durumunuza özel uzmanlaşmış kişisel bir danışmanla bağlantı kurun."
+    },
+    "step3": {
+      "title": "Destek Alın",
+      "description": "Danışmanınız tüm resmi ve sosyal entegrasyon adımlarınızda yanınızda olsun."
+    }
+  },
+  "testimonials": {
+    "kicker": "Kullanıcı Görüşleri",
+    "title": "Müşterilerimiz Ne Diyor?",
+    "subtitle": "Desteğimizle Hollanda'ya başarıyla yerleşen danışanlarımızın deneyimleri.",
+    "testimonial1": {
+      "text": "Immigratiepunt Amsterdam'a taşınmamı inanılmaz kolaylaştırdı. Banka ve ev arama desteği bana haftalar kazandırdı."
+    },
+    "testimonial2": {
+      "text": "İdari destek mükemmeldi. Her evrakta bana adım adım rehberlik ettiler ve oturum izni sürecini stressiz atlattım."
+    },
+    "testimonial3": {
+      "text": "İş bulmak en büyük endişemdi; ancak mülakat hazırlığı sayesinde kısa sürede Hollanda'da işime başladım."
+    }
+  },
+  "faq": {
+    "kicker": "SSS",
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Hizmetlerimiz ve yerleşim süreci hakkında en çok merak edilen soruların yanıtları.",
+    "question1": "Tüm yerleşim süreci ne kadar sürer?",
+    "answer1": "Bireysel duruma göre değişmekle birlikte, danışanlarımız temel adımları ortalama 4-8 hafta içinde tamamlamaktadır.",
+    "question2": "Hizmet almak için Felemenkçe bilmem gerekiyor mu?",
+    "answer2": "Hayır. Hizmetlerimiz Türkçe, İngilizce ve diğer dillerde sunulmaktadır.",
+    "question3": "Ne tür konut bulmamıza yardımcı oluyorsunuz?",
+    "answer3": "Bütçenize uygun kiralık daire, oda ve geçici konaklama seçeneklerinde güvenilir ev sahipleriyle bağlantı kuruyoruz.",
+    "question4": "Banka hesabı süreci nasıl işler?",
+    "answer4": "Hollanda bankaları nezdinde hesap açılışını hızlandırıyor ve gerekli belgeleri eksiksiz hazırlamanızı sağlıyoruz.",
+    "question5": "Posta adresi (postadres) tam olarak nedir?",
+    "answer5": "Belediyede ikamet kaydı olmadan, resmi tebligatların yönlendirildiği yasal bir yazışma adresidir.",
+    "question6": "Posta adresi sunan destekçi ne kazanır?",
+    "answer6": "Gelen her resmi mektup için 0,50 € ile 5 € arası ödeme alır; 5 €'luk aylık sembolik bağışını kolayca karşılar."
+  },
+  "cta": {
+    "title": "Yeni bir başlangıca hazır mısınız?",
+    "subtitle": "Yeni gelen olarak kaydolun ya da adresinizi posta adresi olarak sunup birinin BSN almasına vesile olun.",
+    "newcomerButton": "Hemen Başla",
+    "helperButton": "Destek Ol"
+  },
+  "registration": {
+    "title": "Yolculuğunuza Bugün Başlayın",
+    "subtitle": "Immigratiepunt ailesine katılın ve Hollanda'ya geçişinizi stressiz ve güvenli hale getirin.",
+    "formTitle": "Destek İçin Başvurun",
+    "benefits": {
+      "personal": "Deneyimli danışmanlardan kişisel rehberlik",
+      "streamlined": "Hızlı ve bürokrasiden arındırılmış süreçler",
+      "access": "Güvenilir kurum ve iş ortakları ağı",
+      "bilingual": "Kendi ana dilinizde kesintisiz iletişim"
+    },
+    "form": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta Adresi",
+      "phone": "Telefon Numarası",
+      "country": "Gelinen Ülke",
+      "selectCountry": "Ülkenizi seçin",
+      "servicesNeeded": "Gereken Hizmetler",
+      "privacyPolicy": "Gizlilik politikasını ve kullanım koşullarını kabul ediyorum.",
+      "register": "Şimdi Kaydol",
+      "submitting": "Gönderiliyor..."
+    },
+    "successTitle": "Kayıt Başarılı!",
+    "successMessage": "Immigratiepunt'a kaydınız için teşekkürler. İhtiyaçlarınızı görüşmek üzere en kısa sürede sizinle iletişime geçeceğiz.",
+    "errorTitle": "Kayıt Başarısız",
+    "errorMessage": "Başvurunuz işlenirken bir sorun oluştu. Lütfen tekrar deneyin."
+  },
+  "helperForm": {
+    "title": "Adresinizi Sunun",
+    "subtitle": "Posta adresi destekçisi olarak kaydolun. Mektup başına 0,50 € ile 5 € arası kazanç elde edin.",
+    "city": "Yaşadığınız Şehir",
+    "donationTitle": "Aylık 5 € Destek Bağışı",
+    "donationText": "Programın sürdürülebilirliğine katkıda bulunur ve gelen mektup ödemeleriyle fazlasıyla telafi edilir.",
+    "submit": "Destekçi Olarak Kaydol",
+    "successTitle": "Başvuru Alındı!",
+    "successMessage": "Posta adresi desteğiniz için teşekkür ederiz. Detayları paylaşmak üzere sizinle irtibata geçeceğiz.",
+    "errorTitle": "Başvuru Hatası",
+    "errorMessage": "Form gönderilirken bir hata oluştu. Lütfen daha sonra yeniden deneyin."
+  },
+  "registerPage": {
+    "meta": {
+      "title": "Kayıt | Immigratiepunt",
+      "description": "Yeni gelen olarak kaydolun veya adresinizi posta adresi olarak sunun."
+    },
+    "kicker": "Kayıt",
+    "seekerTab": "Yeni Gelen",
+    "helperTab": "Destekçi"
+  },
+  "helpMee": {
+    "meta": {
+      "title": "Destek Ol — Posta Adresi | Immigratiepunt",
+      "description": "Yeni gelenlerin BSN alabilmesi için adresinizi posta adresi olarak sunun."
+    },
+    "badge": "Posta adresi programı",
+    "title": "Destek Olun: Adresinizi Posta Adresi Olarak Paylaşın",
+    "subtitle": "Hollanda'da sabit bir adresi olmayan kimse BSN alamaz; BSN olmadan da banka hesabı, iş ve sağlık sigortası mümkün değildir.",
+    "cta": "Adresimi Paylaşmak İstiyorum",
+    "explain": {
+      "what": {
+        "title": "Posta adresi nedir?",
+        "text": "Yeni gelenin resmi tebligatlarının ulaştığı yasal adrestir. Belediyeler ikametgahı henüz olmayan kişilere BSN vermek için kullanır."
+      },
+      "not": {
+        "title": "Ne değildir?",
+        "text": "Evinizde fiili ikamet kaydı değildir. Kira sözleşmenizi, vergilerinizi veya belediye yardımlarınızı asla etkilemez."
+      },
+      "why": {
+        "title": "Neden hayat kurtarır?",
+        "text": "BSN ile banka hesabı açılır, iş sözleşmesi imzalanır ve sigorta yapılır. Adresiniz bu zincirin kilidini açar."
+      }
+    },
+    "steps": {
+      "kicker": "Adım Adım",
+      "title": "Üç adımda destekçi olun",
+      "subtitle": "Kayıttan ilk mektuba kadar tüm eşleştirme ve bilgilendirmeyi biz yürütüyoruz.",
+      "step1": {
+        "title": "Kaydolun",
+        "description": "Destekçi formunu doldurun. Bilgilerinizi kontrol edip programı aktaralım."
+      },
+      "step2": {
+        "title": "Sizi Eşleştirelim",
+        "description": "Adresinizi BSN başvurusu için kullanacak yeni gelenle eşleşin."
+      },
+      "step3": {
+        "title": "Posta ve Ödeme Alın",
+        "description": "Gelen her resmi mektup için 0,50 € ile 5 € arası kazanç sağlayın."
+      }
+    },
+    "earnings": {
+      "kicker": "Kazanç",
+      "title": "Mektup başına ücret alın",
+      "subtitle": "Ödeme mektup başına 0,50 €'dan başlar ve hacme göre 5 €'ya kadar çıkar.",
+      "start": {
+        "label": "Başlangıç ücreti",
+        "amount": "0,50 €",
+        "text": "İlk mektuptan itibaren alınan mektup başına ücret."
+      },
+      "growth": {
+        "label": "Maksimum ücret",
+        "amount": "5,00 €",
+        "text": "Düzenli posta trafiğinde mektup başı 5 €'ya kadar kazanç."
+      },
+      "donation": {
+        "label": "Aylık bağış",
+        "amount": "5,00 €",
+        "text": "Yeni gelenlere sunulan programın giderleri için aylık katkı."
+      },
+      "note": "Hesap son derece nettir: 5 € bağış, ayda birkaç mektupla hemen geri kazanılır ve üstü net gelir olur."
+    },
+    "ctaBand": {
+      "title": "Bir adres, bir insanın hayatını değiştirebilir",
+      "subtitle": "Posta adresi destekçisi olarak kaydolun ve bir yeni gelene BSN yolunu açın.",
+      "button": "Adresimi Sunmak İstiyorum"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Giriş Yap | Immigratiepunt",
+      "description": "Immigratiepunt hesabınıza giriş yapın."
+    },
+    "title": "Tekrar Hoş Geldiniz",
+    "subtitle": "Entegrasyon sürecinizi ve hesabınızı yönetmek için giriş yapın.",
+    "email": "E-posta",
+    "password": "Şifre",
+    "submit": "Giriş Yap",
+    "errorInvalid": "Lütfen geçerli bir e-posta ve şifre girin.",
+    "noAccount": "Henüz hesabınız yok mu?",
+    "registerLink": "Buradan kaydolun"
+  },
+  "account": {
+    "meta": {
+      "title": "Hesabım | Immigratiepunt",
+      "description": "İş, konut ve bankacılık entegrasyonu seçenekleriniz."
+    },
+    "kicker": "Hesabım",
+    "title": "Hoş geldiniz, {{name}}",
+    "signOut": "Çıkış Yap",
+    "servicesTitle": "Entegrasyon Seçenekleriniz",
+    "servicesSubtitle": "Immigratiepunt, iş, barınma ve finans alanında uzmanlaşmış iş ortaklarıyla çalışır.",
+    "partners": {
+      "djobba": {
+        "label": "İş",
+        "title": "Djobba ile İstihdam",
+        "text": "Hollanda'da ilk işinizi bulmanız için kariyer eşleştirmesi ve danışmanlık."
+      },
+      "woningvry": {
+        "label": "Konut",
+        "title": "WoningVry ile Barınma",
+        "text": "Geçici konaklamadan kiralık eve kadar güvenli konut çözümleri."
+      },
+      "xabiworld": {
+        "label": "Banka",
+        "title": "Xabi World ile Bankacılık",
+        "text": "Hollanda banka hesabınızı hızlıca açın ve finansal işlemlerinizi yönetin."
+      }
+    }
+  },
+  "footer": {
+    "about": "Hollanda'ya güvenle ve kolaylıkla yerleşmeniz için güvenilir çözüm ortağınız.",
+    "services": "Hizmetler",
+    "quickLinks": "Hızlı Bağlantılar",
+    "helpMee": "Destek Ol",
+    "aboutUs": "Hakkımızda",
+    "faq": "SSS",
+    "testimonials": "Görüşler",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "contactUs": "Bize Ulaşın",
+    "chooseLanguage": "Dil Seçin",
+    "copyright": "© 2026 Immigratiepunt. Tüm hakları saklıdır."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Hakkımızda | Immigratiepunt",
+      "description": "Immigratiepunt'un misyonu, vizyonu ve topluluğu hakkında bilgi edinin."
+    },
+    "badge": "Immigratiepunt Hakkında",
+    "title": "Hollanda'da samimi ve şeffaf bir başlangıç",
+    "subtitle": "Kişisel danışmanlık ve öncü posta adresi programıyla uluslararası yeni gelenlerin önündeki bürokratik engelleri kaldırıyoruz.",
+    "mission": {
+      "kicker": "Misyonumuz",
+      "title": "Immigratiepunt Neden Var?",
+      "text1": "Her yıl binlerce insan çalışmak veya yeni bir yaşam kurmak için Hollanda'ya gelir. Ancak birçoğu kısır bir bürokrasi döngüsüne takılır: sabit adres olmadan BSN alınamaz, BSN olmadan banka hesabı açılamaz ve banka hesabı olmadan kira veya maaş ödenemez.",
+      "text2": "Immigratiepunt bu döngüyü kırmak için kuruldu. Adresini geçici posta adresi olarak sunan yerel sakinlerle yeni gelenleri buluşturarak resmi kaydın anahtarını sağlıyoruz."
+    },
+    "values": {
+      "kicker": "Değerlerimiz",
+      "title": "Benimsediğimiz İlkeler",
+      "val1Title": "İnsani Yaklaşım",
+      "val1Text": "Soğuk formlar yerine kendi dilinizde samimi ve ilgili danışmanlar.",
+      "val2Title": "%100 Yasal ve Güvenli",
+      "val2Text": "Posta adresi yalnızca resmi yazışmalar içindir; destekçinin vergilerini veya konut durumunu asla etkilemez.",
+      "val3Title": "Karşılıklı Fayda",
+      "val3Text": "Destekçiler adil bir mektup ücreti alır; yeni gelenler hızlıca hayata karışır.",
+      "val4Title": "Eksiksiz Ekosistem",
+      "val4Text": "BSN ve posta adresinden banka hesabına, barınmaya ve işe kadar tüm süreç tek çatı altında."
+    },
+    "stats": {
+      "newcomers": "Desteklenen Yeni Gelen",
+      "helpers": "Aktif Destekçi",
+      "satisfaction": "Memnuniyet Oranı",
+      "avgDays": "BSN'e Ulaşma (Gün)"
+    },
+    "team": {
+      "kicker": "Ağımız",
+      "title": "İnsanları birbirine bağlama tutkusuyla çalışan bir ekip",
+      "text": "Immigratiepunt ağı; Hollanda genelindeki entegrasyon uzmanları, hukuk danışmanları, gönüllüler ve tecrübeli yeni gelenlerden oluşur."
+    },
+    "partners": {
+      "kicker": "Ortaklar",
+      "title": "Birlikte Güçlüyüz",
+      "subtitle": "Yerleşim sürecinizin her aşamasında lider Hollanda platformlarıyla iş birliği yapıyoruz."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "İletişim | Immigratiepunt",
+      "description": "Immigratiepunt ekibiyle iletişime geçin. Sorularınızı yanıtlamaktan mutluluk duyarız."
+    },
+    "badge": "İletişim",
+    "title": "Bizimle İletişime Geçin",
+    "subtitle": "Hizmetlerimiz veya posta adresi programı hakkında sorularınız mı var? Ekibimiz yardıma hazır.",
+    "form": {
+      "title": "Bize Mesaj Gönderin",
+      "name": "Ad Soyad",
+      "email": "E-posta Adresi",
+      "role": "Ben...",
+      "roleNewcomer": "Hollanda'da yeni gelenim",
+      "roleHelper": "Posta adresi destekçisiyim",
+      "rolePartner": "Kurumsal ortak / platform",
+      "roleOther": "Diğer / Genel soru",
+      "subject": "Konu",
+      "message": "Mesajınız veya sorunuz",
+      "send": "Mesajı Gönder",
+      "sending": "Gönderiliyor...",
+      "successTitle": "Mesajınız Başarıyla İletildi!",
+      "successText": "Bize ulaştığınız için teşekkür ederiz. İş günlerinde 2-4 saat içinde size dönüş yapacağız."
+    },
+    "info": {
+      "email": "E-posta Adresi",
+      "address": "Ofis Adresi",
+      "hours": "Çalışma Saatleri",
+      "hoursDetail": "Pazartesi – Cuma: 09:00 – 18:00\nCumartesi: 10:00 – 15:00",
+      "response": "Yanıt Süresi",
+      "responseDetail": "İş günlerinde 2 ila 4 saat içinde",
+      "copyEmail": "E-postayı Kopyala"
+    }
+  }
+}

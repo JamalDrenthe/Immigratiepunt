@@ -89,3 +89,38 @@ h1, h2, h3, h4 {
   content: "";
   @apply h-1.5 w-1.5 rounded-full bg-primary;
 }
+
+/* 3D Perspective & Motion Design Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Scroll-driven animations with feature detection (modern-web-guidance) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scrollFadeSlideUp {
+      from {
+        opacity: 0.15;
+        transform: translateY(28px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .scroll-driven-entry {
+      animation: scrollFadeSlideUp auto cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+}

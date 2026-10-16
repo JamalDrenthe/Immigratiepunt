@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "title": "Immigratiepunt | Comienza tu vida en los Países Bajos",
+    "description": "Immigratiepunt ayuda a los recién llegados internacionales con banca, vivienda, empleo y gestiones administrativas en los Países Bajos."
+  },
+  "header": {
+    "services": "Servicios",
+    "about": "Sobre Nosotros",
+    "helpMee": "Colabora",
+    "howItWorks": "Cómo Funciona",
+    "contact": "Contacto",
+    "faq": "Preguntas Frecuentes",
+    "register": "Registrarse",
+    "login": "Iniciar Sesión",
+    "account": "Mi Cuenta"
+  },
+  "hero": {
+    "badge": "Para recién llegados y colaboradores",
+    "title": "Comienza tu vida en los Países Bajos de forma rápida y segura",
+    "subtitle": "Ayudamos a los recién llegados internacionales con asuntos bancarios, vivienda, trabajo y trámites administrativos.",
+    "servicesButton": "Nuestros Servicios",
+    "getStartedButton": "Empezar Ahora",
+    "helpButton": "Quiero Ayudar",
+    "trustPoints": [
+      "Asesor personal",
+      "Soporte multilingüe",
+      "Programa de dirección postal"
+    ],
+    "mockTitle": "Immigratiepunt",
+    "mockHeading": "De dirección postal a BSN",
+    "mockMail": "Carta recibida",
+    "mockBanking": "Abrir cuenta bancaria",
+    "mockHousing": "Gestionar vivienda",
+    "mockWork": "Encontrar trabajo",
+    "mockFootnote": "Cada carta enviada a través de una dirección postal genera entre 0,50 € y 5 € para el colaborador."
+  },
+  "audience": {
+    "kicker": "A quién se dirige",
+    "title": "Dos lados, una plataforma",
+    "subtitle": "Los recién llegados reciben orientación personal. Los colaboradores ofrecen su dirección como dirección postal y ganan por carta.",
+    "newcomer": {
+      "tab": "Soy nuevo en los Países Bajos",
+      "heading": "Todo organizado para tu nuevo comienzo",
+      "text": "Desde el BSN hasta la cuenta bancaria: tu asesor te guía en cada paso, a tu ritmo y en tu propio idioma.",
+      "bullets": [
+        "Solicitud de BSN y registro municipal",
+        "Apertura de cuenta bancaria holandesa",
+        "Búsqueda de vivienda y empleo",
+        "Gestión de permisos y documentos oficiales"
+      ],
+      "cta": "Registrarse como recién llegado"
+    },
+    "helper": {
+      "tab": "Quiero ayudar",
+      "heading": "Ofrece tu dirección como dirección postal",
+      "text": "Muchos recién llegados no pueden solicitar un BSN sin una dirección fija. Con tu dirección como dirección postal, los ayudas a empezar.",
+      "bullets": [
+        "De 0,50 € a 5 € por carta recibida",
+        "No es empadronamiento residencial: sólo dirección postal",
+        "Donación de 5 €/mes, que recuperas con las cartas",
+        "Tú decides cuánta correspondencia recibir"
+      ],
+      "cta": "Hacerse colaborador de dirección postal"
+    }
+  },
+  "services": {
+    "kicker": "Servicios",
+    "title": "Nuestros Servicios",
+    "subtitle": "Ofrecemos apoyo integral para que tu transición a los Países Bajos sea fluida y sin complicaciones.",
+    "learnMore": "Más información",
+    "banking": {
+      "title": "Asistencia Bancaria",
+      "description": "Te ayudamos a abrir cuentas bancarias en los Países Bajos y a entender el sistema financiero local.",
+      "imageAlt": "Servicios bancarios en los Países Bajos"
+    },
+    "housing": {
+      "title": "Apoyo en Vivienda",
+      "description": "Encuentra alojamiento adecuado con nuestra orientación sobre contratos de alquiler y normativas.",
+      "imageAlt": "Vivienda en los Países Bajos"
+    },
+    "employment": {
+      "title": "Apoyo Laboral",
+      "description": "Navega por el mercado laboral holandés con preparación de CV, búsqueda de empleo y preparación para entrevistas.",
+      "imageAlt": "Servicios de empleo en los Países Bajos"
+    },
+    "administrative": {
+      "title": "Apoyo Administrativo",
+      "description": "Obtén ayuda con permisos de residencia, procedimientos de registro y requisitos burocráticos.",
+      "imageAlt": "Servicios administrativos en los Países Bajos"
+    }
+  },
+  "postadres": {
+    "badge": "Programa de dirección postal",
+    "calloutTitle": "Tu dirección como dirección postal. Su comienzo en los Países Bajos.",
+    "calloutText": "Sin una dirección fija, un recién llegado no puede solicitar el BSN. Ofrece tu dirección como dirección postal (sin empadronamiento de residencia) y recibe una compensación por cada carta.",
+    "perMail": "por carta",
+    "calloutCta": "Más información sobre colaborar"
+  },
+  "howItWorks": {
+    "kicker": "El proceso",
+    "title": "Cómo Funciona",
+    "subtitle": "Nuestro proceso sencillo para ayudarte a establecerte en los Países Bajos con tranquilidad.",
+    "step1": {
+      "title": "Registro",
+      "description": "Crea una cuenta y cuéntanos tus necesidades específicas y fechas previstas."
+    },
+    "step2": {
+      "title": "Asignación de Asesor",
+      "description": "Te conectamos con un asesor personal especializado en tu situación."
+    },
+    "step3": {
+      "title": "Recibe Acompañamiento",
+      "description": "Tu asesor te guía en cada paso de tu asentamiento en los Países Bajos."
+    }
+  },
+  "testimonials": {
+    "kicker": "Experiencias",
+    "title": "Lo que dicen nuestros usuarios",
+    "subtitle": "Conoce los testimonios de recién llegados internacionales que se establecieron con éxito gracias a nuestro apoyo.",
+    "testimonial1": {
+      "text": "Immigratiepunt hizo que mi mudanza a Ámsterdam fuera mucho más fácil. Su ayuda con el banco y la vivienda me ahorró semanas de frustración."
+    },
+    "testimonial2": {
+      "text": "El apoyo administrativo fue excepcional. Me guiaron con cada documento e hicieron que el trámite del permiso fuera sencillo."
+    },
+    "testimonial3": {
+      "text": "Encontrar trabajo era mi mayor preocupación, pero su asesoramiento laboral me conectó con las opciones ideales y me preparó para entrevistas holandesas."
+    }
+  },
+  "faq": {
+    "kicker": "Preguntas frecuentes",
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Respuestas a las preguntas habituales sobre nuestros servicios y el proceso de asentamiento.",
+    "question1": "¿Cuánto tiempo dura el proceso completo de asentamiento?",
+    "answer1": "El plazo varía según la situación personal. En promedio, nuestros clientes completan los pasos esenciales en un plazo de 4 a 8 semanas con el acompañamiento de nuestros asesores.",
+    "question2": "¿Necesito hablar holandés para usar vuestros servicios?",
+    "answer2": "No, todos nuestros servicios están disponibles en español, inglés y otros idiomas. Nuestros asesores son multilingües y te asisten con la traducción de documentos oficiales.",
+    "question3": "¿Qué tipo de vivienda me podéis ayudar a encontrar?",
+    "answer3": "Ayudamos a encontrar diferentes tipos de alojamiento según tus preferencias y presupuesto, colaborando con agencias de confianza y verificando contratos de alquiler.",
+    "question4": "¿Cómo funciona el servicio bancario?",
+    "answer4": "Facilitamos la apertura de cuentas bancarias holandesas, explicamos las opciones disponibles y te orientamos con la documentación requerida.",
+    "question5": "¿Qué es exactamente una dirección postal?",
+    "answer5": "Una dirección postal (postadres) es una dirección donde se recibe correspondencia oficial sin estar empadronado como residente. Permite solicitar el BSN municipal legalmente.",
+    "question6": "¿Qué compensación recibe quien ofrece una dirección postal?",
+    "answer6": "Recibes entre 0,50 € y 5 € por carta oficial que llega a tu dirección. Los colaboradores aportan 5 € al mes que se amortizan con creces mediante las cartas recibidas."
+  },
+  "cta": {
+    "title": "¿Listo para un nuevo comienzo?",
+    "subtitle": "Regístrate como recién llegado u ofrece tu dirección como dirección postal para ayudar a alguien a obtener su BSN.",
+    "newcomerButton": "Regístrate ahora",
+    "helperButton": "Quiero colaborar"
+  },
+  "registration": {
+    "title": "Comienza hoy tu viaje",
+    "subtitle": "Únete a Immigratiepunt y haz que tu transición a los Países Bajos sea fluida y sin estrés.",
+    "formTitle": "Solicitar Asistencia",
+    "benefits": {
+      "personal": "Apoyo personalizado de asesores experimentados",
+      "streamlined": "Procesos administrativos ágiles y claros",
+      "access": "Acceso a una red fiable de colaboradores y servicios",
+      "bilingual": "Atención multilingüe durante todo tu trayecto"
+    },
+    "form": {
+      "firstName": "Nombre",
+      "lastName": "Apellidos",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "country": "País de origen",
+      "selectCountry": "Selecciona tu país",
+      "servicesNeeded": "Servicios solicitados",
+      "privacyPolicy": "Acepto la política de privacidad y las condiciones de servicio.",
+      "register": "Registrarme ahora",
+      "submitting": "Enviando..."
+    },
+    "successTitle": "¡Registro completado!",
+    "successMessage": "Gracias por registrarte en Immigratiepunt. Nos pondremos en contacto contigo muy pronto.",
+    "errorTitle": "Error en el registro",
+    "errorMessage": "Ocurrió un error al procesar tu solicitud. Por favor, inténtalo de nuevo."
+  },
+  "helperForm": {
+    "title": "Ofrece tu dirección",
+    "subtitle": "Regístrate como colaborador de dirección postal. Recibe de 0,50 € a 5 € por carta y apoya a los recién llegados.",
+    "city": "Ciudad / Municipio",
+    "donationTitle": "Aportación mensual de 5 €",
+    "donationText": "Apoya el programa de Immigratiepunt. Recuperas esta contribución con creces mediante la compensación por correspondencia.",
+    "submit": "Registrarme como colaborador",
+    "successTitle": "¡Solicitud recibida!",
+    "successMessage": "Gracias por ofrecerte como colaborador. Nos pondremos en contacto contigo para verificar los detalles.",
+    "errorTitle": "Error en la solicitud",
+    "errorMessage": "Ocurrió un error al procesar tu inscripción. Por favor, inténtalo más tarde."
+  },
+  "registerPage": {
+    "meta": {
+      "title": "Registro | Immigratiepunt",
+      "description": "Regístrate en Immigratiepunt como recién llegado u ofrece tu dirección postal."
+    },
+    "kicker": "Registro",
+    "seekerTab": "Recién llegado",
+    "helperTab": "Colaborador"
+  },
+  "helpMee": {
+    "meta": {
+      "title": "Colabora — Dirección Postal | Immigratiepunt",
+      "description": "Ofrece tu dirección como dirección postal para recién llegados y ayúdales a obtener su BSN."
+    },
+    "badge": "Programa de dirección postal",
+    "title": "Colabora: ofrece tu dirección como dirección postal",
+    "subtitle": "Sin una dirección fija, un recién llegado no puede solicitar el BSN en los Países Bajos. Tu dirección es el primer paso que lo hace posible.",
+    "cta": "Ofrecer mi dirección",
+    "explain": {
+      "what": {
+        "title": "¿Qué es una dirección postal?",
+        "text": "Una dirección a la que se envía la correspondencia oficial de un recién llegado. El municipio la utiliza como dirección de notificación legal."
+      },
+      "not": {
+        "title": "Lo que no es",
+        "text": "No es un empadronamiento residencial en tu vivienda. No afecta a tu contrato de alquiler, tus impuestos ni a las ayudas municipales."
+      },
+      "why": {
+        "title": "Por qué es decisivo",
+        "text": "Con el BSN se puede abrir una cuenta bancaria, firmar un contrato laboral y contratar el seguro médico obligatorio."
+      }
+    },
+    "steps": {
+      "kicker": "Cómo funciona",
+      "title": "Conviértete en colaborador en tres pasos",
+      "subtitle": "Desde la inscripción hasta la primera carta: gestionamos la asignación y el seguimiento.",
+      "step1": {
+        "title": "Inscríbete",
+        "description": "Regístrate como colaborador. Verificamos tus datos y te explicamos el funcionamiento."
+      },
+      "step2": {
+        "title": "Te asignamos a un recién llegado",
+        "description": "Te conectamos con una persona que utilizará tu dirección postal para su trámite de BSN."
+      },
+      "step3": {
+        "title": "Recibe correspondencia y compensación",
+        "description": "Por cada carta recibida obtienes entre 0,50 € y 5 €."
+      }
+    },
+    "earnings": {
+      "kicker": "Compensación",
+      "title": "Gana por cada carta recibida",
+      "subtitle": "La compensación comienza en 0,50 € y alcanza hasta 5 € por carta.",
+      "start": {
+        "label": "Tarifa inicial",
+        "amount": "0,50 €",
+        "text": "Por carta recibida desde la primera unidad."
+      },
+      "growth": {
+        "label": "Tarifa máxima",
+        "amount": "5,00 €",
+        "text": "A mayor volumen de correspondencia gestionada, mayor compensación unitaria."
+      },
+      "donation": {
+        "label": "Aportación mensual",
+        "amount": "5,00 €",
+        "text": "Cada colaborador contribuye con 5 € al mes para el sostenimiento del programa."
+      },
+      "note": "El cálculo: aportas 5 € al mes pero lo recuperas rápidamente con las cartas recibidas. Todo lo adicional es ganancia neta mientras ayudas a alguien a integrarse."
+    },
+    "ctaBand": {
+      "title": "Una dirección puede cambiar la vida de una persona",
+      "subtitle": "Inscríbete como colaborador y ayuda a un recién llegado a conseguir su BSN.",
+      "button": "Ofrecer mi dirección"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Iniciar Sesión | Immigratiepunt",
+      "description": "Accede a tu cuenta de Immigratiepunt."
+    },
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Inicia sesión para gestionar tu cuenta y tus opciones de integración.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Entrar",
+    "errorInvalid": "Introduce un correo electrónico y una contraseña válidos.",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "registerLink": "Regístrate aquí"
+  },
+  "account": {
+    "meta": {
+      "title": "Mi Cuenta | Immigratiepunt",
+      "description": "Tu portal de Immigratiepunt con opciones de trabajo, residencia y banca."
+    },
+    "kicker": "Mi cuenta",
+    "title": "Hola, {{name}}",
+    "signOut": "Cerrar sesión",
+    "servicesTitle": "Tus opciones de integración",
+    "servicesSubtitle": "Immigratiepunt colabora con socios especializados en empleo, vivienda y finanzas.",
+    "partners": {
+      "djobba": {
+        "label": "Empleo",
+        "title": "Trabajo mediante Djobba",
+        "text": "Encuentra empleo adecuado en los Países Bajos a través de nuestro socio Djobba."
+      },
+      "woningvry": {
+        "label": "Vivienda",
+        "title": "Alojamiento mediante WoningVry",
+        "text": "WoningVry te ayuda a encontrar vivienda segura, desde estancia temporal hasta un hogar propio."
+      },
+      "xabiworld": {
+        "label": "Banca",
+        "title": "Banca mediante Xabi World",
+        "text": "Abre tu cuenta bancaria y gestiona tus finanzas con Xabi World."
+      }
+    }
+  },
+  "footer": {
+    "about": "Tu socio de confianza para establecerte en los Países Bajos con seguridad y tranquilidad.",
+    "services": "Servicios",
+    "quickLinks": "Enlaces Rápidos",
+    "helpMee": "Colabora",
+    "aboutUs": "Sobre Nosotros",
+    "faq": "Preguntas Frecuentes",
+    "testimonials": "Testimonios",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "contactUs": "Contáctanos",
+    "chooseLanguage": "Idioma",
+    "copyright": "© 2026 Immigratiepunt. Todos los derechos reservados."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Sobre Nosotros | Immigratiepunt",
+      "description": "Conoce la misión, visión y red de Immigratiepunt. Ayudamos a recién llegados a triunfar en los Países Bajos."
+    },
+    "badge": "Sobre Immigratiepunt",
+    "title": "Un comienzo cálido y transparente en los Países Bajos",
+    "subtitle": "Rompemos las barreras burocráticas para los recién llegados internacionales mediante asesoría cercana y el programa pionero de dirección postal.",
+    "mission": {
+      "kicker": "Nuestra Misión",
+      "title": "Por qué existe Immigratiepunt",
+      "text1": "Cada año, miles de personas motivadas llegan a los Países Bajos para trabajar, estudiar o empezar una nueva vida. Sin embargo, muchos quedan atrapados en un círculo vicioso burocrático: sin una dirección fija no se puede solicitar el BSN, sin BSN no se puede abrir cuenta bancaria y sin cuenta no se puede cobrar salario ni alquilar vivienda.",
+      "text2": "Immigratiepunt nació para romper este bucle. Conectando a residentes locales que ofrecen su dirección como dirección postal temporal, otorgamos la llave del registro oficial."
+    },
+    "values": {
+      "kicker": "Valores Fundamentales",
+      "title": "Lo que defendemos",
+      "val1Title": "Trato Humano",
+      "val1Text": "Sin formularios fríos: asesoramiento personal en tu idioma por personas que se preocupan por tu futuro.",
+      "val2Title": "100% Legal y Seguro",
+      "val2Text": "La dirección postal es estrictamente para correspondencia y no altera los impuestos ni la situación habitacional del colaborador.",
+      "val3Title": "Beneficio Mutuo",
+      "val3Text": "Los colaboradores reciben una compensación justa por cada carta y los recién llegados obtienen un impulso decisivo.",
+      "val4Title": "Ecosistema Integral",
+      "val4Text": "Desde dirección postal y BSN hasta cuenta bancaria, vivienda digna y empleo de calidad: todo en un mismo lugar."
+    },
+    "stats": {
+      "newcomers": "Recién Llegados Guiados",
+      "helpers": "Colaboradores Activos",
+      "satisfaction": "Satisfacción",
+      "avgDays": "Días hasta el BSN"
+    },
+    "team": {
+      "kicker": "Nuestra Red",
+      "title": "Impulsados por personas apasionadas por la integración",
+      "text": "La red de Immigratiepunt reúne a consultores de integración, expertos legales, voluntarios y antiguos recién llegados en todos los Países Bajos."
+    },
+    "partners": {
+      "kicker": "Socios",
+      "title": "Colaboración para un impacto máximo",
+      "subtitle": "Immigratiepunt colabora estrechamente con socios líderes para garantizar una transición integral."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contacto | Immigratiepunt",
+      "description": "Contacta con el equipo de Immigratiepunt. Estamos listos para responder todas tus preguntas."
+    },
+    "badge": "Contacto",
+    "title": "Ponte en contacto con nosotros",
+    "subtitle": "¿Tienes alguna pregunta sobre nuestros servicios o el programa de dirección postal? Nuestro equipo está a tu disposición.",
+    "form": {
+      "title": "Envíanos un mensaje",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "role": "Soy...",
+      "roleNewcomer": "Recién llegado a los Países Bajos",
+      "roleHelper": "Colaborador de dirección postal",
+      "rolePartner": "Socio u organización",
+      "roleOther": "Otro / Consulta general",
+      "subject": "Asunto",
+      "message": "Tu mensaje o consulta",
+      "send": "Enviar mensaje",
+      "sending": "Enviando mensaje...",
+      "successTitle": "¡Mensaje enviado con éxito!",
+      "successText": "Gracias por escribirnos. Te responderemos en un plazo de 2 a 4 horas en días laborables."
+    },
+    "info": {
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "hours": "Horario de atención",
+      "hoursDetail": "Lunes a Viernes: 09:00 – 18:00\nSábado: 10:00 – 15:00",
+      "response": "Tiempo de respuesta",
+      "responseDetail": "En 2 a 4 horas en días laborables",
+      "copyEmail": "Copiar correo"
+    }
+  }
+}

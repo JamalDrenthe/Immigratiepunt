@@ -9,6 +9,8 @@ import HelpMee from "@/pages/HelpMee";
 import Registreren from "@/pages/Registreren";
 import Inloggen from "@/pages/Inloggen";
 import Account from "@/pages/Account";
+import OverOns from "@/pages/OverOns";
+import Contact from "@/pages/Contact";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/hooks/use-language";
@@ -18,6 +20,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/over-ons" component={OverOns} />
+      <Route path="/about" component={OverOns} />
+      <Route path="/contact" component={Contact} />
       <Route path="/help-mee" component={HelpMee} />
       <Route path="/registreren" component={Registreren} />
       <Route path="/inloggen" component={Inloggen} />

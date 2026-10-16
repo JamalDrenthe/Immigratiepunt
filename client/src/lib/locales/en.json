@@ -5,8 +5,10 @@
   },
   "header": {
     "services": "Services",
+    "about": "About Us",
     "helpMee": "Get involved",
     "howItWorks": "How it works",
+    "contact": "Contact",
     "faq": "FAQ",
     "register": "Register",
     "login": "Sign in",
@@ -318,5 +320,82 @@
     "contactUs": "Contact Us",
     "chooseLanguage": "Choose Language",
     "copyright": "© 2023 Immigratiepunt. All rights reserved."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "About Us | Immigratiepunt",
+      "description": "Learn more about the mission, vision, and team behind Immigratiepunt. We help newcomers get a flying start in the Netherlands."
+    },
+    "badge": "About Immigratiepunt",
+    "title": "A warm, transparent start in the Netherlands",
+    "subtitle": "We break through bureaucratic barriers for international newcomers through personal guidance and the pioneering postal address programme.",
+    "mission": {
+      "kicker": "Our Mission",
+      "title": "Why Immigratiepunt Exists",
+      "text1": "Every year, thousands of motivated people come to the Netherlands to work, study, or build a new life. However, many get stuck in a bureaucratic catch-22: without a permanent address you cannot register for a BSN, without a BSN you cannot open a bank account, and without a bank account you cannot sign a lease or receive your salary.",
+      "text2": "Immigratiepunt was founded to break this cycle immediately. By connecting local residents and organizations who offer their address as a temporary postal address, we give newcomers the key to official registration."
+    },
+    "values": {
+      "kicker": "Core Values",
+      "title": "What We Stand For",
+      "val1Title": "Human-Centred",
+      "val1Text": "No cold paperwork, but personal guidance in your own language by advisors who truly care about your journey.",
+      "val2Title": "100% Legal & Safe",
+      "val2Text": "A postal address is strictly for correspondence and does not affect the helper's taxes, municipal levies, or rental contracts.",
+      "val3Title": "Mutual Benefit",
+      "val3Text": "Helpers are fairly rewarded for every letter received (€0.50 to €5.00), while newcomers get a reliable springboard.",
+      "val4Title": "Full Ecosystem",
+      "val4Text": "From postal address and BSN to bank accounts, secure housing, and fulfilling employment: all under one roof."
+    },
+    "stats": {
+      "newcomers": "Newcomers Assisted",
+      "helpers": "Active Helpers",
+      "satisfaction": "Satisfaction",
+      "avgDays": "Days to BSN"
+    },
+    "team": {
+      "kicker": "Our Network",
+      "title": "Driven by passionate community advocates",
+      "text": "The Immigratiepunt network unites experienced migration consultants, legal advisors, dedicated volunteers, and former newcomers across the Netherlands."
+    },
+    "partners": {
+      "kicker": "Partners",
+      "title": "Collaborating for Maximum Impact",
+      "subtitle": "Immigratiepunt partners with leading Dutch platforms to ensure every aspect of your relocation is seamless."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contact | Immigratiepunt",
+      "description": "Get in touch with the Immigratiepunt team. We are here to answer your questions and guide your start."
+    },
+    "badge": "Contact",
+    "title": "Get in touch with us",
+    "subtitle": "Have a question about our services, the postal address programme, or partnership opportunities? Our team is here to help.",
+    "form": {
+      "title": "Send us a message",
+      "name": "Full name",
+      "email": "Email address",
+      "role": "I am a...",
+      "roleNewcomer": "Newcomer to the Netherlands",
+      "roleHelper": "Postal address helper",
+      "rolePartner": "Partner or organization",
+      "roleOther": "General inquiry",
+      "subject": "Subject",
+      "message": "Your message or question",
+      "send": "Send message",
+      "sending": "Sending message...",
+      "successTitle": "Message sent successfully!",
+      "successText": "Thank you for reaching out. We typically reply within 2 to 4 hours on business days."
+    },
+    "info": {
+      "email": "Email address",
+      "address": "Office Address",
+      "hours": "Operating Hours",
+      "hoursDetail": "Monday – Friday: 09:00 – 18:00\nSaturday: 10:00 – 15:00",
+      "response": "Response Time",
+      "responseDetail": "Within 2 to 4 hours on business days",
+      "copyEmail": "Copy email"
+    }
   }
 }

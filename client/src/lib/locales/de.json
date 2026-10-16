@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "title": "Immigratiepunt | Starten Sie Ihr Leben in den Niederlanden",
+    "description": "Immigratiepunt unterstützt internationale Neuankömmlinge bei Bankangelegenheiten, Wohnen, Arbeit und Behördengängen in den Niederlanden."
+  },
+  "header": {
+    "services": "Dienstleistungen",
+    "about": "Über uns",
+    "helpMee": "Mithelfen",
+    "howItWorks": "So funktioniert's",
+    "contact": "Kontakt",
+    "faq": "FAQ",
+    "register": "Registrieren",
+    "login": "Anmelden",
+    "account": "Mein Konto"
+  },
+  "hero": {
+    "badge": "Für Neuankömmlinge und Unterstützer",
+    "title": "Starten Sie schnell und sicher Ihr Leben in den Niederlanden",
+    "subtitle": "Wir unterstützen internationale Neuankömmlinge bei Bankkonten, Wohnen, Arbeit und behördlichen Registrierungen.",
+    "servicesButton": "Unsere Services",
+    "getStartedButton": "Jetzt starten",
+    "helpButton": "Ich möchte helfen",
+    "trustPoints": [
+      "Persönlicher Berater",
+      "Mehrsprachige Betreuung",
+      "Postadressen-Programm"
+    ],
+    "mockTitle": "Immigratiepunt",
+    "mockHeading": "Von der Postadresse zur BSN",
+    "mockMail": "Brief erhalten",
+    "mockBanking": "Bankkonto eröffnen",
+    "mockHousing": "Wohnung organisieren",
+    "mockWork": "Arbeit finden",
+    "mockFootnote": "Jeder offizielle Brief über eine Postadresse bringt dem Helfer zwischen 0,50 € und 5 € ein."
+  },
+  "audience": {
+    "kicker": "Für wen",
+    "title": "Zwei Seiten, eine Plattform",
+    "subtitle": "Neuankömmlinge erhalten persönliche Begleitung. Unterstützer stellen ihre Adresse als Postadresse bereit und verdienen pro Brief.",
+    "newcomer": {
+      "tab": "Ich bin neu in den Niederlanden",
+      "heading": "Alles geregelt für Ihren Neuanfang",
+      "text": "Von der BSN bis zum Bankkonto: Ihr Berater begleitet Sie Schritt für Schritt in Ihrem Tempo und in Ihrer Sprache.",
+      "bullets": [
+        "BSN-Beantragung und Meldeamt-Termine",
+        "Niederländisches Bankkonto eröffnen",
+        "Wohnungs- und Arbeitsvermittlung",
+        "Aufenthaltsdokumente und behördliche Nachweise"
+      ],
+      "cta": "Als Neuankömmling registrieren"
+    },
+    "helper": {
+      "tab": "Ich möchte helfen",
+      "heading": "Bieten Sie Ihre Adresse als Postadresse an",
+      "text": "Viele Neuankömmlinge können ohne feste Adresse keine BSN beantragen. Mit Ihrer Adresse als Postadresse ermöglichen Sie ihnen diesen ersten Schritt.",
+      "bullets": [
+        "0,50 € bis 5 € pro empfangenem Brief",
+        "Keine Wohnsitzanmeldung — reine Korrespondenzadresse",
+        "5 € monatliche Spende, die Sie über die Briefe wieder einspielen",
+        "Sie bestimmen das Briefvolumen selbst"
+      ],
+      "cta": "Postadressen-Helfer werden"
+    }
+  },
+  "services": {
+    "kicker": "Dienstleistungen",
+    "title": "Unsere Services",
+    "subtitle": "Wir bieten umfassende Begleitung für einen reibungslosen Übergang in die Niederlande.",
+    "learnMore": "Mehr erfahren",
+    "banking": {
+      "title": "Bank- und Finanzberatung",
+      "description": "Wir helfen Ihnen bei der Eröffnung niederländischer Bankkonten und beim Verständnis des Finanzsystems.",
+      "imageAlt": "Bankdienstleistungen in den Niederlanden"
+    },
+    "housing": {
+      "title": "Wohnungsunterstützung",
+      "description": "Finden Sie passende Unterkünfte mit unserer Beratung zu Mietverträgen und Wohnungsregeln.",
+      "imageAlt": "Wohnen in den Niederlanden"
+    },
+    "employment": {
+      "title": "Arbeitsmarktberatung",
+      "description": "Einstieg in den niederländischen Arbeitsmarkt mit Lebenslauf-Optimierung und Bewerbungscoaching.",
+      "imageAlt": "Arbeitsvermittlung in den Niederlanden"
+    },
+    "administrative": {
+      "title": "Behördliche Unterstützung",
+      "description": "Hilfe bei Aufenthaltstiteln, BSN-Registrierungen und allen bürokratischen Erfordernissen.",
+      "imageAlt": "Behördenhilfe in den Niederlanden"
+    }
+  },
+  "postadres": {
+    "badge": "Postadressen-Programm",
+    "calloutTitle": "Ihre Adresse als Postadresse. Der Schlüssel zum Leben in den Niederlanden.",
+    "calloutText": "Ohne feste Adresse kann kein Neuankömmling eine BSN erhalten. Bieten Sie Ihre Adresse als Korrespondenzadresse an und erhalten Sie eine Vergütung pro Brief.",
+    "perMail": "pro Brief",
+    "calloutCta": "Mehr über das Helfen"
+  },
+  "howItWorks": {
+    "kicker": "Ablauf",
+    "title": "So Funktioniert Es",
+    "subtitle": "Unser strukturierter Ablauf, um Ihnen das Einleben in den Niederlanden so leicht wie möglich zu machen.",
+    "step1": {
+      "title": "Registrieren",
+      "description": "Erstellen Sie ein Konto und teilen Sie uns Ihre Situation und Zeitplanung mit."
+    },
+    "step2": {
+      "title": "Berater erhalten",
+      "description": "Wir verbinden Sie mit einem persönlichen Spezialisten für Ihre Situation."
+    },
+    "step3": {
+      "title": "Begleitung nutzen",
+      "description": "Ihr Berater führt Sie durch alle offiziellen und praktischen Schritte."
+    }
+  },
+  "testimonials": {
+    "kicker": "Erfahrungen",
+    "title": "Was unsere Kunden sagen",
+    "subtitle": "Erfahrungsberichte von internationalen Zuzüglern, die sich mit unserer Hilfe erfolgreich etabliert haben.",
+    "testimonial1": {
+      "text": "Immigratiepunt hat meinen Umzug nach Amsterdam unendlich erleichtert. Die Bank- und Wohnungshilfe hat mir wochenlange Frustration erspart."
+    },
+    "testimonial2": {
+      "text": "Die behördliche Betreuung war erstklassig. Ich wurde durch jedes Dokument gelotst und hatte meine Aufenthaltsgenehmigung schnell in den Händen."
+    },
+    "testimonial3": {
+      "text": "Arbeit zu finden war meine größte Sorge, aber das Coaching brachte mich direkt mit passenden Unternehmen zusammen."
+    }
+  },
+  "faq": {
+    "kicker": "FAQ",
+    "title": "Häufig Gestellte Fragen",
+    "subtitle": "Antworten auf die wichtigsten Fragen rund um unsere Services und das Einleben in den Niederlanden.",
+    "question1": "Wie lange dauert der gesamte Prozess?",
+    "answer1": "Der Zeitrahmen variiert je nach Situation. Im Durchschnitt schließen unsere Kunden alle wesentlichen Schritte innerhalb von 4–8 Wochen ab.",
+    "question2": "Muss ich Niederländisch sprechen?",
+    "answer2": "Nein, alle Services stehen auf Deutsch, Englisch und weiteren Sprachen zur Verfügung.",
+    "question3": "Welche Art von Wohnung können Sie vermitteln?",
+    "answer3": "Wir unterstützen bei Wohnungen, Zimmern und Übergangslösungen und prüfen Mietverträge auf Seriosität.",
+    "question4": "Wie läuft die Kontoeröffnung ab?",
+    "answer4": "Wir bereiten die Unterlagen für niederländische Banken vor und begleiten Sie bei Bedarf digital oder persönlich.",
+    "question5": "Was genau ist eine Postadresse (Postadres)?",
+    "answer5": "Eine offizielle Korrespondenzadresse bei der Gemeinde, ohne dort gemeldeten Wohnsitz zu begründen.",
+    "question6": "Was bringt das Anbieten einer Postadresse dem Helfer?",
+    "answer6": "Sie erhalten 0,50 € bis 5 € pro offiziellem Brief; die monatliche Spende von 5 € haben Sie rasch wieder eingespielt."
+  },
+  "cta": {
+    "title": "Bereit für einen Neuanfang?",
+    "subtitle": "Registrieren Sie sich als Neuankömmling oder bieten Sie Ihre Adresse als Postadresse an.",
+    "newcomerButton": "Jetzt registrieren",
+    "helperButton": "Mithelfen"
+  },
+  "registration": {
+    "title": "Beginnen Sie heute Ihre Reise",
+    "subtitle": "Werden Sie Teil von Immigratiepunt und gestalten Sie Ihren Start in den Niederlanden stressfrei.",
+    "formTitle": "Für Unterstützung anmelden",
+    "benefits": {
+      "personal": "Persönliche Begleitung durch erfahrene Berater",
+      "streamlined": "Bürokratiearme, beschleunigte Behördengänge",
+      "access": "Zugang zu verifizierten Partnernetzwerken",
+      "bilingual": "Muttersprachliche Betreuung während des gesamten Weges"
+    },
+    "form": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "country": "Herkunftsland",
+      "selectCountry": "Wählen Sie Ihr Land",
+      "servicesNeeded": "Benötigte Services",
+      "privacyPolicy": "Ich stimme den Datenschutzbestimmungen und Nutzungsbedingungen zu.",
+      "register": "Jetzt anmelden",
+      "submitting": "Wird gesendet..."
+    },
+    "successTitle": "Registrierung erfolgreich!",
+    "successMessage": "Vielen Dank für Ihre Anmeldung. Wir melden uns zeitnah bei Ihnen.",
+    "errorTitle": "Fehler bei der Registrierung",
+    "errorMessage": "Bei der Übermittlung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "helperForm": {
+    "title": "Bieten Sie Ihre Adresse an",
+    "subtitle": "Registrieren Sie sich als Postadressen-Helfer. Verdienen Sie 0,50 € bis 5 € pro Brief.",
+    "city": "Wohnort",
+    "donationTitle": "Monatliche Spende von 5 €",
+    "donationText": "Unterstützt das gemeinnützige Programm und wird über die Briefvergütung schnell refinanziert.",
+    "submit": "Als Helfer anmelden",
+    "successTitle": "Anmeldung erhalten!",
+    "successMessage": "Vielen Dank für Ihre Hilfsbereitschaft. Wir prüfen Ihre Angaben und melden uns bei Ihnen.",
+    "errorTitle": "Anmeldung fehlgeschlagen",
+    "errorMessage": "Beim Absenden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+  },
+  "registerPage": {
+    "meta": {
+      "title": "Registrieren | Immigratiepunt",
+      "description": "Registrieren Sie sich als Neuankömmling oder bieten Sie Ihre Adresse an."
+    },
+    "kicker": "Registrierung",
+    "seekerTab": "Neuankömmling",
+    "helperTab": "Helfer"
+  },
+  "helpMee": {
+    "meta": {
+      "title": "Mithelfen — Postadresse | Immigratiepunt",
+      "description": "Bieten Sie Ihre Adresse als Postadresse für Zuzügler an, damit diese eine BSN beantragen können."
+    },
+    "badge": "Postadressen-Programm",
+    "title": "Mithelfen: Bieten Sie Ihre Adresse als Postadresse an",
+    "subtitle": "Ohne feste Adresse kann in den Niederlanden keine BSN beantragt werden. Mit Ihrer Adresse schenken Sie Menschen die Chance auf einen legalen Start.",
+    "cta": "Adresse anbieten",
+    "explain": {
+      "what": {
+        "title": "Was ist eine Postadresse?",
+        "text": "Eine behördlich anerkannte Anschrift für offizielle Post, die Zuzüglern ohne feste Wohnung den BSN-Erhalt ermöglicht."
+      },
+      "not": {
+        "title": "Was es nicht ist",
+        "text": "Es ist kein Wohnsitz in Ihrer Wohnung. Es beeinflusst weder Ihren Mietvertrag, Ihre Steuern noch kommunale Abgaben."
+      },
+      "why": {
+        "title": "Warum es entscheidend ist",
+        "text": "Die BSN ist die Voraussetzung für Bankkonto, Arbeitsvertrag und Krankenversicherung."
+      }
+    },
+    "steps": {
+      "kicker": "So funktioniert es",
+      "title": "In drei Schritten Helfer werden",
+      "subtitle": "Von der Anmeldung bis zum ersten Brief: Wir koordinieren die Vermittlung und Klärung.",
+      "step1": {
+        "title": "Anmelden",
+        "description": "Füllen Sie das Helferformular aus. Wir prüfen Ihre Daten und erklären das Programm."
+      },
+      "step2": {
+        "title": "Vermittlung",
+        "description": "Wir verbinden Sie mit einem Neuankömmling, der Ihre Adresse für die BSN nutzt."
+      },
+      "step3": {
+        "title": "Post & Vergütung",
+        "description": "Sie erhalten 0,50 € bis 5 € pro eingegangenem Behördenbrief."
+      }
+    },
+    "earnings": {
+      "kicker": "Vergütung",
+      "title": "Verdienst pro Brief",
+      "subtitle": "Die Vergütung startet bei 0,50 € und steigt bei höherem Volumen auf bis zu 5 € pro Brief.",
+      "start": {
+        "label": "Startvergütung",
+        "amount": "0,50 €",
+        "text": "Pro eingegangenem Brief ab dem ersten Schreiben."
+      },
+      "growth": {
+        "label": "Maximalvergütung",
+        "amount": "5,00 €",
+        "text": "Höhere Vergütung bei regelmäßigem Briefempfang."
+      },
+      "donation": {
+        "label": "Monatliche Spende",
+        "amount": "5,00 €",
+        "text": "Gemeinnütziger Beitrag jedes Helfers zur Finanzierung der Plattform."
+      },
+      "note": "Die Rechnung: Mit wenigen Briefen im Monat ist die 5 € Spende bereits ausgeglichen — alles darüber hinaus ist Reingewinn für Sie."
+    },
+    "ctaBand": {
+      "title": "Eine Adresse kann ein ganzes Leben verändern",
+      "subtitle": "Werden Sie Postadressen-Helfer und ermöglichen Sie jemandem den Start mit einer BSN.",
+      "button": "Adresse anbieten"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Anmelden | Immigratiepunt",
+      "description": "Melden Sie sich bei Ihrem Immigratiepunt-Konto an."
+    },
+    "title": "Willkommen zurück",
+    "subtitle": "Melden Sie sich an, um Ihren Integrationsstatus einzusehen.",
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "errorInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse und ein Passwort ein.",
+    "noAccount": "Noch kein Konto?",
+    "registerLink": "Hier registrieren"
+  },
+  "account": {
+    "meta": {
+      "title": "Mein Konto | Immigratiepunt",
+      "description": "Ihr Portal mit Optionen für Arbeit, Wohnen und Finanzen."
+    },
+    "kicker": "Mein Konto",
+    "title": "Willkommen, {{name}}",
+    "signOut": "Abmelden",
+    "servicesTitle": "Ihre Integrations-Optionen",
+    "servicesSubtitle": "Immigratiepunt kooperiert mit spezialisierten Partnern in ganz Holland.",
+    "partners": {
+      "djobba": {
+        "label": "Arbeit",
+        "title": "Jobs via Djobba",
+        "text": "Karrierechancen und Arbeitsvermittlung für internationale Talente."
+      },
+      "woningvry": {
+        "label": "Wohnen",
+        "title": "Wohnraum via WoningVry",
+        "text": "Sichere Mietwohnungen und Übergangsunterkünfte."
+      },
+      "xabiworld": {
+        "label": "Bank",
+        "title": "Bankkonto via Xabi World",
+        "text": "Schnelle Eröffnung eines niederländischen IBAN-Kontos."
+      }
+    }
+  },
+  "footer": {
+    "about": "Ihr verlässlicher Begleiter für einen sicheren und erfolgreichen Start in den Niederlanden.",
+    "services": "Dienstleistungen",
+    "quickLinks": "Schnellzugriff",
+    "helpMee": "Mithelfen",
+    "aboutUs": "Über uns",
+    "faq": "FAQ",
+    "testimonials": "Erfahrungsberichte",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "contactUs": "Kontaktieren Sie uns",
+    "chooseLanguage": "Sprache",
+    "copyright": "© 2026 Immigratiepunt. Alle Rechte vorbehalten."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Über uns | Immigratiepunt",
+      "description": "Erfahren Sie mehr über die Mission, Vision und das Netzwerk von Immigratiepunt."
+    },
+    "badge": "Über Immigratiepunt",
+    "title": "Ein herzlicher und transparenter Start in Holland",
+    "subtitle": "Wir überwinden bürokratische Hürden für internationale Zuzügler durch persönliche Begleitung und das bewährte Postadressen-Programm.",
+    "mission": {
+      "kicker": "Unsere Mission",
+      "title": "Warum es Immigratiepunt gibt",
+      "text1": "Jedes Jahr kommen Tausende motivierte Menschen in die Niederlande, um zu arbeiten, zu studieren oder sich eine Zukunft aufzubauen. Doch viele scheitern an einem bürokratischen Zirkelschluss: Ohne feste Adresse keine BSN, ohne BSN kein Bankkonto und ohne Konto kein Mietvertrag oder Gehalt.",
+      "text2": "Immigratiepunt wurde gegründet, um diesen Kreislauf sofort zu durchbrechen. Durch die Vernetzung mit hilfsbereiten Einheimischen schaffen wir den rechtssicheren Zugang zur BSN-Registrierung."
+    },
+    "values": {
+      "kicker": "Werte",
+      "title": "Wofür wir stehen",
+      "val1Title": "Menschlichkeit",
+      "val1Text": "Keine anonymen Formulare, sondern persönliche Betreuung in Ihrer Sprache durch engagierte Berater.",
+      "val2Title": "100% Rechtssicher",
+      "val2Text": "Die Postadresse ist eine reine Behördenkorrespondenz und berührt weder Steuern noch Mietrechte des Helfers.",
+      "val3Title": "Beidseitiger Nutzen",
+      "val3Text": "Helfer werden fair vergütet und Neuankömmlinge erhalten einen schnellen Einstieg ins Leben vor Ort.",
+      "val4Title": "Ganzheitliches System",
+      "val4Text": "Von Postadresse und BSN über Konto bis zu Wohnung und Job: Alles aus einer Hand."
+    },
+    "stats": {
+      "newcomers": "Begleitete Zuzügler",
+      "helpers": "Aktive Helfer",
+      "satisfaction": "Zufriedenheit",
+      "avgDays": "Tage bis zur BSN"
+    },
+    "team": {
+      "kicker": "Unser Netzwerk",
+      "title": "Gemeinsam für echte gesellschaftliche Teilhabe",
+      "text": "Das Netzwerk von Immigratiepunt vereint Integrationsberater, Rechtsexperten, engagierte Freiwillige und ehemalige Zuzügler in den ganzen Niederlanden."
+    },
+    "partners": {
+      "kicker": "Partner",
+      "title": "Starke Partner für Ihren Erfolg",
+      "subtitle": "Wir arbeiten eng mit führenden Organisationen zusammen, um Ihren Neuanfang rundum abzusichern."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Kontakt | Immigratiepunt",
+      "description": "Kontaktieren Sie das Team von Immigratiepunt. Wir stehen Ihnen gerne zur Seite."
+    },
+    "badge": "Kontakt",
+    "title": "Nehmen Sie Kontakt mit uns auf",
+    "subtitle": "Haben Sie Fragen zu unseren Dienstleistungen oder dem Postadressen-Programm? Unser Team berät Sie gerne.",
+    "form": {
+      "title": "Schreiben Sie uns",
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "role": "Ich bin...",
+      "roleNewcomer": "Neu in den Niederlanden",
+      "roleHelper": "Postadressen-Helfer",
+      "rolePartner": "Partner / Unternehmen",
+      "roleOther": "Sonstiges / Allgemeine Anfrage",
+      "subject": "Betreff",
+      "message": "Ihre Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "successTitle": "Nachricht erfolgreich gesendet!",
+      "successText": "Vielen Dank für Ihre Anfrage. Wir antworten an Werktagen gewöhnlich innerhalb von 2 bis 4 Stunden."
+    },
+    "info": {
+      "email": "E-Mail-Adresse",
+      "address": "Büroanschrift",
+      "hours": "Öffnungszeiten",
+      "hoursDetail": "Montag – Freitag: 09:00 – 18:00\nSamstag: 10:00 – 15:00",
+      "response": "Antwortzeit",
+      "responseDetail": "Innerhalb von 2 bis 4 Stunden an Werktagen",
+      "copyEmail": "E-Mail kopieren"
+    }
+  }
+}

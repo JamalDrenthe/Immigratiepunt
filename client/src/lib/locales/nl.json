@@ -5,8 +5,10 @@
   },
   "header": {
     "services": "Diensten",
+    "about": "Over ons",
     "helpMee": "Help mee",
     "howItWorks": "Hoe het werkt",
+    "contact": "Contact",
     "faq": "FAQ",
     "register": "Registreren",
     "login": "Inloggen",
@@ -318,5 +320,82 @@
     "contactUs": "Neem Contact Op",
     "chooseLanguage": "Kies Taal",
     "copyright": "© 2023 Immigratiepunt. Alle rechten voorbehouden."
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Over Ons | Immigratiepunt",
+      "description": "Leer meer over de missie, visie en het team van Immigratiepunt. Wij helpen nieuwkomers aan een vliegende start in Nederland."
+    },
+    "badge": "Over Immigratiepunt",
+    "title": "Een warm en helder begin in Nederland",
+    "subtitle": "Wij doorbreken de bureaucratische drempels voor internationale nieuwkomers via persoonlijke begeleiding en het baanbrekende postadres-programma.",
+    "mission": {
+      "kicker": "Onze Missie",
+      "title": "Waarom Immigratiepunt bestaat",
+      "text1": "Jaarlijks komen duizenden gemotiveerde mensen naar Nederland om te werken, studeren of een nieuw bestaan op te bouwen. Velen lopen echter vast in een bureaucratische vicieuze cirkel: zonder vast woonadres kun je geen BSN aanvragen, zonder BSN kun je geen bankrekening openen, en zonder bankrekening kun je geen huurcontract of salaris ontvangen.",
+      "text2": "Immigratiepunt is opgericht om deze cirkel direct te doorbreken. Door particulieren en organisaties te verbinden die hun adres als tijdelijk postadres aanbieden, geven we nieuwkomers de sleutel tot officiële registratie."
+    },
+    "values": {
+      "kicker": "Kernwaarden",
+      "title": "Waar wij voor staan",
+      "val1Title": "Menselijke Maat",
+      "val1Text": "Geen kille formulieren, maar persoonlijke begeleiding in jouw eigen taal door adviseurs die om je geven.",
+      "val2Title": "100% Juridisch & Veilig",
+      "val2Text": "Een postadres is uitsluitend voor correspondentie en heeft geen invloed op belastingen, huur of uitkeringen van de helper.",
+      "val3Title": "Wederzijds Voordeel",
+      "val3Text": "Helpers worden fair beloond voor elk poststuk (€0,50 tot €5,-) en nieuwkomers krijgen een vliegende start.",
+      "val4Title": "Volledig Ecosysteem",
+      "val4Text": "Van postadres en BSN tot bankrekening, een dak boven het hoofd en een fijne baan: alles onder één dak."
+    },
+    "stats": {
+      "newcomers": "Nieuwkomers Begeleid",
+      "helpers": "Actieve Helpers",
+      "satisfaction": "Tevredenheid",
+      "avgDays": "Dagen tot BSN"
+    },
+    "team": {
+      "kicker": "Ons Netwerk",
+      "title": "Gedreven door mensen met passie voor verbinding",
+      "text": "Het Immigratiepunt-netwerk bestaat uit ervaren consulenten, juridische specialisten, vrijwilligers en ervaringsdeskundigen door heel Nederland."
+    },
+    "partners": {
+      "kicker": "Partners",
+      "title": "Samenwerken voor maximale impact",
+      "subtitle": "Immigratiepunt werkt nauw samen met toonaangevende integratiepartners om jouw overgang compleet te maken."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contact | Immigratiepunt",
+      "description": "Neem contact op met het team van Immigratiepunt. Wij staan klaar om al je vragen te beantwoorden."
+    },
+    "badge": "Contact",
+    "title": "Neem contact met ons op",
+    "subtitle": "Heb je een vraag over onze diensten, het postadres-programma of wil je samenwerken? Ons team staat voor je klaar.",
+    "form": {
+      "title": "Stuur ons een bericht",
+      "name": "Volledige naam",
+      "email": "E-mailadres",
+      "role": "Ik ben...",
+      "roleNewcomer": "Nieuwkomer in Nederland",
+      "roleHelper": "Postadres-helper",
+      "rolePartner": "Partner of organisatie",
+      "roleOther": "Anders / Algemeen",
+      "subject": "Onderwerp",
+      "message": "Jouw bericht of vraag",
+      "send": "Bericht versturen",
+      "sending": "Bezig met verzenden...",
+      "successTitle": "Bericht succesvol verzonden!",
+      "successText": "Bedankt voor je bericht. We nemen doorgaans binnen 2 tot 4 uur contact met je op."
+    },
+    "info": {
+      "email": "E-mailadres",
+      "address": "Bezoekadres",
+      "hours": "Openingstijden",
+      "hoursDetail": "Maandag t/m Vrijdag: 09:00 - 18:00\nZaterdag: 10:00 - 15:00",
+      "response": "Reactietijd",
+      "responseDetail": "Binnen 2 tot 4 uur op werkdagen",
+      "copyEmail": "Kopieer e-mail"
+    }
   }
 }
