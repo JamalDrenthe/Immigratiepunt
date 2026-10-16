@@ -35,7 +35,7 @@ import {
   FolderOpen,
   CheckCheck,
 } from "lucide-react";
-import { getMember, signOut, signInAsDemo, MemberRole } from "@/lib/auth";
+import { getMember, signOut, signInAsDemo, MemberRole, isEmailAdmin } from "@/lib/auth";
 import {
   fetchAllRegistrations,
   fetchAllHelpers,
@@ -143,7 +143,7 @@ export default function Account() {
       return;
     }
 
-    const isAdminRole = member.role === "admin" || member.email.toLowerCase() === "info@jamaldrenthe.com";
+    const isAdminRole = member.role === "admin" || isEmailAdmin(member.email);
 
     // Load notifications
     const notifs = fetchNotificationsForRole(isAdminRole ? "admin" : member.role);
@@ -168,7 +168,7 @@ export default function Account() {
 
   if (!member) return null;
 
-  const isAdminRole = member.role === "admin" || member.email.toLowerCase() === "info@jamaldrenthe.com";
+  const isAdminRole = member.role === "admin" || isEmailAdmin(member.email);
   const isHelperRole = member.role === "helper";
   const isNewcomerRole = !isAdminRole && !isHelperRole;
 

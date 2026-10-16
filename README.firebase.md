@@ -1,7 +1,8 @@
 # Immigratiepunt Development
 
 - **Firebase Project ID:** `immigratiepunt-dev`
-- **Gekoppeld account:** `info@jamaldrenthe.com`
+- **Operationeel e-mailadres:** `info@immigratiepunt.nl`
+- **Firebase CLI account:** `info@jamaldrenthe.com`
 - **Workspace pad:** `/home/jsdrenthe/antigravity/immigratiepunt-dev`
 
 ## Handige Firebase commando's

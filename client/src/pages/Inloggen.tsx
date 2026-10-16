@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { ArrowRight, LogIn, ShieldCheck, UserCheck, HeartHandshake, Sparkles } from "lucide-react";
 import { LogoMark } from "@/components/Logo";
-import { signIn, signInWithGoogle, signInAsDemo, DEMO_ACCOUNTS, MemberRole } from "@/lib/auth";
+import { signIn, signInWithGoogle, signInAsDemo, DEMO_ACCOUNTS, MemberRole, isEmailAdmin } from "@/lib/auth";
 
 export default function Inloggen() {
   const { t } = useTranslation();
@@ -41,7 +41,7 @@ export default function Inloggen() {
       return;
     }
     setIsSubmitting(true);
-    const role: MemberRole = email.toLowerCase() === "info@jamaldrenthe.com" ? "admin" : "newcomer";
+    const role: MemberRole = isEmailAdmin(email) ? "admin" : "newcomer";
     signIn({
       email,
       name: email.split("@")[0],
@@ -93,7 +93,7 @@ export default function Inloggen() {
                 <span>Inloggen met Google</span>
               </button>
               <p className="text-center text-xs text-[#6c6a64]">
-                Inloggen met <span className="font-medium text-[#141413]">info@jamaldrenthe.com</span> verleent direct beheerderstoegang (Admin).
+                Inloggen met <span className="font-medium text-[#141413]">info@immigratiepunt.nl</span> verleent direct beheerderstoegang (Admin).
               </p>
             </div>
 

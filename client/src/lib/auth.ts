@@ -15,9 +15,16 @@ export type Member = {
   provider?: "google" | "demo" | "credentials" | "registration";
 };
 
+export const ADMIN_EMAILS = ["info@immigratiepunt.nl", "info@jamaldrenthe.com"];
+
+export function isEmailAdmin(email: string): boolean {
+  if (!email) return false;
+  return ADMIN_EMAILS.includes(email.trim().toLowerCase());
+}
+
 export const DEMO_ACCOUNTS: Record<MemberRole, Member> = {
   admin: {
-    email: "info@jamaldrenthe.com",
+    email: "info@immigratiepunt.nl",
     name: "Beheerder Immigratiepunt",
     role: "admin",
     title: "Beheerder & Admin",
@@ -54,11 +61,11 @@ export function getMember(): Member | null {
 
 export function isAdmin(): boolean {
   const member = getMember();
-  return member?.role === "admin" || member?.email.toLowerCase() === "info@jamaldrenthe.com";
+  return member?.role === "admin" || (member ? isEmailAdmin(member.email) : false);
 }
 
 export function signIn(member: Member): Member {
-  const isTargetAdmin = member.email.toLowerCase() === "info@jamaldrenthe.com";
+  const isTargetAdmin = isEmailAdmin(member.email);
   const updatedMember: Member = {
     ...member,
     name: isTargetAdmin && (!member.name || member.name.includes("Jamal")) ? "Beheerder Immigratiepunt" : member.name,
@@ -73,8 +80,8 @@ export async function signInWithGoogle(): Promise<Member> {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
-    const email = user.email || "info@jamaldrenthe.com";
-    const isTargetAdmin = email.toLowerCase() === "info@jamaldrenthe.com";
+    const email = user.email || "info@immigratiepunt.nl";
+    const isTargetAdmin = isEmailAdmin(email);
 
     const member: Member = {
       email,
