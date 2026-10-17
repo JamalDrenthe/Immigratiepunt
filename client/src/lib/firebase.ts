@@ -113,10 +113,38 @@ export type InAppNotification = {
   targetRole?: "all" | "admin" | "helper" | "newcomer";
 };
 
+export type PayoutRecord = {
+  id: string;
+  helperEmail: string;
+  amount: number;
+  letterCount: number;
+  iban: string;
+  status: "uitbetaald" | "in_behandeling";
+  date: string;
+};
+
+export type IntegrationProfile = {
+  userEmail: string;
+  bsnAppointmentDate?: string;
+  bsnStatus: "in_afwachting" | "gepland" | "afgerond";
+  bsnCity?: string;
+  bankAccountStatus: "in_afwachting" | "bsn_benodigd" | "actief";
+  bankIban?: string;
+  housingCityPreference?: string;
+  housingBudget?: string;
+  housingType?: string;
+  housingStatus: "zoekende" | "begeleiding_actief" | "woning_gevonden";
+  workCvUploaded?: boolean;
+  workSector?: string;
+  workStatus: "cv_voorbereiding" | "solliciteren" | "baan_gevonden";
+};
+
 // Local storage fallback keys
 const LS_REGISTRATIONS = "ip_registrations_cache";
 const LS_HELPERS = "ip_helpers_cache";
 const LS_LETTERS = "ip_letters_cache";
+const LS_PAYOUTS = "ip_payouts_cache";
+const LS_INTEGRATION_PROFILES = "ip_integration_profiles_cache";
 
 function getLocal<T>(key: string): T[] {
   try {
@@ -392,6 +420,54 @@ export function fetchLettersForHelper(helperEmail: string): LetterLogDoc[] {
   return [];
 }
 
+export function fetchLettersForNewcomer(recipientName?: string): LetterLogDoc[] {
+  const all = getLocal<LetterLogDoc>(LS_LETTERS);
+  if (recipientName) {
+    const queryName = recipientName.toLowerCase();
+    const matched = all.filter((l) => l.recipientName.toLowerCase().includes(queryName));
+    if (matched.length > 0) return matched;
+  }
+
+  // Fallback seed letters for Fatima Al-Mansoor or default newcomer
+  const defaultLetters: LetterLogDoc[] = [
+    {
+      id: "let-seed-1",
+      helperEmail: "jan.devries@demo.nl",
+      sender: "Gemeente Amsterdam (Burgerzaken)",
+      recipientName: recipientName || "Fatima Al-Mansoor",
+      dateReceived: "10-10-2026",
+      status: "binnengekomen",
+      notes: "Afspraakbevestiging BSN inschrijving balie Amstel 1",
+      createdAt: Date.now() - 86400000 * 2,
+    },
+    {
+      id: "let-seed-2",
+      helperEmail: "jan.devries@demo.nl",
+      sender: "Immigratie- en Naturalisatiedienst (IND)",
+      recipientName: recipientName || "Fatima Al-Mansoor",
+      dateReceived: "08-10-2026",
+      status: "binnengekomen",
+      notes: "Bevestiging ontvangst aanvraag verblijfsdocument",
+      createdAt: Date.now() - 86400000 * 4,
+    },
+    {
+      id: "let-seed-3",
+      helperEmail: "jan.devries@demo.nl",
+      sender: "Belastingdienst",
+      recipientName: recipientName || "Fatima Al-Mansoor",
+      dateReceived: "03-10-2026",
+      status: "opgehaald",
+      notes: "Officiële welkomstbrief en toelichting toeslagen",
+      createdAt: Date.now() - 86400000 * 9,
+    },
+  ];
+
+  if (all.length === 0) {
+    saveLocal(LS_LETTERS, defaultLetters);
+  }
+  return defaultLetters;
+}
+
 // -------------------------------------------------------------
 // Document Management
 // -------------------------------------------------------------
@@ -548,6 +624,105 @@ export function saveHelperSettings(settings: HelperSettings): void {
   const all = getLocal<HelperSettings>(LS_HELPER_SETTINGS);
   const filtered = all.filter((s) => s.email.toLowerCase() !== settings.email.toLowerCase());
   saveLocal(LS_HELPER_SETTINGS, [settings, ...filtered]);
+}
+
+// -------------------------------------------------------------
+// Payout History
+// -------------------------------------------------------------
+const SEED_PAYOUTS: PayoutRecord[] = [
+  {
+    id: "pay-1",
+    helperEmail: "jan.devries@demo.nl",
+    amount: 22.5,
+    letterCount: 11,
+    iban: "NL91 ABNA 0412 3456 78",
+    status: "uitbetaald",
+    date: "01-10-2026",
+  },
+  {
+    id: "pay-2",
+    helperEmail: "jan.devries@demo.nl",
+    amount: 15.0,
+    letterCount: 8,
+    iban: "NL91 ABNA 0412 3456 78",
+    status: "uitbetaald",
+    date: "01-09-2026",
+  },
+];
+
+export function fetchPayoutsForHelper(helperEmail: string): PayoutRecord[] {
+  const all = getLocal<PayoutRecord>(LS_PAYOUTS);
+  const userPayouts = all.filter((p) => p.helperEmail.toLowerCase() === helperEmail.toLowerCase());
+  if (userPayouts.length > 0) return userPayouts;
+
+  if (helperEmail.toLowerCase() === "jan.devries@demo.nl") {
+    saveLocal(LS_PAYOUTS, SEED_PAYOUTS);
+    return SEED_PAYOUTS;
+  }
+  return [];
+}
+
+export function requestPayout(
+  helperEmail: string,
+  amount: number,
+  letterCount: number,
+  iban: string
+): PayoutRecord {
+  const newPayout: PayoutRecord = {
+    id: "pay-" + Date.now(),
+    helperEmail,
+    amount,
+    letterCount,
+    iban,
+    status: "in_behandeling",
+    date: new Date().toLocaleDateString("nl-NL"),
+  };
+  const all = getLocal<PayoutRecord>(LS_PAYOUTS);
+  saveLocal(LS_PAYOUTS, [newPayout, ...all]);
+  return newPayout;
+}
+
+// -------------------------------------------------------------
+// Integration Profile Management (BSN, Bank, Housing, Work)
+// -------------------------------------------------------------
+const DEFAULT_INTEGRATION_PROFILE: IntegrationProfile = {
+  userEmail: "fatima.almansoor@demo.nl",
+  bsnAppointmentDate: "2026-10-24",
+  bsnStatus: "gepland",
+  bsnCity: "Gemeente Amsterdam (Burgerzaken Amstel 1)",
+  bankAccountStatus: "in_afwachting",
+  bankIban: "",
+  housingCityPreference: "Amsterdam / Utrecht",
+  housingBudget: "€ 850 - € 1.200 / maand",
+  housingType: "Appartement of Studio",
+  housingStatus: "begeleiding_actief",
+  workCvUploaded: true,
+  workSector: "Administratie & Klantenservice",
+  workStatus: "cv_voorbereiding",
+};
+
+export function fetchIntegrationProfile(userEmail: string): IntegrationProfile {
+  const all = getLocal<IntegrationProfile>(LS_INTEGRATION_PROFILES);
+  const found = all.find((p) => p.userEmail.toLowerCase() === userEmail.toLowerCase());
+  if (found) return found;
+
+  if (userEmail.toLowerCase() === "fatima.almansoor@demo.nl") {
+    return DEFAULT_INTEGRATION_PROFILE;
+  }
+
+  return {
+    userEmail,
+    bsnStatus: "in_afwachting",
+    bankAccountStatus: "bsn_benodigd",
+    housingStatus: "zoekende",
+    workStatus: "cv_voorbereiding",
+  };
+}
+
+export function saveIntegrationProfile(profile: IntegrationProfile): void {
+  const all = getLocal<IntegrationProfile>(LS_INTEGRATION_PROFILES);
+  const filtered = all.filter((p) => p.userEmail.toLowerCase() !== profile.userEmail.toLowerCase());
+  saveLocal(LS_INTEGRATION_PROFILES, [profile, ...filtered]);
 }
 
 // -------------------------------------------------------------
