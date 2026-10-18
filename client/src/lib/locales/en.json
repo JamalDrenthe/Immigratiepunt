@@ -126,52 +126,61 @@
     "calloutCta": "More about helping"
   },
   "howItWorks": {
-    "kicker": "The process",
+    "kicker": "The Journey",
     "title": "How It Works",
-    "subtitle": "Our simple process to help you settle in the Netherlands with ease.",
+    "subtitle": "Three clear steps from registration to official municipality registration in the Netherlands.",
     "step1": {
-      "title": "Register",
-      "description": "Sign up for an account and tell us about your specific needs and timeline."
+      "title": "Registration & needs assessment",
+      "description": "Tell us what support you need: a postal address (briefadres) for your BSN, a Dutch bank account, housing, or employment."
     },
     "step2": {
-      "title": "Get Matched",
-      "description": "We'll connect you with a personal advisor specialized in your situation."
+      "title": "Matching with a postal helper",
+      "description": "We match you with a verified helper in your municipality and provide the signed briefadres declaration meeting municipal guidelines."
     },
     "step3": {
-      "title": "Receive Support",
-      "description": "Your advisor guides you through each step of settling in the Netherlands."
+      "title": "BSN, bank account & integration",
+      "description": "Once your BSN is issued, activate your Dutch IBAN within 48 hours via Xabi World and start your housing and job search via WoningVry and Djobba."
     }
   },
   "testimonials": {
-    "kicker": "Testimonials",
-    "title": "What Our Clients Say",
-    "subtitle": "Hear from international newcomers who have successfully settled in the Netherlands with our help.",
+    "kicker": "Community Stories",
+    "title": "Real Stories from Newcomers and Helpers",
+    "subtitle": "Real experiences from people who took decisive steps in the Netherlands through the postal address programme.",
     "testimonial1": {
-      "text": "Immigratiepunt made my transition to Amsterdam so much easier. Their banking and housing assistance saved me weeks of frustration."
+      "author": "Fatima Al-Mansoor",
+      "role": "Newcomer • Amsterdam (BSN Desk)",
+      "badge": "Newcomer",
+      "text": "Without a permanent rental contract, the municipality of Amsterdam wouldn't let me register for a BSN. Through Immigratiepunt, I was matched with helper Jan for a postal address within two days. With the official declaration, my municipal appointment was sorted within a week."
     },
     "testimonial2": {
-      "text": "The administrative support was exceptional. They walked me through every document and made the residence permit process painless."
+      "author": "Jan de Vries",
+      "role": "Postal Address Helper • Amsterdam-Centre",
+      "badge": "Helper",
+      "text": "I provide my address for official letters for newcomers. It takes me only a few minutes a week to log incoming mail in the portal. The compensation easily covers my monthly donation, and I genuinely help someone get on their feet."
     },
     "testimonial3": {
-      "text": "Finding a job was my biggest concern, but their employment assistance connected me with the right opportunities and prepared me for Dutch interviews."
+      "author": "Oleksandr Petrenko",
+      "role": "Newcomer • Rotterdam (Employment & IBAN)",
+      "badge": "Newcomer",
+      "text": "Right after getting my BSN, I was able to open a Dutch bank account via partner Xabi World for my salary. Djobba then helped rewrite my CV to Dutch recruitment standards. Practical, straightforward, and zero empty promises."
     }
   },
   "faq": {
-    "kicker": "FAQ",
+    "kicker": "Frequently Asked Questions",
     "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about our services and settling in the Netherlands.",
-    "question1": "How long does the entire settlement process take?",
-    "answer1": "The timeline varies depending on your specific situation and needs. On average, our clients complete the essential settling steps within 4-8 weeks. Our advisors work to expedite the process wherever possible while ensuring everything is done correctly.",
+    "subtitle": "Straightforward answers about the postal address programme, BSN appointments, and partner services.",
+    "question1": "How quickly can I apply for a BSN with a postal address?",
+    "answer1": "Once matched with a helper, you receive the signed consent form for a postal address (under Art. 2.45 Dutch BRP Act). You can immediately schedule an appointment at your municipality's civil affairs desk. Depending on municipal wait times, you typically receive your BSN in 1 to 3 weeks.",
     "question2": "Do I need to speak Dutch to use your services?",
-    "answer2": "No, all of our services are available in English. Our advisors are bilingual in Dutch and English, and can assist with translation of important documents and communications. We also offer support in several other languages upon request.",
-    "question3": "What types of housing can you help me find?",
-    "answer3": "We assist with finding various types of accommodations based on your preferences and budget, including apartments, houses, shared housing, and temporary accommodations. We work with reputable agencies and landlords and can help explain Dutch rental agreements and procedures.",
-    "question4": "How do your banking services work?",
-    "answer4": "We have partnerships with several Dutch banks and can facilitate the account opening process. We'll explain the different banking options available, help you prepare the necessary documentation, and in many cases, accompany you to your banking appointment to ensure smooth communication.",
-    "question5": "What exactly is a postal address?",
-    "answer5": "A postal address is an address where you receive mail without registering as a resident. Newcomers without a fixed home address use it to apply for a BSN at the municipality.",
-    "question6": "What does offering a postal address earn me?",
-    "answer6": "You receive €0.50 to €5 per piece of mail arriving via your address — the more mail, the higher the amount. Helpers also donate €5 per month to support newcomers; you can earn that donation back through the mail compensation."
+    "answer2": "No. Our advisors and online portal are fully bilingual in Dutch and English, and we support document assistance in Spanish, Portuguese, Turkish, German, Russian, and Arabic.",
+    "question3": "How does Immigratiepunt help with finding housing?",
+    "answer3": "Through our partner WoningVry, you gain access to vetted rental properties and rooms. We review lease agreements for unlawful clauses, excessive service charges, and tenant protection rights to keep you safe from rental scams.",
+    "question4": "How does opening a bank account via Xabi World work?",
+    "answer4": "As soon as your BSN is issued, you can open an official Dutch current account (IBAN) through partner Xabi World within 48 hours, complete with full iDEAL support, mobile banking, and a debit card for your salary.",
+    "question5": "What exactly is a postal address (briefadres)?",
+    "answer5": "A postal address (formally: briefadres) is an address recognised by the municipality for official correspondence without resident registration. It does not affect the helper's municipal taxes, rental rights, or allowances.",
+    "question6": "What does offering a postal address earn me as a helper?",
+    "answer6": "You receive a tiered fee from €0.50 up to €5.00 per logged letter. Helpers also contribute €5 per month to support the platform; this donation is quickly recouped after just a few letters."
   },
   "cta": {
     "title": "Ready for a new start?",
@@ -348,49 +357,60 @@
     "contact": "Contact",
     "contactUs": "Contact Us",
     "chooseLanguage": "Choose Language",
-    "copyright": "© 2023 Immigratiepunt. All rights reserved."
+    "copyright": "© 2026 Immigratiepunt. All rights reserved."
   },
   "aboutPage": {
     "meta": {
       "title": "About Us | Immigratiepunt",
-      "description": "Learn more about the mission, vision, and team behind Immigratiepunt. We help newcomers get a flying start in the Netherlands."
+      "description": "Learn more about the postal address programme and how Immigratiepunt works. Practical support for international newcomers."
     },
     "badge": "About Immigratiepunt",
-    "title": "A warm, transparent start in the Netherlands",
-    "subtitle": "We break through bureaucratic barriers for international newcomers through personal guidance and the pioneering postal address programme.",
+    "title": "Practical guidance for settling and registration in the Netherlands",
+    "subtitle": "We break through bureaucratic gridlock for newcomers by connecting them with verified postal address helpers for official municipal registration.",
+    "legalCard": {
+      "title": "Legal Framework for Postal Address",
+      "badge": "Art. 2.45 BRP Act",
+      "intro": "Dutch legislation (Personal Records Database Act) guarantees anyone temporarily lacking a fixed residential address the right to an official postal address (briefadres). This prevents newcomers from falling outside the system.",
+      "point1Title": "No effect on helper's municipal taxes",
+      "point1Desc": "A postal address provider is never counted as a co-resident for municipal waste charges, housing benefits, or welfare.",
+      "point2Title": "Official declaration of consent",
+      "point2Desc": "The helper signs the municipal declaration enabling the newcomer to register at the civil affairs department.",
+      "point3Title": "Strict privacy guarantee",
+      "point3Desc": "Helpers never open letters; they only log the official sender into the secure portal."
+    },
     "mission": {
-      "kicker": "Our Mission",
+      "kicker": "The Challenge",
       "title": "Why Immigratiepunt Exists",
       "text1": "Every year, thousands of motivated people come to the Netherlands to work, study, or build a new life. However, many get stuck in a bureaucratic catch-22: without a permanent address you cannot register for a BSN, without a BSN you cannot open a bank account, and without a bank account you cannot sign a lease or receive your salary.",
-      "text2": "Immigratiepunt was founded to break this cycle immediately. By connecting local residents and organizations who offer their address as a temporary postal address, we give newcomers the key to official registration."
+      "text2": "Immigratiepunt was founded to break this cycle immediately. By connecting private individuals who provide their address as a temporary postal address (in compliance with Art. 2.45 Dutch BRP Act), newcomers obtain the key to official registration."
     },
     "values": {
-      "kicker": "Core Values",
-      "title": "What We Stand For",
-      "val1Title": "Human-Centred",
-      "val1Text": "No cold paperwork, but personal guidance in your own language by advisors who truly care about your journey.",
+      "kicker": "Core Principles",
+      "title": "Our Approach & Principles",
+      "val1Title": "Human Scale",
+      "val1Text": "Direct personal contact in your own language through consultants who explain Dutch rules clearly.",
       "val2Title": "100% Legal & Safe",
-      "val2Text": "A postal address is strictly for correspondence and does not affect the helper's taxes, municipal levies, or rental contracts.",
-      "val3Title": "Mutual Benefit",
-      "val3Text": "Helpers are fairly rewarded for every letter received (€0.50 to €5.00), while newcomers get a reliable springboard.",
-      "val4Title": "Full Ecosystem",
-      "val4Text": "From postal address and BSN to bank accounts, secure housing, and fulfilling employment: all under one roof."
+      "val2Text": "A postal address is strictly for correspondence (briefadres) and has no impact on the helper's taxes, rent allowances, or welfare benefits.",
+      "val3Title": "Fair Compensation",
+      "val3Text": "Helpers receive clear tiered compensation per received letter (€0.50 to €5.00) in return for their commitment.",
+      "val4Title": "Effective Pipeline",
+      "val4Text": "From postal address and BSN appointment to a Dutch IBAN via Xabi World, followed by guidance into housing and employment."
     },
     "stats": {
-      "newcomers": "Newcomers Assisted",
-      "helpers": "Active Helpers",
-      "satisfaction": "Satisfaction",
-      "avgDays": "Days to BSN"
+      "newcomers": "Core Regions (A'dam, R'dam, Utrecht, The Hague)",
+      "helpers": "Tiered compensation per letter (€0.50 - €5.00)",
+      "satisfaction": "IBAN Activation after BSN (48 hours)",
+      "avgDays": "Statutory Postal Address (Art. 2.45 BRP Act)"
     },
     "team": {
-      "kicker": "Our Network",
-      "title": "Driven by passionate community advocates",
-      "text": "The Immigratiepunt network unites experienced migration consultants, legal advisors, dedicated volunteers, and former newcomers across the Netherlands."
+      "kicker": "The Network",
+      "title": "Private helpers and consultants across the Netherlands",
+      "text": "Immigratiepunt connects motivated citizens who offer their address with newcomers who deserve a fair chance to get their registration in order."
     },
     "partners": {
-      "kicker": "Partners",
-      "title": "Collaborating for Maximum Impact",
-      "subtitle": "Immigratiepunt partners with leading Dutch platforms to ensure every aspect of your relocation is seamless."
+      "kicker": "Integration Partners",
+      "title": "Collaboration with specialised services",
+      "subtitle": "Immigratiepunt partners with Xabi World for banking, WoningVry for housing, and Djobba for employment."
     }
   },
   "contactPage": {

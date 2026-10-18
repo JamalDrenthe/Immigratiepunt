@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ArrowRight, MailOpen, Landmark, Home, Briefcase, Sparkles, Compass, ShieldCheck } from "lucide-react";
+import { ArrowRight, MailOpen, Landmark, Home, ShieldCheck, Sparkles } from "lucide-react";
 import { ThreeDCard, ThreeDItem } from "@/components/ui/ThreeDCard";
-import { Interactive3DCompass } from "@/components/ui/Interactive3DCompass";
 
 export function Hero() {
   const { t } = useTranslation();
-  const [activeVisualTab, setActiveVisualTab] = useState<"card" | "compass">("card");
 
   return (
     <section className="relative overflow-hidden bg-[#faf9f5] py-16 md:py-24">
@@ -107,132 +104,95 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: 3D Interactive Card / 3D Compass Showcase */}
+          {/* Right Column: Authentic Process Card */}
           <div className="relative">
-            {/* Toggle visual mode switch */}
-            <div className="mb-4 flex items-center justify-end gap-1.5">
-              <button
-                onClick={() => setActiveVisualTab("card")}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-                  activeVisualTab === "card"
-                    ? "bg-[#181715] text-[#faf9f5] shadow-sm"
-                    : "text-[#6c6a64] hover:bg-[#efe9de]"
-                }`}
-              >
-                <span>3D Flow Kaart</span>
-              </button>
-              <button
-                onClick={() => setActiveVisualTab("compass")}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-                  activeVisualTab === "compass"
-                    ? "bg-[#181715] text-[#faf9f5] shadow-sm"
-                    : "text-[#6c6a64] hover:bg-[#efe9de]"
-                }`}
-              >
-                <Compass className="h-3.5 w-3.5 text-primary" />
-                <span>3D Kompas Radar</span>
-              </button>
-            </div>
-
-            {activeVisualTab === "compass" ? (
-              <motion.div
-                key="compass"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="rounded-3xl border border-[#e6dfd8] bg-white/70 p-6 shadow-2xl backdrop-blur-md"
-              >
-                <Interactive3DCompass />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-              >
-                <ThreeDCard depth={12} className="rounded-3xl shadow-2xl shadow-black/20">
-                  <div className="relative rounded-3xl border border-white/10 bg-[#181715] p-8 text-[#faf9f5] sm:p-9">
-                    {/* Top Pill / Badge inside 3D space */}
-                    <ThreeDItem translateZ={25} className="flex items-center justify-between">
-                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a09d96]">
-                        {t('hero.mockTitle')}
-                      </div>
-                      <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2a2622] px-3 py-1 text-[11px] font-medium text-emerald-400 ring-1 ring-emerald-500/30">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Live Traject</span>
-                      </div>
-                    </ThreeDItem>
-
-                    <ThreeDItem translateZ={35}>
-                      <div className="font-display my-4 text-3xl font-medium tracking-tight text-[#faf9f5] sm:text-4xl">
-                        {t('hero.mockHeading')}
-                      </div>
-                    </ThreeDItem>
-
-                    {/* Interactive 3D Stacked Items */}
-                    <div className="space-y-3">
-                      <ThreeDItem translateZ={20}>
-                        <div className="flex items-center justify-between rounded-2xl bg-[#252320]/90 px-5 py-4 border border-white/5 transition-colors hover:border-primary/40">
-                          <span className="flex items-center gap-3.5 text-sm font-medium">
-                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/20 text-primary">
-                              <MailOpen className="h-5 w-5" />
-                            </span>
-                            {t('hero.mockMail')}
-                          </span>
-                          <span className="font-display text-xl font-bold text-[#e8a55a]">€0,50 - €5</span>
-                        </div>
-                      </ThreeDItem>
-
-                      <ThreeDItem translateZ={30}>
-                        <div className="flex items-center justify-between rounded-2xl bg-[#252320]/90 px-5 py-4 border border-white/5 transition-colors hover:border-[#5db8a6]/40">
-                          <span className="flex items-center gap-3.5 text-sm font-medium">
-                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5db8a6]/20 text-[#5db8a6]">
-                              <ShieldCheck className="h-5 w-5" />
-                            </span>
-                            <span>BSN Afspraak & Registratie</span>
-                          </span>
-                          <span className="font-display text-lg text-emerald-400 font-medium">Stap 01</span>
-                        </div>
-                      </ThreeDItem>
-
-                      <ThreeDItem translateZ={25}>
-                        <div className="flex items-center justify-between rounded-2xl bg-[#252320]/90 px-5 py-4 border border-white/5 transition-colors hover:border-[#5db8a6]/40">
-                          <span className="flex items-center gap-3.5 text-sm font-medium">
-                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5db8a6]/20 text-[#5db8a6]">
-                              <Landmark className="h-5 w-5" />
-                            </span>
-                            {t('hero.mockBanking')}
-                          </span>
-                          <span className="font-display text-lg text-[#a09d96] font-medium">Stap 02</span>
-                        </div>
-                      </ThreeDItem>
-
-                      <ThreeDItem translateZ={20}>
-                        <div className="flex items-center justify-between rounded-2xl bg-[#252320]/90 px-5 py-4 border border-white/5 transition-colors hover:border-[#5db8a6]/40">
-                          <span className="flex items-center gap-3.5 text-sm font-medium">
-                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5db8a6]/20 text-[#5db8a6]">
-                              <Home className="h-5 w-5" />
-                            </span>
-                            {t('hero.mockHousing')} & Werk
-                          </span>
-                          <span className="font-display text-lg text-[#a09d96] font-medium">Stap 03</span>
-                        </div>
-                      </ThreeDItem>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
+            >
+              <ThreeDCard depth={8} className="rounded-3xl shadow-xl shadow-black/10">
+                <div className="relative rounded-3xl border border-white/10 bg-[#181715] p-7 text-[#faf9f5] sm:p-8">
+                  {/* Top Pill / Badge inside space */}
+                  <ThreeDItem translateZ={20} className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a09d96]">
+                      Immigratiepunt • Traject
                     </div>
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-950/80 px-3 py-1 text-[11px] font-medium text-emerald-300 ring-1 ring-emerald-500/30">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span>Erkend Briefadres</span>
+                    </div>
+                  </ThreeDItem>
+
+                  <ThreeDItem translateZ={25}>
+                    <div className="font-display my-2 text-2xl font-medium tracking-tight text-[#faf9f5] sm:text-3xl">
+                      Van postadres naar BSN & werk
+                    </div>
+                    <p className="text-xs text-[#a09d96] mb-5 leading-relaxed">
+                      De getoetste route om zonder vast huurcontract toch officieel ingeschreven te raken in Nederland.
+                    </p>
+                  </ThreeDItem>
+
+                  {/* 4 Interactive Process Steps */}
+                  <div className="space-y-2.5">
+                    <ThreeDItem translateZ={15}>
+                      <div className="flex items-center justify-between rounded-xl bg-[#252320]/90 px-4 py-3.5 border border-white/5 transition-colors hover:border-primary/40">
+                        <span className="flex items-center gap-3 text-xs sm:text-sm font-medium">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 text-primary shrink-0">
+                            <MailOpen className="h-4 w-4" />
+                          </span>
+                          <span>1. Postadres-helper koppeling</span>
+                        </span>
+                        <span className="text-xs font-semibold text-[#e8a55a]">€0,50 - €5 / post</span>
+                      </div>
+                    </ThreeDItem>
+
+                    <ThreeDItem translateZ={20}>
+                      <div className="flex items-center justify-between rounded-xl bg-[#252320]/90 px-4 py-3.5 border border-white/5 transition-colors hover:border-emerald-500/40">
+                        <span className="flex items-center gap-3 text-xs sm:text-sm font-medium">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                            <ShieldCheck className="h-4 w-4" />
+                          </span>
+                          <span>2. Gemeente BSN inschrijving</span>
+                        </span>
+                        <span className="text-xs font-medium text-emerald-400">Art. 2.45 BRP</span>
+                      </div>
+                    </ThreeDItem>
 
                     <ThreeDItem translateZ={15}>
-                      <div className="mt-6 flex items-center justify-between text-xs leading-5 text-[#a09d96] border-t border-white/10 pt-4">
-                        <span>{t('hero.mockFootnote')}</span>
-                        <span className="font-semibold text-primary">100% Legaal & Veilig</span>
+                      <div className="flex items-center justify-between rounded-xl bg-[#252320]/90 px-4 py-3.5 border border-white/5 transition-colors hover:border-blue-500/40">
+                        <span className="flex items-center gap-3 text-xs sm:text-sm font-medium">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400 shrink-0">
+                            <Landmark className="h-4 w-4" />
+                          </span>
+                          <span>3. Bankrekening via Xabi World</span>
+                        </span>
+                        <span className="text-xs font-medium text-blue-300">IBAN in 48u</span>
+                      </div>
+                    </ThreeDItem>
+
+                    <ThreeDItem translateZ={15}>
+                      <div className="flex items-center justify-between rounded-xl bg-[#252320]/90 px-4 py-3.5 border border-white/5 transition-colors hover:border-amber-500/40">
+                        <span className="flex items-center gap-3 text-xs sm:text-sm font-medium">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
+                            <Home className="h-4 w-4" />
+                          </span>
+                          <span>4. Huisvesting & Werk</span>
+                        </span>
+                        <span className="text-xs font-medium text-[#a09d96]">WoningVry & Djobba</span>
                       </div>
                     </ThreeDItem>
                   </div>
-                </ThreeDCard>
-              </motion.div>
-            )}
+
+                  <ThreeDItem translateZ={10}>
+                    <div className="mt-5 flex items-center justify-between text-[11px] leading-5 text-[#a09d96] border-t border-white/10 pt-3">
+                      <span>Uitsluitend briefadres • Geen medebewonersplicht</span>
+                      <span className="font-semibold text-primary">Veilig & Betrouwbaar</span>
+                    </div>
+                  </ThreeDItem>
+                </div>
+              </ThreeDCard>
+            </motion.div>
           </div>
         </div>
       </div>

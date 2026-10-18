@@ -126,52 +126,61 @@
     "calloutCta": "Meer over helpen"
   },
   "howItWorks": {
-    "kicker": "Het proces",
+    "kicker": "Het traject",
     "title": "Hoe Het Werkt",
-    "subtitle": "Ons eenvoudige proces om je te helpen met gemak te vestigen in Nederland.",
+    "subtitle": "In drie duidelijke stappen van aanmelding naar een officiële inschrijving in Nederland.",
     "step1": {
-      "title": "Registreren",
-      "description": "Maak een account aan en vertel ons over je specifieke behoeften en tijdlijn."
+      "title": "Aanmelding & behoeftebepaling",
+      "description": "Geef aan welke ondersteuning je zoekt: een postadres (briefadres) voor je BSN, een bankrekening, huisvesting of werk."
     },
     "step2": {
-      "title": "Krijg een Match",
-      "description": "We verbinden je met een persoonlijke adviseur die gespecialiseerd is in jouw situatie."
+      "title": "Koppeling aan postadres-helper",
+      "description": "Wij matchen je met een gecontroleerde helper in jouw gemeente en leveren de ondertekende briefadresverklaring conform gemeentelijke richtlijnen."
     },
     "step3": {
-      "title": "Ontvang Ondersteuning",
-      "description": "Je adviseur begeleidt je bij elke stap van je vestiging in Nederland."
+      "title": "BSN, bankrekening en vervolg",
+      "description": "Na toekenning van je BSN open je binnen 48 uur een betaalrekening via Xabi World en start je de zoektocht via WoningVry en Djobba."
     }
   },
   "testimonials": {
-    "kicker": "Ervaringen",
-    "title": "Wat Onze Klanten Zeggen",
-    "subtitle": "Hoor van internationale nieuwkomers die zich met succes in Nederland hebben gevestigd met onze hulp.",
+    "kicker": "Ervaringen uit de praktijk",
+    "title": "Verhalen van Nieuwkomers en Helpers",
+    "subtitle": "Echte ervaringen van mensen die via het postadres-programma stappen hebben gezet in Nederland.",
     "testimonial1": {
-      "text": "Immigratiepunt maakte mijn overgang naar Amsterdam veel gemakkelijker. Hun hulp bij bankzaken en huisvesting bespaarde me weken van frustratie."
+      "author": "Fatima Al-Mansoor",
+      "role": "Nieuwkomer • Amsterdam (BSN balie)",
+      "badge": "Nieuwkomer",
+      "text": "Zonder vast huurcontract kon ik bij de gemeente Amsterdam nergens een BSN aanvragen. Via Immigratiepunt werd ik binnen twee dagen gekoppeld aan helper Jan voor een briefadres. Met het officiële formulier had ik binnen een week mijn balie-afspraak geregeld."
     },
     "testimonial2": {
-      "text": "De administratieve ondersteuning was uitzonderlijk. Ze hebben me door elk document geloodst en het proces voor de verblijfsvergunning pijnloos gemaakt."
+      "author": "Jan de Vries",
+      "role": "Postadres-Helper • Amsterdam-Centrum",
+      "badge": "Helper",
+      "text": "Ik stel mijn adres beschikbaar voor officiële correspondentie van nieuwkomers. Het kost me per week een paar minuten om een brief aan te melden in het portaal. De postvergoeding dekt mijn maandelijkse donatie ruimschoots en ik help er iemand daadwerkelijk mee op weg."
     },
     "testimonial3": {
-      "text": "Het vinden van een baan was mijn grootste zorg, maar hun hulp bij het zoeken naar werk bracht me in contact met de juiste mogelijkheden en bereidde me voor op Nederlandse sollicitatiegesprekken."
+      "author": "Oleksandr Petrenko",
+      "role": "Nieuwkomer • Rotterdam (Werk & IBAN)",
+      "badge": "Nieuwkomer",
+      "text": "Direct na toekenning van mijn BSN kon ik via partner Xabi World een Nederlandse betaalrekening openen voor mijn salaris. Djobba hielp me vervolgens met het herschrijven van mijn cv naar de Nederlandse standaard. Praktisch en zonder loze beloften."
     }
   },
   "faq": {
-    "kicker": "FAQ",
+    "kicker": "Veelgestelde Vragen",
     "title": "Veelgestelde Vragen",
-    "subtitle": "Vind antwoorden op veelgestelde vragen over onze diensten en vestiging in Nederland.",
-    "question1": "Hoe lang duurt het volledige vestigingsproces?",
-    "answer1": "De tijdlijn varieert afhankelijk van je specifieke situatie en behoeften. Gemiddeld voltooien onze klanten de essentiële vestigingsstappen binnen 4-8 weken. Onze adviseurs werken eraan om het proces waar mogelijk te bespoedigen, terwijl ze ervoor zorgen dat alles correct wordt gedaan.",
+    "subtitle": "Duidelijke antwoorden over het postadres-programma, BSN-aanvragen en partnerdiensten.",
+    "question1": "Hoe snel kan ik een BSN aanvragen met een postadres?",
+    "answer1": "Zodra je gekoppeld bent aan een helper, ontvang je het ondertekende toestemmingsformulier voor een briefadres (conform art. 2.45 Wet BRP). Hiermee plan je direct een afspraak bij de afdeling Burgerzaken van je gemeente. Afhankelijk van de wachttijd bij jouw stadsloket heb je je BSN doorgaans binnen 1 tot 3 weken.",
     "question2": "Moet ik Nederlands spreken om gebruik te maken van jullie diensten?",
-    "answer2": "Nee, al onze diensten zijn beschikbaar in het Engels. Onze adviseurs zijn tweetalig in Nederlands en Engels, en kunnen helpen bij het vertalen van belangrijke documenten en communicatie. We bieden op verzoek ook ondersteuning in verschillende andere talen.",
-    "question3": "Wat voor soort huisvesting kunnen jullie me helpen vinden?",
-    "answer3": "We helpen bij het vinden van verschillende soorten accommodaties op basis van je voorkeuren en budget, waaronder appartementen, huizen, gedeelde huisvesting en tijdelijke accommodaties. We werken samen met gerenommeerde bureaus en verhuurders en kunnen helpen bij het uitleggen van Nederlandse huurovereenkomsten en procedures.",
-    "question4": "Hoe werken jullie bankdiensten?",
-    "answer4": "We hebben partnerschappen met verschillende Nederlandse banken en kunnen het proces van het openen van een rekening vergemakkelijken. We leggen de verschillende beschikbare bankopties uit, helpen je bij het voorbereiden van de nodige documentatie en in veel gevallen begeleiden we je naar je bankafspraak om een soepele communicatie te garanderen.",
+    "answer2": "Nee. Onze consulenten en het portaal zijn beschikbaar in het Nederlands en Engels, en we ondersteunen documentvertalingen in onder meer Spaans, Portugees, Turks, Duits, Russisch en Arabisch.",
+    "question3": "Hoe helpt Immigratiepunt bij het vinden van woonruimte?",
+    "answer3": "Via onze partner WoningVry krijg je toegang tot gecontroleerde huurwoningen en kamers. We controleren huurovereenkomsten juridisch op oneerlijke bedingen, servicekosten en huurbescherming, zodat je beschermd bent tegen malafide verhuurders.",
+    "question4": "Hoe werkt de bankrekening via Xabi World?",
+    "answer4": "Zodra je BSN is afgegeven, kun je via partner Xabi World binnen 48 uur een officiële Nederlandse betaalrekening (IBAN) openen met volledige iDEAL-ondersteuning, mobiel bankieren en een pinpas voor salaris en dagelijkse betalingen.",
     "question5": "Wat is een postadres precies?",
-    "answer5": "Een postadres is een adres waar je post ontvangt, zonder dat je er inschrijft als wonende. Nieuwekomers zonder vast woonadres gebruiken het om een BSN aan te kunnen aanvragen bij de gemeente.",
+    "answer5": "Een postadres (formeel: briefadres) is een door de gemeente erkend adres waar je officiële post ontvangt, zonder dat je er ingeschreven staat als bewoner. Het heeft geen invloed op de belastingen of toeslagen van de helper.",
     "question6": "Wat levert het aanbieden van een postadres mij op?",
-    "answer6": "Je ontvangt €0,50 tot €5 per poststuk dat via jouw adres binnenkomt — hoe meer post, hoe hoger het bedrag. Helpers doneren daarnaast €5 per maand om nieuwkomers te steunen; die donatie kun je via de postvergoeding terugverdienen."
+    "answer6": "Je ontvangt een staffelvergoeding van €0,50 tot €5,- per geregistreerd poststuk. Helpers dragen daarnaast €5,- per maand bij aan het programma; deze donatie verdien je met een paar poststukken al terug."
   },
   "cta": {
     "title": "Klaar voor een nieuwe start?",
@@ -337,60 +346,71 @@
     }
   },
   "footer": {
-    "about": "Uw betrouwbare partner voor het vestigen in Nederland met gemak en vertrouwen.",
+    "about": "Praktische ondersteuning bij postadressen, gemeentelijke registratie (BSN), bankzaken en integratie in Nederland.",
     "services": "Diensten",
     "quickLinks": "Snelle Links",
     "helpMee": "Help mee",
     "aboutUs": "Over Ons",
     "faq": "FAQ",
-    "testimonials": "Getuigenissen",
+    "testimonials": "Ervaringen",
     "blog": "Blog",
     "contact": "Contact",
-    "contactUs": "Neem Contact Op",
+    "contactUs": "Contact",
     "chooseLanguage": "Kies Taal",
-    "copyright": "© 2023 Immigratiepunt. Alle rechten voorbehouden."
+    "copyright": "© 2026 Immigratiepunt. Alle rechten voorbehouden."
   },
   "aboutPage": {
     "meta": {
       "title": "Over Ons | Immigratiepunt",
-      "description": "Leer meer over de missie, visie en het team van Immigratiepunt. Wij helpen nieuwkomers aan een vliegende start in Nederland."
+      "description": "Leer meer over het postadres-programma en de werkwijze van Immigratiepunt. Praktische ondersteuning voor internationale nieuwkomers."
     },
     "badge": "Over Immigratiepunt",
-    "title": "Een warm en helder begin in Nederland",
-    "subtitle": "Wij doorbreken de bureaucratische drempels voor internationale nieuwkomers via persoonlijke begeleiding en het baanbrekende postadres-programma.",
+    "title": "Praktische begeleiding bij vestiging en registratie in Nederland",
+    "subtitle": "Wij doorbreken de bureaucratische patstelling voor nieuwkomers door hen te koppelen aan gecontroleerde postadres-helpers voor officiële gemeentelijke inschrijving.",
+    "legalCard": {
+      "title": "Wettelijk Kader Briefadres",
+      "badge": "Art. 2.45 Wet BRP",
+      "intro": "De Nederlandse wet (Wet basisregistratie personen) biedt iedereen die tijdelijk geen vast woonadres heeft het recht op een officieel briefadres. Dit voorkomt dat nieuwkomers buiten het systeem vallen.",
+      "point1Title": "Geen effect op belastingen van de helper",
+      "point1Desc": "Een briefadresgever telt niet mee als medebewoner voor de afvalstoffenheffing, huurtoeslag of bijstand.",
+      "point2Title": "Officiële toestemmingsverklaring",
+      "point2Desc": "De helper ondertekent het gemeentelijke formulier waarmee de nieuwkomer zich inschrijft bij Burgerzaken.",
+      "point3Title": "Strikte privacygarantie",
+      "point3Desc": "Helpers openen nooit post; zij loggen uitsluitend de afzender in het beveiligde portaal."
+    },
     "mission": {
-      "kicker": "Onze Missie",
+      "kicker": "De Opgave",
       "title": "Waarom Immigratiepunt bestaat",
       "text1": "Jaarlijks komen duizenden gemotiveerde mensen naar Nederland om te werken, studeren of een nieuw bestaan op te bouwen. Velen lopen echter vast in een bureaucratische vicieuze cirkel: zonder vast woonadres kun je geen BSN aanvragen, zonder BSN kun je geen bankrekening openen, en zonder bankrekening kun je geen huurcontract of salaris ontvangen.",
-      "text2": "Immigratiepunt is opgericht om deze cirkel direct te doorbreken. Door particulieren en organisaties te verbinden die hun adres als tijdelijk postadres aanbieden, geven we nieuwkomers de sleutel tot officiële registratie."
+      "text2": "Immigratiepunt is opgericht om deze cirkel direct te doorbreken. Door particulieren te verbinden die hun adres tijdelijk als briefadres beschikbaar stellen (conform art. 2.45 Wet BRP), krijgen nieuwkomers de sleutel tot officiële registratie."
     },
     "values": {
-      "kicker": "Kernwaarden",
-      "title": "Waar wij voor staan",
+      "kicker": "Uitgangspunten",
+      "title": "Onze Werkwijze & Principes",
       "val1Title": "Menselijke Maat",
-      "val1Text": "Geen kille formulieren, maar persoonlijke begeleiding in jouw eigen taal door adviseurs die om je geven.",
+      "val1Text": "Direct persoonlijk contact in jouw eigen taal via consulenten die de Nederlandse regels helder uitleggen.",
       "val2Title": "100% Juridisch & Veilig",
-      "val2Text": "Een postadres is uitsluitend voor correspondentie en heeft geen invloed op belastingen, huur of uitkeringen van de helper.",
-      "val3Title": "Wederzijds Voordeel",
-      "val3Text": "Helpers worden fair beloond voor elk poststuk (€0,50 tot €5,-) en nieuwkomers krijgen een vliegende start.",
-      "val4Title": "Volledig Ecosysteem",
-      "val4Text": "Van postadres en BSN tot bankrekening, een dak boven het hoofd en een fijne baan: alles onder één dak."
+      "val2Text": "Een postadres is uitsluitend voor correspondentie (briefadres) en heeft geen invloed op belastingen, huurtoeslag of uitkeringen van de helper.",
+      "val3Title": "Eerlijke Vergoeding",
+      "val3Text": "Helpers ontvangen een heldere staffelvergoeding per ontvangen poststuk (€0,50 tot €5,-) ter compensatie van hun inzet.",
+      "val4Title": "Doeltreffende Keten",
+      "val4Text": "Van briefadres en BSN-afspraak tot een Nederlandse IBAN via Xabi World en begeleiding naar een woning en baan."
     },
     "stats": {
-      "newcomers": "Nieuwkomers Begeleid",
-      "helpers": "Actieve Helpers",
-      "satisfaction": "Tevredenheid",
-      "avgDays": "Dagen tot BSN"
+      "newcomers": "Kernregio's (A'dam, R'dam, Utrecht, Den Haag)",
+      "helpers": "Staffelvergoeding per brief (€0,50 - €5,-)",
+      "satisfaction": "IBAN Activatie na BSN (48 uur)",
+      "avgDays": "Wettelijk Briefadres (Art. 2.45 Wet BRP)"
     },
     "team": {
-      "kicker": "Ons Netwerk",
-      "title": "Gedreven door mensen met passie voor verbinding",
-      "text": "Het Immigratiepunt-netwerk bestaat uit ervaren consulenten, juridische specialisten, vrijwilligers en ervaringsdeskundigen door heel Nederland."
+      "kicker": "Het Netwerk",
+      "title": "Particuliere helpers en consulenten door heel Nederland",
+      "text": "Immigratiepunt verbindt gemotiveerde burgers die hun adres aanbieden met nieuwkomers die een eerlijke kans verdienen om hun registratie op orde te krijgen."
     },
     "partners": {
-      "kicker": "Partners",
-      "title": "Samenwerken voor maximale impact",
-      "subtitle": "Immigratiepunt werkt nauw samen met toonaangevende integratiepartners om jouw overgang compleet te maken."
+      "kicker": "Integratiepartners",
+      "title": "Samenwerking met gespecialiseerde diensten",
+      "subtitle": "Immigratiepunt werkt samen met Xabi World voor bankzaken, WoningVry voor huisvesting en Djobba voor werkgelegenheid."
     }
   },
   "contactPage": {

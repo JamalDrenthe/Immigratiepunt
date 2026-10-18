@@ -19,7 +19,6 @@ import {
 } from "lucide-react";
 import { MotionReveal, MotionStaggerContainer, MotionStaggerItem } from "@/components/ui/MotionWrapper";
 import { ThreeDCard, ThreeDItem } from "@/components/ui/ThreeDCard";
-import { Interactive3DCompass } from "@/components/ui/Interactive3DCompass";
 
 export default function OverOns() {
   const { t, i18n } = useTranslation();
@@ -121,10 +120,62 @@ export default function OverOns() {
               </div>
             </MotionReveal>
 
-            {/* 3D Visual Hero Component */}
+            {/* Legal Foundation Card (Replaces AI Compass) */}
             <MotionReveal direction="left">
-              <div className="rounded-3xl border border-[#e6dfd8] bg-white/70 p-6 shadow-2xl backdrop-blur-md">
-                <Interactive3DCompass />
+              <div className="rounded-3xl border border-[#e6dfd8] bg-white p-7 shadow-xl">
+                <div className="mb-4 flex items-center justify-between border-b border-[#f0eae1] pb-3">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-emerald-600" />
+                    <span className="font-bold text-sm text-[#141413]">
+                      {t('aboutPage.legalCard.title', 'Wettelijk Kader Briefadres')}
+                    </span>
+                  </div>
+                  <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
+                    {t('aboutPage.legalCard.badge', 'Art. 2.45 Wet BRP')}
+                  </span>
+                </div>
+
+                <p className="text-xs text-[#3d3d3a] leading-relaxed mb-4">
+                  {t('aboutPage.legalCard.intro', 'De Nederlandse wet (Wet basisregistratie personen) biedt iedereen die tijdelijk geen vast woonadres heeft het recht op een officieel briefadres. Dit voorkomt dat nieuwkomers buiten het systeem vallen.')}
+                </p>
+
+                <div className="space-y-2.5 text-xs">
+                  <div className="flex items-start gap-2.5 rounded-xl bg-[#faf9f5] border border-[#e6dfd8] p-3">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-[#141413] block">
+                        {t('aboutPage.legalCard.point1Title', 'Geen effect op belastingen van de helper')}
+                      </strong>
+                      <span className="text-[#6c6a64] text-[11px]">
+                        {t('aboutPage.legalCard.point1Desc', 'Een briefadresgever telt niet mee als medebewoner voor de afvalstoffenheffing, huurtoeslag of bijstand.')}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 rounded-xl bg-[#faf9f5] border border-[#e6dfd8] p-3">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-[#141413] block">
+                        {t('aboutPage.legalCard.point2Title', 'Officiële toestemmingsverklaring')}
+                      </strong>
+                      <span className="text-[#6c6a64] text-[11px]">
+                        {t('aboutPage.legalCard.point2Desc', 'De helper ondertekent het gemeentelijke formulier waarmee de nieuwkomer zich inschrijft bij Burgerzaken.')}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 rounded-xl bg-[#faf9f5] border border-[#e6dfd8] p-3">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-[#141413] block">
+                        {t('aboutPage.legalCard.point3Title', 'Strikte privacygarantie')}
+                      </strong>
+                      <span className="text-[#6c6a64] text-[11px]">
+                        {t('aboutPage.legalCard.point3Desc', 'Helpers openen nooit post; zij loggen uitsluitend de afzender in het beveiligde portaal.')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </MotionReveal>
           </div>
@@ -136,27 +187,27 @@ export default function OverOns() {
         <div className="container mx-auto max-w-6xl px-4">
           <MotionStaggerContainer className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <MotionStaggerItem className="text-center">
-              <div className="font-display text-4xl font-bold tracking-tight text-[#141413] sm:text-5xl">1.250+</div>
+              <div className="font-display text-4xl font-bold tracking-tight text-[#141413] sm:text-5xl">4</div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">
-                {t('aboutPage.stats.newcomers', 'Nieuwkomers Begeleid')}
+                {t('aboutPage.stats.newcomers', "Kernregio's (A'dam, R'dam, Utrecht, Den Haag)")}
               </div>
             </MotionStaggerItem>
             <MotionStaggerItem className="text-center">
-              <div className="font-display text-4xl font-bold tracking-tight text-primary sm:text-5xl">850+</div>
+              <div className="font-display text-4xl font-bold tracking-tight text-primary sm:text-5xl">€ 0,50 - € 5</div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">
-                {t('aboutPage.stats.helpers', 'Actieve Helpers')}
+                {t('aboutPage.stats.helpers', 'Staffelvergoeding per poststuk')}
               </div>
             </MotionStaggerItem>
             <MotionStaggerItem className="text-center">
-              <div className="font-display text-4xl font-bold tracking-tight text-emerald-600 sm:text-5xl">98%</div>
+              <div className="font-display text-4xl font-bold tracking-tight text-emerald-600 sm:text-5xl">48u</div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">
-                {t('aboutPage.stats.satisfaction', 'Tevredenheid')}
+                {t('aboutPage.stats.satisfaction', 'IBAN-activatie na BSN (Xabi)')}
               </div>
             </MotionStaggerItem>
             <MotionStaggerItem className="text-center">
-              <div className="font-display text-4xl font-bold tracking-tight text-[#e8a55a] sm:text-5xl">14</div>
+              <div className="font-display text-4xl font-bold tracking-tight text-[#e8a55a] sm:text-5xl">100%</div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">
-                {t('aboutPage.stats.avgDays', 'Dagen tot BSN')}
+                {t('aboutPage.stats.avgDays', 'Juridisch Briefadres (Wet BRP)')}
               </div>
             </MotionStaggerItem>
           </MotionStaggerContainer>

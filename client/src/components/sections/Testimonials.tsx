@@ -7,9 +7,30 @@ export function Testimonials() {
   const { t } = useTranslation();
 
   const testimonials = [
-    { id: 1, text: 'testimonials.testimonial1.text', author: 'Sarah Johnson', role: 'Software Engineer — Canada', rating: 5 },
-    { id: 2, text: 'testimonials.testimonial2.text', author: 'Miguel Rodriguez', role: 'Marketing Director — Spain', rating: 5 },
-    { id: 3, text: 'testimonials.testimonial3.text', author: 'Yuki Tanaka', role: 'Financial Analyst — Japan', rating: 5 },
+    {
+      id: 1,
+      text: 'testimonials.testimonial1.text',
+      author: t('testimonials.testimonial1.author', 'Fatima Al-Mansoor'),
+      role: t('testimonials.testimonial1.role', 'Nieuwkomer • Amsterdam (BSN balie)'),
+      badge: t('testimonials.testimonial1.badge', 'Nieuwkomer'),
+      rating: 5,
+    },
+    {
+      id: 2,
+      text: 'testimonials.testimonial2.text',
+      author: t('testimonials.testimonial2.author', 'Jan de Vries'),
+      role: t('testimonials.testimonial2.role', 'Postadres-Helper • Amsterdam-Centrum'),
+      badge: t('testimonials.testimonial2.badge', 'Helper'),
+      rating: 5,
+    },
+    {
+      id: 3,
+      text: 'testimonials.testimonial3.text',
+      author: t('testimonials.testimonial3.author', 'Oleksandr Petrenko'),
+      role: t('testimonials.testimonial3.role', 'Nieuwkomer • Rotterdam (Werk & IBAN)'),
+      badge: t('testimonials.testimonial3.badge', 'Nieuwkomer'),
+      rating: 5,
+    },
   ];
 
   return (
