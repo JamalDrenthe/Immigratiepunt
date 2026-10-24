@@ -325,6 +325,8 @@
     "kicker": "My account",
     "title": "Welcome, {{name}}",
     "signOut": "Sign out",
+    "subscriptionTitle": "Subscription & Pricing",
+    "subscriptionSubtitle": "Pricing for newcomers, helpers, and the business urgency scheme.",
     "servicesTitle": "Your integration options",
     "servicesSubtitle": "Immigratiepunt works with specialised partners for work, housing and banking.",
     "partners": {

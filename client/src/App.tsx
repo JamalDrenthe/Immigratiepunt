@@ -27,6 +27,8 @@ function Router() {
       <Route path="/registreren" component={Registreren} />
       <Route path="/inloggen" component={Inloggen} />
       <Route path="/account" component={Account} />
+      <Route path="/account/abonnement" component={Account} />
+      <Route path="/account/prijzen" component={Account} />
       <Route component={NotFound} />
     </Switch>
   );

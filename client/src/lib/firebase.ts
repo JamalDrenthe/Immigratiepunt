@@ -139,6 +139,55 @@ export type IntegrationProfile = {
   workStatus: "cv_voorbereiding" | "solliciteren" | "baan_gevonden";
 };
 
+export type UrgentieServiceRequest = {
+  id: string;
+  userEmail: string;
+  userName: string;
+  type: "brief_schrijven" | "belletje_doen" | "dossier_screening" | "loket_begeleiding" | "anders";
+  title: string;
+  description: string;
+  targetOrganization: string;
+  urgency: "normaal" | "spoed" | "zeer_dringend";
+  cost: number;
+  status: "in_behandeling" | "afgerond" | "in_afwachting_reactie";
+  createdAt: number;
+  responseNotes?: string;
+};
+
+export type AccountSubscription = {
+  userEmail: string;
+  planType: "immigrant_standaard" | "helper_gift" | "zakelijke_urgentie";
+  status: "actief" | "proefperiode" | "gepauzeerd";
+  monthlyFee: number;
+  trialEndsAt?: string;
+  walletBalance: number;
+  spentOnServices: number;
+  autoRenew: boolean;
+  paymentMethod: string;
+  registeredAt: number;
+};
+
+export type OnboardingData = {
+  userEmail: string;
+  completed: boolean;
+  completedAt?: string;
+  // Deel 1: Intake Vragenlijst
+  originCountry: string;
+  preferredLanguage: string;
+  stayGoal: string;
+  currentHousing: string;
+  bsnStatus: string;
+  hasDutchBank: boolean;
+  employmentStatus: string;
+  // Deel 2: Psychologische & Welzijnstest
+  stressLevel: number; // 1-5
+  resilienceRating: number; // 1-5
+  adaptationComfort: number; // 1-5
+  needsMentalSupport: boolean;
+  supportIntensity: "zelfstandig" | "lichte_coaching" | "intensieve_begeleiding";
+  additionalNotes?: string;
+};
+
 // Local storage fallback keys
 const LS_REGISTRATIONS = "ip_registrations_cache";
 const LS_HELPERS = "ip_helpers_cache";
@@ -839,5 +888,177 @@ export function exportRegistrationsToCsv(registrations: RegistrationDoc[]): void
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+// -------------------------------------------------------------
+// Subscriptions, Zakelijke Urgentieregeling & Dienstensaldo
+// -------------------------------------------------------------
+const LS_SUBSCRIPTIONS = "ip_subscriptions_cache";
+const LS_URGENTIE_REQUESTS = "ip_urgentie_requests_cache";
+const LS_ONBOARDING = "ip_onboarding_cache";
+
+export function fetchSubscriptionForUser(userEmail: string, role: string = "newcomer"): AccountSubscription {
+  const all = getLocal<AccountSubscription>(LS_SUBSCRIPTIONS);
+  const found = all.find((s) => s.userEmail.toLowerCase() === userEmail.toLowerCase());
+  if (found) return found;
+
+  // Defaults per role
+  let defaultSub: AccountSubscription;
+  if (role === "helper") {
+    defaultSub = {
+      userEmail,
+      planType: "helper_gift",
+      status: "actief",
+      monthlyFee: 5,
+      walletBalance: 0,
+      spentOnServices: 0,
+      autoRenew: true,
+      paymentMethod: "SEPA Automatische Incasso",
+      registeredAt: Date.now() - 86400000 * 14,
+    };
+  } else {
+    // Immigrant / Newcomer
+    defaultSub = {
+      userEmail,
+      planType: "immigrant_standaard",
+      status: "proefperiode",
+      monthlyFee: 0, // Eerste 2 maanden gratis
+      trialEndsAt: "Nog 48 dagen (eerste 2 maanden gratis, daarna € 300/mnd)",
+      walletBalance: 0,
+      spentOnServices: 0,
+      autoRenew: true,
+      paymentMethod: "iDEAL / SEPA (na proefperiode)",
+      registeredAt: Date.now() - 86400000 * 12,
+    };
+  }
+
+  saveLocal(LS_SUBSCRIPTIONS, [defaultSub, ...all]);
+  return defaultSub;
+}
+
+export function saveSubscription(sub: AccountSubscription): void {
+  const all = getLocal<AccountSubscription>(LS_SUBSCRIPTIONS);
+  const filtered = all.filter((s) => s.userEmail.toLowerCase() !== sub.userEmail.toLowerCase());
+  saveLocal(LS_SUBSCRIPTIONS, [sub, ...filtered]);
+}
+
+const SEED_URGENTIE_REQUESTS: UrgentieServiceRequest[] = [
+  {
+    id: "urg-1",
+    userEmail: "fatima.almansoor@demo.nl",
+    userName: "Fatima Al-Mansoor",
+    type: "brief_schrijven",
+    title: "Bezwaarschrift legesverrekening gemeente",
+    description: "Opstellen van een formele juridische brief aan de Gemeente Amsterdam voor restitutie van dubbel gefactureerde administratiekosten.",
+    targetOrganization: "Gemeente Amsterdam (Burgerzaken)",
+    urgency: "normaal",
+    cost: 45,
+    status: "afgerond",
+    createdAt: Date.now() - 86400000 * 4,
+    responseNotes: "Brief verzonden naar Burgerzaken loket Amstel. Ontvangstbevestiging gearchiveerd in documentenkluis.",
+  },
+  {
+    id: "urg-2",
+    userEmail: "fatima.almansoor@demo.nl",
+    userName: "Fatima Al-Mansoor",
+    type: "belletje_doen",
+    title: "Telefonisch escalatiegesprek IND status",
+    description: "Telefonische navraag bij de IND over vertraging in de uitgifte van de verblijfspas en spoednotitie aangemaakt.",
+    targetOrganization: "Immigratie- en Naturalisatiedienst (IND)",
+    urgency: "spoed",
+    cost: 35,
+    status: "afgerond",
+    createdAt: Date.now() - 86400000 * 2,
+    responseNotes: "Gesproken met IND behandelaar Jansen. Verblijfsdocument is vrijgegeven voor afhaallocatie Amsterdam.",
+  },
+];
+
+export function fetchUrgentieRequests(userEmail?: string): UrgentieServiceRequest[] {
+  const all = getLocal<UrgentieServiceRequest>(LS_URGENTIE_REQUESTS);
+  if (all.length === 0) {
+    saveLocal(LS_URGENTIE_REQUESTS, SEED_URGENTIE_REQUESTS);
+    return userEmail
+      ? SEED_URGENTIE_REQUESTS.filter((r) => r.userEmail.toLowerCase() === userEmail.toLowerCase())
+      : SEED_URGENTIE_REQUESTS;
+  }
+  return userEmail
+    ? all.filter((r) => r.userEmail.toLowerCase() === userEmail.toLowerCase())
+    : all;
+}
+
+export function createUrgentieRequest(
+  req: Omit<UrgentieServiceRequest, "id" | "createdAt">
+): { request: UrgentieServiceRequest; error?: string } {
+  // Deduct from user subscription wallet if zakelijke urgentie
+  const sub = fetchSubscriptionForUser(req.userEmail);
+  if (sub.walletBalance < req.cost) {
+    return {
+      request: {} as UrgentieServiceRequest,
+      error: `Onvoldoende dienstentegoed (€ ${sub.walletBalance.toFixed(2)} beschikbaar, service kost € ${req.cost.toFixed(2)}). Waardeer eerst je accountsaldo op.`,
+    };
+  }
+
+  // Deduct
+  sub.walletBalance -= req.cost;
+  sub.spentOnServices = (sub.spentOnServices || 0) + req.cost;
+  saveSubscription(sub);
+
+  const newReq: UrgentieServiceRequest = {
+    ...req,
+    id: "urg-" + Date.now(),
+    createdAt: Date.now(),
+  };
+
+  const all = getLocal<UrgentieServiceRequest>(LS_URGENTIE_REQUESTS);
+  saveLocal(LS_URGENTIE_REQUESTS, [newReq, ...all]);
+
+  return { request: newReq };
+}
+
+export function topUpWallet(userEmail: string, amount: number): AccountSubscription {
+  const sub = fetchSubscriptionForUser(userEmail);
+  sub.walletBalance += amount;
+  if (sub.planType !== "zakelijke_urgentie") {
+    sub.planType = "zakelijke_urgentie";
+    sub.monthlyFee = 500;
+  }
+  saveSubscription(sub);
+  return sub;
+}
+
+// -------------------------------------------------------------
+// Immigrant Onboarding & Psychologische Welzijnstest
+// -------------------------------------------------------------
+export function fetchOnboardingData(userEmail: string): OnboardingData {
+  const all = getLocal<OnboardingData>(LS_ONBOARDING);
+  const found = all.find((o) => o.userEmail.toLowerCase() === userEmail.toLowerCase());
+  if (found) return found;
+
+  const defaultOnboarding: OnboardingData = {
+    userEmail,
+    completed: false,
+    originCountry: "Syrië",
+    preferredLanguage: "Arabisch / Engels",
+    stayGoal: "Arbeid & Vestiging",
+    currentHousing: "Tijdelijk verblijf bij kennissen",
+    bsnStatus: "Afspraak ingepland bij Burgerzaken",
+    hasDutchBank: false,
+    employmentStatus: "Werkzoekend (ervaring in administratie)",
+    stressLevel: 3,
+    resilienceRating: 4,
+    adaptationComfort: 3,
+    needsMentalSupport: false,
+    supportIntensity: "lichte_coaching",
+    additionalNotes: "",
+  };
+
+  saveLocal(LS_ONBOARDING, [defaultOnboarding, ...all]);
+  return defaultOnboarding;
+}
+
+export function saveOnboardingData(data: OnboardingData): void {
+  const all = getLocal<OnboardingData>(LS_ONBOARDING);
+  const filtered = all.filter((o) => o.userEmail.toLowerCase() !== data.userEmail.toLowerCase());
+  saveLocal(LS_ONBOARDING, [data, ...filtered]);
 }
 

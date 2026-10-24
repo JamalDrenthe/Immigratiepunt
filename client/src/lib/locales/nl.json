@@ -325,6 +325,8 @@
     "kicker": "Mijn account",
     "title": "Welkom, {{name}}",
     "signOut": "Uitloggen",
+    "subscriptionTitle": "Abonnement & Prijzen",
+    "subscriptionSubtitle": "Tarieven voor nieuwkomers, helpers en de zakelijke urgentie regeling.",
     "servicesTitle": "Jouw integratie-opties",
     "servicesSubtitle": "Immigratiepunt werkt samen met gespecialiseerde partners voor werk, verblijf en bankzaken.",
     "partners": {

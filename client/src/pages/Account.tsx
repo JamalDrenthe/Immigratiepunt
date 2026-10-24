@@ -68,6 +68,7 @@ import {
 import NewcomerPortal from "./account/NewcomerPortal";
 import HelperPortal from "./account/HelperPortal";
 import AdminPortal from "./account/AdminPortal";
+import SubscriptionPage from "./account/SubscriptionPage";
 
 export default function Account() {
   const { t } = useTranslation();
@@ -140,6 +141,15 @@ export default function Account() {
       const profile = fetchIntegrationProfile(member.email);
       setIntegrationProfile(profile);
     }
+
+    // Check URL path for direct subscription navigation
+    if (
+      window.location.pathname.includes("abonnement") ||
+      window.location.pathname.includes("prijzen") ||
+      window.location.search.includes("tab=subscription")
+    ) {
+      setActiveTab("subscription");
+    }
   }, [member, navigate]);
 
   if (!member) return null;
@@ -174,6 +184,7 @@ export default function Account() {
   const newcomerMenuItems = [
     { id: "overview", label: "Overzicht & Voortgang", icon: LayoutDashboard },
     { id: "postadres", label: "Mijn Postadres & Brieven", icon: Inbox, badge: letters.length },
+    { id: "subscription", label: "Abonnement & Prijzen", icon: CreditCard },
     { id: "integratie", label: "Integratie & Diensten", icon: Compass },
     { id: "documents", label: "Documentenkluis", icon: FolderOpen, badge: documents.length },
     { id: "adviseur", label: "Mijn Adviseur", icon: HelpCircle, badge: supportMessages.filter((m) => m.status === "open").length },
@@ -183,6 +194,7 @@ export default function Account() {
   const helperMenuItems = [
     { id: "overview", label: "Overzicht & Vergoeding", icon: LayoutDashboard },
     { id: "post", label: "Post Registratie & Archief", icon: Inbox, badge: letters.length },
+    { id: "subscription", label: "Abonnement & Gift", icon: CreditCard },
     { id: "financien", label: "Vergoedingen & Uitbetaling", icon: Coins },
     { id: "nieuwkomers", label: "Gekoppelde Nieuwkomers", icon: Users, badge: 1 },
     { id: "settings", label: "Adres & Beschikbaarheid", icon: Settings },
@@ -190,6 +202,7 @@ export default function Account() {
 
   const adminMenuItems = [
     { id: "overview", label: "Systeemprestaties", icon: LayoutDashboard },
+    { id: "subscription", label: "Tarieven & Urgentie Regeling", icon: CreditCard },
     { id: "matchmaker", label: "Matchmaker Engine", icon: HeartHandshake, badge: registrations.filter((r) => r.status === "nieuw").length },
     { id: "dossiers", label: "Nieuwkomers Dossiers", icon: FileCheck, badge: registrations.length },
     { id: "helpers", label: "Postadres-Helpers", icon: Users, badge: helpers.length },
@@ -412,51 +425,60 @@ export default function Account() {
 
             {/* Main Content Area */}
             <main className="lg:col-span-3 xl:col-span-4">
-              {isAdminRole && (
-                <AdminPortal
+              {activeTab === "subscription" ? (
+                <SubscriptionPage
                   member={member}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  registrations={registrations}
-                  setRegistrations={setRegistrations}
-                  helpers={helpers}
-                  setHelpers={setHelpers}
-                  supportMessages={supportMessages}
-                  setSupportMessages={setSupportMessages}
-                  letters={letters}
-                  loadAdminData={loadAdminData}
-                  isLoadingAdmin={isLoadingAdmin}
+                  role={isAdminRole ? "admin" : isHelperRole ? "helper" : "newcomer"}
                 />
-              )}
+              ) : (
+                <>
+                  {isAdminRole && (
+                    <AdminPortal
+                      member={member}
+                      activeTab={activeTab}
+                      setActiveTab={setActiveTab}
+                      registrations={registrations}
+                      setRegistrations={setRegistrations}
+                      helpers={helpers}
+                      setHelpers={setHelpers}
+                      supportMessages={supportMessages}
+                      setSupportMessages={setSupportMessages}
+                      letters={letters}
+                      loadAdminData={loadAdminData}
+                      isLoadingAdmin={isLoadingAdmin}
+                    />
+                  )}
 
-              {isHelperRole && (
-                <HelperPortal
-                  member={member}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  letters={letters}
-                  setLetters={setLetters}
-                  helperSettings={helperSettings}
-                  setHelperSettings={setHelperSettings}
-                  payouts={payouts}
-                  setPayouts={setPayouts}
-                />
-              )}
+                  {isHelperRole && (
+                    <HelperPortal
+                      member={member}
+                      activeTab={activeTab}
+                      setActiveTab={setActiveTab}
+                      letters={letters}
+                      setLetters={setLetters}
+                      helperSettings={helperSettings}
+                      setHelperSettings={setHelperSettings}
+                      payouts={payouts}
+                      setPayouts={setPayouts}
+                    />
+                  )}
 
-              {isNewcomerRole && (
-                <NewcomerPortal
-                  member={member}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  letters={letters}
-                  setLetters={setLetters}
-                  documents={documents}
-                  setDocuments={setDocuments}
-                  supportMessages={supportMessages}
-                  setSupportMessages={setSupportMessages}
-                  integrationProfile={integrationProfile}
-                  setIntegrationProfile={setIntegrationProfile}
-                />
+                  {isNewcomerRole && (
+                    <NewcomerPortal
+                      member={member}
+                      activeTab={activeTab}
+                      setActiveTab={setActiveTab}
+                      letters={letters}
+                      setLetters={setLetters}
+                      documents={documents}
+                      setDocuments={setDocuments}
+                      supportMessages={supportMessages}
+                      setSupportMessages={setSupportMessages}
+                      integrationProfile={integrationProfile}
+                      setIntegrationProfile={setIntegrationProfile}
+                    />
+                  )}
+                </>
               )}
 
               {/* Integration Services Section (Available at bottom of portal) */}

@@ -324,6 +324,41 @@ export default function HelperPortal({
             </div>
           </div>
 
+          {/* Helper Subscription & Platform Gift Card */}
+          <div className="rounded-2xl border border-[#e6dfd8] bg-white p-5 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-start gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+                  <CreditCard className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm text-[#141413]">Abonnement & Platformgift</span>
+                    <span className="rounded-full bg-blue-100 text-blue-800 px-2 py-0.5 text-[10px] font-bold">
+                      € 5,- / maand
+                    </span>
+                    <span className="rounded-full bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">
+                      Terugverdiend via postvergoeding
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#6c6a64] mt-1 max-w-2xl leading-relaxed">
+                    Jouw maandelijkse gift van € 5,- financiert de screening, juridische validatie en veilige postlogging. Met de vergoeding van € 0,50 tot € 5,- per ontvangen brief verdien je deze gift met 2 à 3 brieven al volledig terug!
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("subscription")}
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-[#a9583e] transition-colors"
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Bekijk Abonnement & Gift</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          </div>
+
           {/* Recent Letters Preview */}
           <div className="rounded-2xl border border-[#e6dfd8] bg-white p-6 shadow-xs">
             <div className="flex items-center justify-between border-b border-[#f0eae1] pb-3 mb-4">

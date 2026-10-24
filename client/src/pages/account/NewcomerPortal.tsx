@@ -31,6 +31,9 @@ import {
   Globe,
   Bell,
   Lock,
+  CreditCard,
+  BrainCircuit,
+  Wallet,
 } from "lucide-react";
 import { Member } from "@/lib/auth";
 import {
@@ -43,6 +46,8 @@ import {
   sendSupportMessage,
   saveIntegrationProfile,
   updateLetterStatus,
+  fetchOnboardingData,
+  fetchSubscriptionForUser,
 } from "@/lib/firebase";
 
 interface NewcomerPortalProps {
@@ -103,6 +108,10 @@ export default function NewcomerPortal({
   const [bsnDate, setBsnDate] = useState(integrationProfile.bsnAppointmentDate || "2026-10-24");
   const [bsnSaved, setBsnSaved] = useState(false);
   const [housingCity, setHousingCity] = useState(integrationProfile.housingCityPreference || "Amsterdam / Utrecht");
+
+  // Onboarding & Subscription data
+  const onboarding = fetchOnboardingData(member.email);
+  const subscription = fetchSubscriptionForUser(member.email, "newcomer");
   const [housingBudget, setHousingBudget] = useState(integrationProfile.housingBudget || "€ 850 - € 1.200 / maand");
   const [housingSaved, setHousingSaved] = useState(false);
   const [workSector, setWorkSector] = useState(integrationProfile.workSector || "Administratie & Klantenservice");
@@ -269,6 +278,90 @@ Nederland`;
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Mandatory Onboarding & Psychological Testing Alert Banner */}
+          <div className={`rounded-2xl border p-4 shadow-xs transition-all ${
+            onboarding.completed
+              ? "border-emerald-300 bg-emerald-50/70"
+              : "border-amber-300 bg-amber-50/80"
+          }`}>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                  onboarding.completed ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"
+                }`}>
+                  {onboarding.completed ? (
+                    <CheckCircle2 className="h-5 w-5" />
+                  ) : (
+                    <BrainCircuit className="h-5 w-5 animate-pulse" />
+                  )}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-xs text-[#141413]">
+                      {onboarding.completed
+                        ? "Verplichte Onboarding & Welzijnstest: Voltooid"
+                        : "Verplichte Onboarding & Welzijnstest Vereist"}
+                    </span>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                      onboarding.completed ? "bg-emerald-200 text-emerald-800" : "bg-amber-200 text-amber-900"
+                    }`}>
+                      {onboarding.completed ? "Geverifieerd" : "Verplicht"}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#3d3d3a] mt-0.5">
+                    {onboarding.completed
+                      ? "Jouw intake-vragenlijst en psychologische test zijn afgerond. Dossier is goedgekeurd voor briefadreskoppeling."
+                      : "Alle immigranten moeten verplicht de onboarding en psychologische test afronden voor definitieve toewijzing."}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveTab("subscription")}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#a9583e] transition-colors"
+              >
+                <span>{onboarding.completed ? "Bekijk Onboarding" : "Start Onboarding"}</span>
+                <ChevronRight className="h-3 w-3" />
+              </button>
+            </div>
+          </div>
+
+          {/* Subscription & Urgentie Card */}
+          <div className="rounded-2xl border border-[#e6dfd8] bg-white p-5 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-start gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-700">
+                  <CreditCard className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sm text-[#141413]">Abonnement & Urgentieregeling</span>
+                    <span className="rounded-full bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">
+                      Eerste 2 mnd Gratis
+                    </span>
+                    <span className="rounded-full bg-amber-100 text-amber-900 px-2 py-0.5 text-[10px] font-bold">
+                      Urgentie v.a. € 500,-/mnd
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#6c6a64] mt-1 max-w-2xl leading-relaxed">
+                    Standaard integratie: eerste 2 maanden kosteloos (€ 0,-), daarna € 300,- / maand voor een jaar.
+                    Heb je spoed? Met de <strong>Zakelijke Urgentie Regeling</strong> (vanaf € 500,- / mnd) gaat het bedrag in je account om <strong>brieven te schrijven en belletjes te doen</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("subscription")}
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-[#a9583e] transition-colors"
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>Bekijk Prijzen & Urgentie</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </button>
             </div>
           </div>
 
