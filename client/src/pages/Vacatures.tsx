@@ -101,7 +101,7 @@ export const VACATURES_DATA: JobPosition[] = [
     partnerBrand: "WoningVry",
     category: "housing",
     rewardShort: "Vaste courtage per huurovereenkomst",
-    rewardFull: "No Cure, No Pay: Vaste bemiddelingscourtage per gesloten huurovereenkomst of succesvol toegewezen kamer/appartement via WoningVry.nl.",
+    rewardFull: "Vaste bemiddelingscourtage per gesloten huurovereenkomst of succesvol toegewezen kamer/appartement via WoningVry.nl.",
     hours: "20–40 uur per week (flexibel in te delen)",
     location: "100% remote (met optionele bezichtigingen)",
     experience: "1+ jaar ervaring in vastgoedbemiddeling, verhuur of expat relocation",
@@ -126,7 +126,7 @@ export const VACATURES_DATA: JobPosition[] = [
     domain: "Sociale Zekerheid & Fondsen (Potjes Radar)",
     category: "subsidies",
     rewardShort: "Succespercentage over toegekende potjes",
-    rewardFull: "100% No Cure, No Pay: Succespercentage over toegekende subsidies, legesvrijstellingen, WBSO-aanvragen en gemeentelijke voorzieningen.",
+    rewardFull: "Succespercentage over daadwerkelijk toegekende subsidies, legesvrijstellingen, WBSO-aanvragen en gemeentelijke voorzieningen.",
     hours: "20–32 uur per week",
     location: "100% remote",
     experience: "2+ jaar ervaring als subsidieadviseur, bewindvoerder of sociaal raadsvrouw/man",
@@ -206,7 +206,7 @@ export const VACATURES_DATA: JobPosition[] = [
     location: "100% remote",
     experience: "Afgeronde WO/HBO Rechtenstudie met specialisatie in Vreemdelingenrecht of Bestuursrecht",
     description:
-      "Complexe dossiers rond verblijfsvergunningen, legeskosten, BRP-weigeringen en toevoegingen vereisen scherpe juridische kennis. Jij biedt gespecialiseerde ondersteuning op no cure no pay basis.",
+      "Complexe dossiers rond verblijfsvergunningen, legeskosten, BRP-weigeringen en toevoegingen vereisen scherpe juridische kennis. Jij biedt gespecialiseerde juridische ondersteuning op dossierbasis.",
     tasks: [
       "Beoordelen van IND-besluiten, afwijzingen van gemeentelijke inschrijvingen en legesfacturen",
       "Opstellen van formele bezwaarschriften, zienswijzen en kwijtscheldingsverzoeken",
@@ -224,7 +224,7 @@ export const VACATURES_DATA: JobPosition[] = [
 
 export const GENERAL_CONDITIONS = [
   {
-    title: "Eerlijke No Cure, No Pay Beloning",
+    title: "Prestatiegerichte Beloning",
     desc: "Aantrekkelijke provisies, plaatsingsfees en succespercentages gekoppeld aan daadwerkelijk gesloten matches, verhuren of toegekende subsidies.",
     icon: BadgePercent,
   },
@@ -351,10 +351,10 @@ export default function Vacatures() {
   return (
     <>
       <Helmet>
-        <title>No Cure, No Pay Vacatures | Werken bij Immigratiepunt</title>
+        <title>Vacatures & Carrières | Werken bij Immigratiepunt</title>
         <meta
           name="description"
-          content="Bekijk onze 100% remote vacatures op no cure no pay basis rondom werk (Djobba), huisvesting (WoningVry), subsidies, helpers en zakelijke integratie."
+          content="Bekijk onze 100% remote vacatures en partner-posities rondom werk (Djobba), huisvesting (WoningVry), subsidies, helpers en zakelijke integratie."
         />
       </Helmet>
 
@@ -370,7 +370,7 @@ export default function Vacatures() {
             <div className="flex flex-wrap items-center gap-2 mb-6">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3.5 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                100% No Cure, No Pay & Prestatiegedreven
+                Ondernemend & Prestatiegedreven
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3.5 py-1 text-xs font-semibold text-amber-900 border border-amber-200">
                 <Globe2 className="h-3.5 w-3.5 text-amber-700" />
@@ -378,7 +378,7 @@ export default function Vacatures() {
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f0eae1] px-3.5 py-1 text-xs font-semibold text-[#6c6a64] border border-[#e6dfd8]">
                 <HeartHandshake className="h-3.5 w-3.5 text-[#6c6a64]" />
-                Maatschappelijke Impact & Reëel Verdienmodel
+                Maatschappelijke Impact & Eerlijk Verdienmodel
               </span>
             </div>
 
@@ -388,7 +388,7 @@ export default function Vacatures() {
                 Carrières bij Immigratiepunt & Partner-Ecosysteem
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#141413] leading-tight">
-                Bouw mee aan integratie met <span className="text-primary underline decoration-primary/30 decoration-wavy">No Cure, No Pay</span> rollen
+                Bouw mee aan integratie als <span className="text-primary underline decoration-primary/30 decoration-wavy">Zelfstandig Partner</span>
               </h1>
               <p className="mt-4 max-w-3xl text-sm sm:text-base md:text-lg text-[#6c6a64] leading-relaxed">
                 Wil je maximale vrijheid, flexibele uren en royale vergoedingen combineren met echte maatschappelijke betekenis?
@@ -433,7 +433,7 @@ export default function Vacatures() {
             <div className="mt-12 grid grid-cols-2 gap-4 border-t border-[#e6dfd8] pt-6 sm:grid-cols-4">
               <div>
                 <div className="text-2xl font-bold text-[#141413]">6</div>
-                <div className="text-xs text-[#6c6a64]">Reële no cure, no pay functies</div>
+                <div className="text-xs text-[#6c6a64]">Openstaande partnerposities</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#141413]">100%</div>
@@ -509,7 +509,7 @@ export default function Vacatures() {
                   6 Doelgerichte Rollen
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#141413]">
-                  Actuele No Cure, No Pay Vacatures
+                  Actuele Vacatures & Partner Rollen
                 </h2>
                 <p className="mt-1 text-xs sm:text-sm text-[#6c6a64]">
                   Kies jouw specialisme: werkgeversbemiddeling, huisvesting, subsidies, helpers werven, zakelijke spoed of juridisch.
@@ -633,7 +633,7 @@ export default function Vacatures() {
                       {/* Reward Badge */}
                       <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 text-xs text-emerald-900">
                         <div className="font-bold text-[11px] uppercase tracking-wider text-emerald-800 flex items-center gap-1">
-                          <BadgePercent className="h-3.5 w-3.5" /> No Cure, No Pay Beloning
+                          <BadgePercent className="h-3.5 w-3.5" /> Vergoeding & Commissie
                         </div>
                         <div className="font-semibold mt-1 text-[11px] leading-snug">{job.rewardShort}</div>
                       </div>
@@ -672,7 +672,7 @@ export default function Vacatures() {
                         <th className="py-3 px-4 w-14">ID</th>
                         <th className="py-3 px-4">Functie</th>
                         <th className="py-3 px-4">Domein & Pijler</th>
-                        <th className="py-3 px-4">No Cure, No Pay Beloning</th>
+                        <th className="py-3 px-4">Vergoeding & Commissie</th>
                         <th className="py-3 px-4 w-28">Uren</th>
                         <th className="py-3 px-4 text-right w-40">Actie</th>
                       </tr>
@@ -878,7 +878,7 @@ export default function Vacatures() {
                   <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4">
                     <div className="font-bold text-xs uppercase tracking-wider text-emerald-900 mb-1 flex items-center gap-1.5">
                       <BadgePercent className="h-4 w-4 text-emerald-700" />
-                      No Cure, No Pay Beloningsstructuur
+                      Vergoedingsstructuur & Commissie
                     </div>
                     <p className="text-xs text-emerald-950 leading-relaxed font-medium">
                       {activeJobModal.rewardFull}
@@ -922,7 +922,7 @@ export default function Vacatures() {
           <DialogContent className="max-w-xl max-h-[90vh] overflow-y-auto p-6 bg-white rounded-2xl">
             <DialogHeader className="border-b border-[#f0eae1] pb-3">
               <span className="font-mono text-xs font-bold text-primary">
-                SOLLICITATIE [100% REMOTE & NO CURE, NO PAY]
+                SOLLICITATIE [100% REMOTE & FLEXIBEL]
               </span>
               <DialogTitle className="text-xl font-bold text-[#141413]">
                 Solliciteer Direct
@@ -1070,7 +1070,7 @@ export default function Vacatures() {
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="Waarom past deze rol en het no cure no pay / commissiemodel binnen Immigratiepunt bij jou?"
+                    placeholder="Waarom past deze rol en het ondernemende partnermodel binnen Immigratiepunt bij jou?"
                     value={formMotivation}
                     onChange={(e) => setFormMotivation(e.target.value)}
                     className="w-full rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-3 text-xs outline-none focus:border-primary"

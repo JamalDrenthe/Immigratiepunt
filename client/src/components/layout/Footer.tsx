@@ -43,7 +43,7 @@ export function Footer() {
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-[#6c6a64]">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/over-ons" className="transition-colors hover:text-[#faf9f5]">{t('header.about', 'Over ons')}</Link></li>
-              <li><Link href="/vacatures" className="transition-colors hover:text-[#faf9f5] flex items-center gap-1.5"><span>Vacatures</span><span className="rounded bg-emerald-900/60 text-emerald-300 text-[10px] px-1.5 py-0.2">No Cure No Pay</span></Link></li>
+              <li><Link href="/vacatures" className="transition-colors hover:text-[#faf9f5] flex items-center gap-1.5"><span>Vacatures</span><span className="rounded bg-white/10 text-stone-300 text-[10px] px-1.5 py-0.2">100% Remote</span></Link></li>
               <li><Link href="/help-mee" className="transition-colors hover:text-[#faf9f5]">{t('header.helpMee')}</Link></li>
               <li><Link href="/contact" className="transition-colors hover:text-[#faf9f5]">{t('header.contact', 'Contact')}</Link></li>
               <li><Link href="/registreren" className="transition-colors hover:text-[#faf9f5]">{t('header.register')}</Link></li>
