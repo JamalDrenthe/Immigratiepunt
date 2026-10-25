@@ -29,6 +29,8 @@ function Router() {
       <Route path="/account" component={Account} />
       <Route path="/account/abonnement" component={Account} />
       <Route path="/account/prijzen" component={Account} />
+      <Route path="/account/potjes" component={Account} />
+      <Route path="/account/subsidies" component={Account} />
       <Route component={NotFound} />
     </Switch>
   );

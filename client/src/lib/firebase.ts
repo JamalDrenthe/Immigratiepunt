@@ -188,6 +188,33 @@ export type OnboardingData = {
   additionalNotes?: string;
 };
 
+export type PotjeGrant = {
+  id: string;
+  category: "sociale_zekerheid" | "school_onderwijs" | "ind_leges" | "diploma_vertaling" | "juridisch";
+  title: string;
+  provider: string;
+  amountIndication: string;
+  frequency: "maandelijks" | "eenmalig" | "per_kind" | "per_aanvraag";
+  description: string;
+  eligibility: string[];
+  documentsNeeded: string[];
+  targetAudience: string;
+  officialLink?: string;
+  iconType: "wallet" | "school" | "passport" | "graduation" | "scale" | "heart";
+};
+
+export type PotjeApplication = {
+  id: string;
+  userEmail: string;
+  userName: string;
+  potjeId: string;
+  potjeTitle: string;
+  notes: string;
+  status: "ingediend" | "in_behandeling" | "goedgekeurd" | "afgerond";
+  createdAt: number;
+  consultantNotes?: string;
+};
+
 // Local storage fallback keys
 const LS_REGISTRATIONS = "ip_registrations_cache";
 const LS_HELPERS = "ip_helpers_cache";
@@ -1060,5 +1087,240 @@ export function saveOnboardingData(data: OnboardingData): void {
   const all = getLocal<OnboardingData>(LS_ONBOARDING);
   const filtered = all.filter((o) => o.userEmail.toLowerCase() !== data.userEmail.toLowerCase());
   saveLocal(LS_ONBOARDING, [data, ...filtered]);
+}
+
+// -------------------------------------------------------------
+// Immigrant Subsidie & Tegemoetkomingen "Potjes"
+// -------------------------------------------------------------
+const LS_POTJES_APPLICATIONS = "ip_potjes_applications_cache";
+
+export const SEED_POTJES: PotjeGrant[] = [
+  // 1. Sociale Zekerheid & Toeslagen
+  {
+    id: "potje-zorgtoeslag",
+    category: "sociale_zekerheid",
+    title: "Zorgtoeslag & Huurtoeslag",
+    provider: "Dienst Toeslagen (Belastingdienst)",
+    amountIndication: "Tot € 420,- / maand",
+    frequency: "maandelijks",
+    description: "Directe maandelijkse financiële bijdrage vanuit de Rijksoverheid om de kosten van een Nederlandse basiszorgverzekering en zelfstandige huurwoning betaalbaar te houden.",
+    eligibility: [
+      "In bezit van een BSN en Nederlandse IBAN",
+      "Nederlandse basiszorgverzekering afgesloten",
+      "Toetsingsinkomen onder de wettelijke vermogens- en inkomensgrens",
+      "Zelfstandige huurwoning met geregistreerd huurcontract (voor huurtoeslag)",
+    ],
+    documentsNeeded: ["BSN registratiebevestiging", "Nederlandse IBAN", "Huurcontract (indien huur)", "DigiD"],
+    targetAudience: "Alle nieuwkomers met een laag tot modaal inkomen",
+    officialLink: "https://toeslagen.nl",
+    iconType: "wallet",
+  },
+  {
+    id: "potje-bijzondere-bijstand",
+    category: "sociale_zekerheid",
+    title: "Bijzondere Bijstand Noodzakelijke Kosten",
+    provider: "Lokale Gemeente (Sociale Dienst)",
+    amountIndication: "€ 350 - € 1.500,- eenmalig",
+    frequency: "eenmalig",
+    description: "Gemeentelijke vergoeding voor onvoorziene, noodzakelijke kosten die je zelf niet kunt dragen, zoals leges voor verblijfsdocumenten, eerste inrichtingskosten, of beëdigde aktes.",
+    eligibility: [
+      "Ingeschreven in de gemeente (ook via briefadres)",
+      "Inkomen rond het sociaal minimum (bijstandsniveau)",
+      "Kosten zijn noodzakelijk en kunnen niet uit eigen middelen worden voldaan",
+    ],
+    documentsNeeded: ["Kopie paspoort/ID", "Bankafschriften laatste 3 maanden", "Factuur of offerte van de kosten"],
+    targetAudience: "Nieuwkomers in een financieel kwetsbare startfase",
+    iconType: "heart",
+  },
+  {
+    id: "potje-kindgebonden-budget",
+    category: "sociale_zekerheid",
+    title: "Kindgebonden Budget & Kinderbijslag",
+    provider: "Sociale Verzekeringsbank (SVB) & Toeslagen",
+    amountIndication: "Tot € 380,- per kind / maand",
+    frequency: "per_kind",
+    description: "Financiële bijdrage van de Nederlandse overheid voor gezinnen met kinderen tot 18 jaar ter dekking van levensonderhoud, kleding en verzorging.",
+    eligibility: [
+      "Wettelijk verblijf in Nederland van ouder en kind",
+      "Kind woont bij ouder of staat geregistreerd op het adres",
+      "Geldige BSN-inschrijving van de gezinsleden",
+    ],
+    documentsNeeded: ["Geboorteakte kind(eren)", "BSN bewijzen", "Bankrekeningnummer"],
+    targetAudience: "Nieuwkomers met minderjarige kinderen",
+    iconType: "heart",
+  },
+
+  // 2. School & Onderwijs
+  {
+    id: "potje-stichting-leergeld",
+    category: "school_onderwijs",
+    title: "Stichting Leergeld & Kindpakket",
+    provider: "Stichting Leergeld Nederland",
+    amountIndication: "€ 300 - € 900,- per kind / jaar",
+    frequency: "per_kind",
+    description: "Voorkomt dat kinderen uit gezinnen met weinig geld worden buitengesloten. Vergoedt schoolspullen, schoollaptop, rekenmachine, schoolreisjes, een fiets voor de middelbare school en sport-/muziekcontributie.",
+    eligibility: [
+      "Kinderen in de leeftijd van 4 tot 18 jaar",
+      "Gezinsinkomen tot maximaal 120-130% van het sociaal minimum",
+      "Schoolgaand in het basis- of voortgezet onderwijs",
+    ],
+    documentsNeeded: ["Inkomensspecificatie of bewijs van bijstand/toeslag", "Schoolinschrijving kind", "Factuur/offerte schoolspullen"],
+    targetAudience: "Gezinnen met schoolgaande kinderen",
+    officialLink: "https://leergeld.nl",
+    iconType: "school",
+  },
+  {
+    id: "potje-duo-inburgering",
+    category: "school_onderwijs",
+    title: "DUO Inburgeringslening & Taalsubsidie",
+    provider: "Dienst Uitvoering Onderwijs (DUO)",
+    amountIndication: "Tot € 10.000,- budget",
+    frequency: "eenmalig",
+    description: "Overheidsbudget voor het volgen van erkende Nederlandse taallessen (A2/B1/B2 niveau), Kennis van de Nederlandse Maatschappij (KNM) en participatieverklaring. Voor asielstatushouders volledig kwijtgescholden; voor overige migranten een zeer gunstige sociale lening.",
+    eligibility: [
+      "Inburgeringsplichtig of vrijwillig inburgeraar in Nederland",
+      "Taalschool met het officiële keurmerk 'Blik op Werk'",
+      "Aanvraag via DUO portaal",
+    ],
+    documentsNeeded: ["DUO beschikking inburgering", "Geldig verblijfsdocument / paspoort", "Offerte taalschool"],
+    targetAudience: "Alle nieuwkomers die Nederlands willen of moeten leren",
+    officialLink: "https://inburgeren.nl",
+    iconType: "school",
+  },
+
+  // 3. Diploma Waardering & Vertaling
+  {
+    id: "potje-idw-diploma",
+    category: "diploma_vertaling",
+    title: "IDW Internationale Diplomawaardering",
+    provider: "Nuffic & SBB (Ministerie van OCW)",
+    amountIndication: "100% vergoed (€ 150,- subsidie)",
+    frequency: "per_aanvraag",
+    description: "Officiële verklaring waarin staat met welk Nederlands onderwijsniveau jouw buitenlandse diploma (middelbare school, bachelor of master) vergelijkbaar is. Essentieel voor werkgevers en vervolgopleidingen. Volledig kosteloos voor inburgeraars en statushouders.",
+    eligibility: [
+      "In bezit van een officieel buitenlands schooldiploma of getuigschrift",
+      "Originele cijferlijst en vakkenoverzicht aanwezig",
+      "Geregistreerd in Nederland",
+    ],
+    documentsNeeded: ["Kopie origineel diploma", "Cijferlijst / Transcript of Records", "Vertaling (indien niet in EN/FR/DE/NL)"],
+    targetAudience: "Nieuwkomers met buitenlandse opleiding of beroepskwalificatie",
+    officialLink: "https://idw.nl",
+    iconType: "graduation",
+  },
+  {
+    id: "potje-vertalingen-aktes",
+    category: "diploma_vertaling",
+    title: "Vergoeding Beëdigde Vertalingen Documenten",
+    provider: "Gemeente / UWV Participatiebudget",
+    amountIndication: "Tot € 500,- vergoeding",
+    frequency: "per_aanvraag",
+    description: "Subsidie voor het beëdigd laten vertalen van officiële aktes (geboorteakte, huwelijksakte, echtscheidingsvonnis, diploma's) door een in het register (Wbtv) ingeschreven beëdigde vertaler.",
+    eligibility: [
+      "Documenten vereist voor BRP-inschrijving, IND-aanvraag of toelating tot de arbeidsmarkt",
+      "Laag inkomen of begeleidingstraject via gemeente / UWV",
+    ],
+    documentsNeeded: ["Scan van de originele akte(s)", "Offerte van beëdigd vertaler", "Aanvraagformulier bijzondere bijstand"],
+    targetAudience: "Nieuwkomers met documenten in niet-Europese talen",
+    iconType: "graduation",
+  },
+
+  // 4. IND & Legescompensatie
+  {
+    id: "potje-ind-legesvrijstelling",
+    category: "ind_leges",
+    title: "IND Legesvrijstelling Onvermogenden",
+    provider: "Immigratie- en Naturalisatiedienst (IND)",
+    amountIndication: "100% kwijtschelding (€ 210 - € 1.200,-)",
+    frequency: "per_aanvraag",
+    description: "Vrijstelling of kwijtschelding van de hoge legeskosten bij aanvragen voor bepaalde humanitaire verblijfsvergunningen, artikel 8 EVRM (gezinsleven) of medische behandeling, indien kan worden aangetoond dat je onder het bestaansminimum leeft.",
+    eligibility: [
+      "Aanvraag valt onder een categorie waarin legesvrijstelling wettelijk is toegestaan",
+      "Aantoonbaar geen eigen inkomsten of vermogen boven de bijstandsnorm",
+      "Formulier 'Beroep op vrijstelling van leges' bijgevoegd bij IND-aanvraag",
+    ],
+    documentsNeeded: ["Inkomens- en vermogensverklaring", "Bankafschriften", "IND aanvraagformulier"],
+    targetAudience: "Nieuwkomers met gezins- of humanitaire verblijfsprocedures",
+    officialLink: "https://ind.nl",
+    iconType: "passport",
+  },
+
+  // 5. Juridische Ondersteuning & Rechtsbijstand
+  {
+    id: "potje-gesubsidieerde-rechtsbijstand",
+    category: "juridisch",
+    title: "Gesubsidieerde Rechtsbijstand (Toevoeging)",
+    provider: "Raad voor Rechtsbijstand (RvR)",
+    amountIndication: "Advocaatkosten 90-95% vergoed",
+    frequency: "per_aanvraag",
+    description: "De overheid betaalt het grootste deel van de advocaatkosten bij juridische geschillen, zoals bezwaar tegen een IND-afwijzing, huurconflicten of arbeidsgeschillen. Je betaalt enkel een kleine inkomensafhankelijke eigen bijdrage (vanaf ca. € 160,-).",
+    eligibility: [
+      "Inkomen en vermogen onder de grens van de Wet op de rechtsbijstand",
+      "Juridisch geschil met gegronde kans van slagen",
+      "Ingediend via een erkende toevoegingsadvocaat",
+    ],
+    documentsNeeded: ["Inkomensverklaring Belastingdienst (of peiljaarverlegging)", "IND-besluit of juridische correspondentie", "Diagnosedocument Juridisch Loket"],
+    targetAudience: "Nieuwkomers met IND-bezwaar, huurconflict of arbeidsconflict",
+    officialLink: "https://rvr.org",
+    iconType: "scale",
+  },
+  {
+    id: "potje-juridisch-loket",
+    category: "juridisch",
+    title: "Gratis Advies & Eerstelijnscheck",
+    provider: "Het Juridisch Loket",
+    amountIndication: "100% Gratis + € 61,- korting op advocaat",
+    frequency: "per_aanvraag",
+    description: "Onafhankelijk gratis juridisch advies over verblijfsrechten, contracten, arbeid en huurbescherming. Bij doorverwijzing naar een advocaat ontvang je tevens een wettelijke korting van € 61,- op de eigen bijdrage.",
+    eligibility: [
+      "Iedereen met een inkomen onder de toevoegingsgrens",
+      "Eerstelijns adviesgesprek telefonisch, online of op inlooplocatie",
+    ],
+    documentsNeeded: ["Brief of contract waar het geschil over gaat", "Identiteitsbewijs"],
+    targetAudience: "Alle nieuwkomers met vragen over hun rechten in Nederland",
+    officialLink: "https://juridischloket.nl",
+    iconType: "scale",
+  },
+];
+
+export function fetchAvailablePotjes(): PotjeGrant[] {
+  return SEED_POTJES;
+}
+
+export function fetchPotjeApplications(userEmail?: string): PotjeApplication[] {
+  const all = getLocal<PotjeApplication>(LS_POTJES_APPLICATIONS);
+  if (all.length === 0) {
+    const seedApps: PotjeApplication[] = [
+      {
+        id: "pot-app-1",
+        userEmail: "fatima.almansoor@demo.nl",
+        userName: "Fatima Al-Mansoor",
+        potjeId: "potje-zorgtoeslag",
+        potjeTitle: "Zorgtoeslag & Huurtoeslag",
+        notes: "Aanvraag voor zorgtoeslag na activering BSN en Nederlandse IBAN bij Xabi World.",
+        status: "goedgekeurd",
+        createdAt: Date.now() - 86400000 * 5,
+        consultantNotes: "Toeslag toegekend door Dienst Toeslagen. Maandelijkse uitbetaling van ca. € 123,- gestart.",
+      },
+    ];
+    saveLocal(LS_POTJES_APPLICATIONS, seedApps);
+    return userEmail ? seedApps.filter((a) => a.userEmail.toLowerCase() === userEmail.toLowerCase()) : seedApps;
+  }
+  return userEmail ? all.filter((a) => a.userEmail.toLowerCase() === userEmail.toLowerCase()) : all;
+}
+
+export function submitPotjeApplication(
+  app: Omit<PotjeApplication, "id" | "createdAt" | "status">
+): PotjeApplication {
+  const newApp: PotjeApplication = {
+    ...app,
+    id: "pot-app-" + Date.now(),
+    status: "in_behandeling",
+    createdAt: Date.now(),
+    consultantNotes: "Aanvraag ontvangen door Immigratiepunt consulententeam. Dossiercheck gestart.",
+  };
+
+  const all = getLocal<PotjeApplication>(LS_POTJES_APPLICATIONS);
+  saveLocal(LS_POTJES_APPLICATIONS, [newApp, ...all]);
+  return newApp;
 }
 

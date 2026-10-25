@@ -48,6 +48,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import PotjesRadar from "./PotjesRadar";
 
 interface SubscriptionPageProps {
   member: Member;
@@ -57,8 +58,8 @@ interface SubscriptionPageProps {
 export default function SubscriptionPage({ member, role }: SubscriptionPageProps) {
   const { t } = useTranslation();
 
-  // Tab: newcomer, helper, zakelijk
-  const [selectedPlanTab, setSelectedPlanTab] = useState<"newcomer" | "helper" | "zakelijk">(
+  // Tab: newcomer, helper, zakelijk, potjes
+  const [selectedPlanTab, setSelectedPlanTab] = useState<"newcomer" | "helper" | "zakelijk" | "potjes">(
     role === "helper" ? "helper" : "newcomer"
   );
 
@@ -260,6 +261,22 @@ export default function SubscriptionPage({ member, role }: SubscriptionPageProps
             <span>Zakelijke Urgentie Regeling</span>
             <span className="rounded-full bg-amber-500/20 text-amber-900 px-2 py-0.5 text-[10px] font-bold">
               Vanaf € 500,-
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedPlanTab("potjes")}
+            className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all ${
+              selectedPlanTab === "potjes"
+                ? "bg-emerald-700 text-white shadow-xs"
+                : "border border-[#e6dfd8] bg-[#faf9f5] text-[#3d3d3a] hover:bg-white"
+            }`}
+          >
+            <Coins className="h-4 w-4 text-emerald-600" />
+            <span>Potjes & Subsidies Wijzer</span>
+            <span className="rounded-full bg-emerald-500/20 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">
+              10+ Regelingen
             </span>
           </button>
         </div>
@@ -467,6 +484,40 @@ export default function SubscriptionPage({ member, role }: SubscriptionPageProps
               <p className="text-xs text-[#6c6a64] leading-relaxed">
                 Het Immigratiepunt-model is getoetst aan de Wet basisregistratie personen (Wet BRP). Zowel nieuwkomers als briefadresgevers genieten volledige wettelijke bescherming.
               </p>
+            </div>
+          </div>
+
+          {/* Potjes & Subsidies Highlight Banner */}
+          <div className="lg:col-span-3 rounded-2xl border border-emerald-300 bg-linear-to-r from-emerald-50/70 via-white to-blue-50/40 p-6 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700 shadow-xs">
+                  <Coins className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="font-bold text-base text-[#141413]">
+                      Wist je dat er allerlei overheids- en gemeentepotjes zijn voor nieuwkomers?
+                    </h4>
+                    <span className="rounded-full bg-emerald-200 text-emerald-800 px-2.5 py-0.5 text-[10px] font-bold">
+                      Toeslagen • School • IND • Diploma • Rechtshulp
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#3d3d3a] mt-1.5 max-w-3xl leading-relaxed">
+                    Als immigrant kun je aanspraak maken op diverse overheidspotjes: van huur- en zorgtoeslag (€ 400+/mnd) tot Stichting Leergeld (laptops & schoolreisjes voor kinderen), gratis diplomawaardering via IDW/Nuffic, vergoeding van leges en gesubsidieerde rechtsbijstand.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedPlanTab("potjes")}
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 transition-colors shrink-0"
+              >
+                <Coins className="h-4 w-4" />
+                <span>Open Potjes & Subsidies Wijzer</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </button>
             </div>
           </div>
         </div>
@@ -874,6 +925,16 @@ export default function SubscriptionPage({ member, role }: SubscriptionPageProps
             )}
           </div>
         </div>
+      )}
+
+      {/* ------------------------------------------------------------- */}
+      {/* TAB 4: POTJES & SUBSIDIES WIJZER                              */}
+      {/* ------------------------------------------------------------- */}
+      {selectedPlanTab === "potjes" && (
+        <PotjesRadar
+          member={member}
+          onOpenUrgentie={() => setSelectedPlanTab("zakelijk")}
+        />
       )}
 
       {/* ------------------------------------------------------------- */}

@@ -69,6 +69,7 @@ import NewcomerPortal from "./account/NewcomerPortal";
 import HelperPortal from "./account/HelperPortal";
 import AdminPortal from "./account/AdminPortal";
 import SubscriptionPage from "./account/SubscriptionPage";
+import PotjesRadar from "./account/PotjesRadar";
 
 export default function Account() {
   const { t } = useTranslation();
@@ -142,13 +143,19 @@ export default function Account() {
       setIntegrationProfile(profile);
     }
 
-    // Check URL path for direct subscription navigation
+    // Check URL path for direct subscription or potjes navigation
     if (
       window.location.pathname.includes("abonnement") ||
       window.location.pathname.includes("prijzen") ||
       window.location.search.includes("tab=subscription")
     ) {
       setActiveTab("subscription");
+    } else if (
+      window.location.pathname.includes("potjes") ||
+      window.location.pathname.includes("subsidie") ||
+      window.location.search.includes("tab=potjes")
+    ) {
+      setActiveTab("potjes");
     }
   }, [member, navigate]);
 
@@ -185,6 +192,7 @@ export default function Account() {
     { id: "overview", label: "Overzicht & Voortgang", icon: LayoutDashboard },
     { id: "postadres", label: "Mijn Postadres & Brieven", icon: Inbox, badge: letters.length },
     { id: "subscription", label: "Abonnement & Prijzen", icon: CreditCard },
+    { id: "potjes", label: "Potjes & Subsidies", icon: Coins, badge: "10+" },
     { id: "integratie", label: "Integratie & Diensten", icon: Compass },
     { id: "documents", label: "Documentenkluis", icon: FolderOpen, badge: documents.length },
     { id: "adviseur", label: "Mijn Adviseur", icon: HelpCircle, badge: supportMessages.filter((m) => m.status === "open").length },
@@ -401,7 +409,7 @@ export default function Account() {
                           <span>{item.label}</span>
                         </div>
 
-                        {item.badge !== undefined && item.badge > 0 && (
+                        {item.badge !== undefined && (typeof item.badge === "number" ? item.badge > 0 : Boolean(item.badge)) && (
                           <span
                             className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
                               isActive ? "bg-white/20 text-white" : "bg-[#f0eae1] text-[#3d3d3a]"
@@ -429,6 +437,11 @@ export default function Account() {
                 <SubscriptionPage
                   member={member}
                   role={isAdminRole ? "admin" : isHelperRole ? "helper" : "newcomer"}
+                />
+              ) : activeTab === "potjes" ? (
+                <PotjesRadar
+                  member={member}
+                  onOpenUrgentie={() => setActiveTab("subscription")}
                 />
               ) : (
                 <>
