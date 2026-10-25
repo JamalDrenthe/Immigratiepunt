@@ -4,6 +4,11 @@ import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase,
+  Home,
+  Coins,
+  HeartHandshake,
+  ShieldCheck,
+  Scale,
   Globe2,
   Laptop,
   GraduationCap,
@@ -15,7 +20,6 @@ import {
   Clock,
   ArrowRight,
   TrendingUp,
-  ShieldCheck,
   Send,
   Building2,
   Users,
@@ -51,7 +55,8 @@ export interface JobPosition {
   id: string; // e.g. "01"
   title: string;
   domain: string;
-  category: "finance" | "growth" | "recruitment" | "strategy";
+  partnerBrand?: string;
+  category: "work" | "housing" | "subsidies" | "helpers" | "corporate" | "legal";
   rewardShort: string;
   rewardFull: string;
   hours: string;
@@ -65,356 +70,197 @@ export interface JobPosition {
 export const VACATURES_DATA: JobPosition[] = [
   {
     id: "01",
-    title: "Investor Relations Manager",
-    domain: "Corporate / Pre-IPO",
-    category: "finance",
-    rewardShort: "Salaris + succesfee (investering)",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Succesfee over elk door jou aangebracht en gecontracteerd investeringsvolume (percentage in overleg).",
-    hours: "32–40 per week",
-    location: "100% remote (reisbereidheid voor internationale roadshows)",
-    experience: "5+ jaar corporate finance, private equity, venture capital of IR",
+    title: "B2B Accountmanager Werkgevers & Detachering",
+    domain: "Werk & Arbeidsmarkt (Djobba.nl)",
+    partnerBrand: "Djobba",
+    category: "work",
+    rewardShort: "Plaatsingsfee + marge per gewerkt uur",
+    rewardFull: "Prestatiebeloning: Aantrekkelijke plaatsingsfee per gematchte nieuwkomer bij Nederlandse werkgevers, plus doorlopende margedeling bij detacherings- en uitzendcontracten (percentage in overleg).",
+    hours: "24–40 uur per week",
+    location: "100% remote (optioneel bezoeken van werkgevers)",
+    experience: "2+ jaar B2B sales, werving & selectie of arbeidsbemiddeling",
     description:
-      "Ter voorbereiding op een internationale beursnotering en meerdere kapitaalrondes zoeken wij een IR Manager. Je bent het vaste aanspreekpunt richting de financiële markt en onderhoudt relaties met institutionele beleggers, family offices en strategische co-investeerders.",
+      "Als Accountmanager Werkgevers bouw je de brug tussen gemotiveerde internationale talenten van Immigratiepunt en Nederlandse werkgevers die kampen met personeelstekorten. Je sluit wervings- en detacheringscontracten via ons partnerplatform Djobba.nl.",
     tasks: [
-      "Werven en onboarden van institutionele investeerders en kapitaalverstrekkers",
-      "Regisseren van de internationale IR-roadshow en het bookbuilding-proces",
-      "Presenteren van groeimodellen, kwartaalcijfers en IFRS-rapportage aan investeringscomités",
-      "Schakelen met corporate finance-adviseurs, toezichthouders, juristen en auditors",
+      "Acquireren van Nederlandse werkgevers in sectoren als logistiek, techniek, horeca, IT en administratie",
+      "Koppelen van vooraf gescreende nieuwkomers met een geldig BSN en werkstatus aan vacatures",
+      "Onderhandelen over uurtarieven, bemiddelingsfees en contractvoorwaarden",
+      "Samenwerken met ons kandidaat-intaketeam voor een soepele onboarding op de werkvloer",
     ],
     profile: [
-      "HBO/WO in finance, economie of bedrijfskunde, of gelijkwaardige ervaring",
-      "Aantoonbaar netwerk binnen institutioneel kapitaal, family offices en private equity",
-      "Nederlands en Engels op boardroomniveau",
-      "Ervaring met IFRS, kapitaalmarkttransacties en pre-IPO-trajecten",
+      "HBO-werk- en denkniveau, met een commerciële of recruitmentachtergrond",
+      "Aantoonbaar netwerk bij Nederlandse MKB-bedrijven of uitzendorganisaties",
+      "Uitstekende beheersing van het Nederlands; Engels is een sterke pré",
+      "Zelfsturend, communicatief sterk en gedreven door resultaat en maatschappelijke impact",
     ],
   },
   {
     id: "02",
-    title: "Campagnemanager (Growth & Crowdfunding)",
-    domain: "Growth & crowdfunding",
-    category: "growth",
-    rewardShort: "Salaris + campagnevergoeding",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Vergoeding per succesvol geactiveerd B2B-lid en per voltooide financieringscampagne.",
-    hours: "32–40 per week",
-    location: "100% remote",
-    experience: "3+ jaar growth marketing, B2B of crowdfunding",
+    title: "Relocatie- & Huisvestingsmakelaar",
+    domain: "Wonen & Vastgoed (WoningVry.nl)",
+    partnerBrand: "WoningVry",
+    category: "housing",
+    rewardShort: "Vaste courtage per huurovereenkomst",
+    rewardFull: "No Cure, No Pay: Vaste bemiddelingscourtage per gesloten huurovereenkomst of succesvol toegewezen kamer/appartement via WoningVry.nl.",
+    hours: "20–40 uur per week (flexibel in te delen)",
+    location: "100% remote (met optionele bezichtigingen)",
+    experience: "1+ jaar ervaring in vastgoedbemiddeling, verhuur of expat relocation",
     description:
-      "Je bent verantwoordelijk voor de B2B-wervingscampagnes en co-financieringstrajecten voor nieuwe hardware- en vastgoedprojecten. Je bouwt datagedreven funnels die op Europese schaal converteren.",
+      "Vind veilige, legale en betaalbare woonruimte voor nieuwkomers en expats in Nederland. Je onderhoudt contacten met particuliere verhuurders, vastgoedbeheerders en woningcorporaties en beschermt huurders tegen malafide verhuurders.",
     tasks: [
-      "Ontwerpen, lanceren en optimaliseren van crowdfunding- en ledenwervingscampagnes",
-      "Uitrollen van multi-channel campagnes (LinkedIn, Meta, Google, programmatic, e-mail) voor Europese wervingshubs",
-      "Continueren van A/B-tests op landingspagina's, advertenties en onboarding-flows",
-      "Monitoren van campagnedata, acquisitiekosten (CAC) en funnelconversie",
+      "Werven van betrouwbare verhuurders en woningaanbieders in heel Nederland",
+      "Matchen van gescreende huurders (met BSN en inkomen) aan beschikbare woonruimtes",
+      "Controleren van huurovereenkomsten op juridische geldigheid en gemeentelijke inschrijfbaarheid",
+      "Begeleiden van het sleuteloverdracht- en borgproces via WoningVry.nl",
     ],
     profile: [
-      "HBO/WO in marketing, communicatie of data-analyse, of gelijkwaardige ervaring",
-      "Minimaal 3 jaar ervaring met B2B performance marketing, leadgeneratie of grootschalige crowdfundingcampagnes",
-      "Sterk in zowel copywriting als data-analyse",
-      "Ondernemend en resultaatgericht",
+      "Ervaring met de Nederlandse huurmarkt, puntensysteem en huurbeschermingsregels",
+      "Sterk netwerk van vastgoedeigenaren, makelaars of woningbeheerders",
+      "Empathisch, betrouwbaar en alert op huurdersbescherming tegen oplichting",
+      "Goede beheersing van het Nederlands en Engels",
     ],
   },
   {
     id: "03",
-    title: "Sponsor- & Partnership Manager",
-    domain: "Media, tech, events",
-    category: "growth",
-    rewardShort: "Salaris + dealvergoeding",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Dealvergoeding: percentage van elke gecontracteerde sponsor- of partnership-deal (in overleg).",
-    hours: "24–40 per week",
+    title: "Subsidie- & Fondsenadviseur Immigranten",
+    domain: "Sociale Zekerheid & Fondsen (Potjes Radar)",
+    category: "subsidies",
+    rewardShort: "Succespercentage over toegekende potjes",
+    rewardFull: "100% No Cure, No Pay: Succespercentage over toegekende subsidies, legesvrijstellingen, WBSO-aanvragen en gemeentelijke voorzieningen.",
+    hours: "20–32 uur per week",
     location: "100% remote",
-    experience: "3+ jaar B2B-partnerships, media of sponsoring",
+    experience: "2+ jaar ervaring als subsidieadviseur, bewindvoerder of sociaal raadsvrouw/man",
     description:
-      "Je sluit commerciële samenwerkingen, sponsorcontracten en strategische allianties voor de media-, compute- en community-platforms van de groep.",
+      "Help nieuwkomers en werkgevers optimaal gebruik te maken van de beschikbare overheidspotjes: van Stichting Leergeld en DUO-inburgeringsleningen tot IDW-diplomawaardering en IND-legeskwijtschelding.",
     tasks: [
-      "Binnenhalen van B2B-sponsors, adverteerders en mediapartners voor evenementen, platforms en hubs",
-      "Initiëren van samenwerkingen met hardwareleveranciers, vastgoedpartijen en softwarelicentiepartners",
-      "Ontwikkelen van sponsorpakketten en joint-venture-voorstellen",
-      "Voeren van onderhandelingen van eerste pitch tot getekend contract",
+      "In kaart brengen van subsidieregelingen op gemeentelijk, provinciaal en landelijk niveau",
+      "Samenstellen en indienen van complete aanvraagdossiers namens nieuwkomers en gezinnen",
+      "Benutten van regelingen voor werkgevers die statushouders en kennismigranten aannemen",
+      "Monitoren van toekenningen en afhandelen van communicatie met uitvoeringsorganisaties",
     ],
     profile: [
-      "HBO/WO, of vergelijkbare werkervaring",
-      "Ervaring in B2B-sales, sponsorwerving, media-exploitatie of strategic partnerships",
-      "Commercieel sterk, representatief en zelfsturend",
+      "Diepgaande kennis van de Nederlandse sociale zekerheid, Participatiewet en toeslagen",
+      "Nauwkeurig in dossieropbouw, formulieren en termijnbewaking",
+      "Klantgericht, integer en vastberaden om het maximale uit voorzieningen te halen",
+      "HBO-niveau in sociaal-juridische dienstverlening, bestuurskunde of rechten",
     ],
   },
   {
     id: "04",
-    title: "Executive Search Consultant",
-    domain: "Boardroom & C-level",
-    category: "recruitment",
-    rewardShort: "Salaris + plaatsingsfee (C-level)",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Plaatsingsfee per geplaatste executive, gebaseerd op bruto jaarsalaris of contractwaarde (in overleg).",
-    hours: "32–40 per week",
+    title: "Community Recruiter Postadres-Helpers",
+    domain: "Vrijwilligers & Briefadressen Netwerk",
+    category: "helpers",
+    rewardShort: "Vaste bonus per geactiveerde helper",
+    rewardFull: "Prestatiebonus: Vaste vergoeding per getoetste, goedgekeurde en actieve postadres-helper die succesvol gekoppeld wordt aan een nieuwkomer in de database.",
+    hours: "16–32 uur per week (flexibel)",
     location: "100% remote",
-    experience: "5+ jaar executive search of boardroom consulting",
+    experience: "Ervaring in community building, werving, HR of vrijwilligerscoördinatie",
     description:
-      "Je werft boardroomposities voor de eigen holdings en voor opdrachtgevers van de B2B recruitment-marketplace. Je opereert op strategisch niveau en bent verantwoordelijk voor het vinden en binden van bestuurders en toezichthouders.",
+      "Het hart van Immigratiepunt is ons netwerk van betrouwbare Nederlandse burgers die hun briefadres openstellen voor officiële post. Jij werft, toetst en begeleidt nieuwe helpers in grote steden en regio's.",
     tasks: [
-      "Werven van statutaire directieleden, non-executive directors (RvC) en country managers",
-      "Plaatsen van C-level executives (CIO, CTO, Chief AI Officer, VP Engineering) bij externe opdrachtgevers",
-      "Begeleiden van het volledige search-, selectie- en benoemingsproces op boardroomniveau",
+      "Werven van nieuwe postadres-helpers via online campagnes, wijknetwerken en maatschappelijke initiatieven",
+      "Voeren van verificatiegesprekken en controleren van adres- en woonsituatie",
+      "Uitleggen van het veilige juridische kader (briefadres vs. hoofdbewoning, geen belastingrisico)",
+      "Begeleiden van helpers bij het gebruik van het portaal en de uitbetaling van brievenvergoedingen",
     ],
     profile: [
-      "HBO/WO, of gedegen praktijkervaring",
-      "Minimaal 5 jaar ervaring bij een executive search-bureau of als senior headhunter voor C-level posities",
-      "Gesprekspartner voor CEO's, commissarissen en investeringsmaatschappijen",
-      "Nederlands en Engels vloeiend",
+      "Warme, betrouwbare communicator die vertrouwen wekt bij Nederlandse burgers",
+      "Kennis van gemeentelijke regelgeving rondom het briefadres (BRP)",
+      "Proactief in online werving via buurtfora, vrijwilligersplatforms en sociale media",
+      "Hart voor de missie van Immigratiepunt",
     ],
   },
   {
     id: "05",
-    title: "360° Recruiter (IT & Tech-Detachering)",
-    domain: "IT-detachering",
-    category: "recruitment",
-    rewardShort: "Salaris + margedeling",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Margedeling over gerealiseerde detacheringsomzet (in overleg).",
-    hours: "24–40 per week",
+    title: "Zakelijke Urgentie Consultant (Expats & Werkgevers)",
+    domain: "Zakelijke Spoedtrajecten",
+    category: "corporate",
+    rewardShort: "15–25% commissie op urgentie-pakketten",
+    rewardFull: "Directe provisie: 15% tot 25% van de contractwaarde op elk gecontracteerd Zakelijke Urgentie abonnement (€ 500 – € 1.500 / maand) voor de versnelde integratie van medewerkers.",
+    hours: "24–40 uur per week",
     location: "100% remote",
-    experience: "2+ jaar 360°-recruitment of IT-detachering",
+    experience: "3+ jaar ervaring in B2B consultatieve verkoop, HR consultancy of corporate mobility",
     description:
-      "Je beheert zowel de klantkant (IT-detacheringsopdrachten) als de kandidatenkant (selectie en plaatsing van internationale specialisten die via de eigen relocatie-tak instromen).",
+      "Internationale bedrijven, uitzenders en detacheerders hebben vaak spoed bij het regelen van BSN, bankrekening en inschrijving voor hun buitenlandse professionals. Jij sluit Zakelijke Urgentie-abonnementen af waarbij wij alle rompslomp uithanden nemen.",
     tasks: [
-      "Binnenhalen van B2B IT-detacheringscontracten en aanvragen",
-      "Matchen van vooraf geverifieerde kennismigranten en IT-professionals aan jouw klantportefeuille",
-      "Voeren van tariefonderhandelingen, begeleiden van sollicitatiegesprekken en afsluiten van contracten via het recruitment-systeem",
+      "Benaderen van HR-directeuren, mobiliteitsmanagers en uitzendbureaus met internationale krachten",
+      "Presenteren van onze Zakelijke Urgentie Regeling (snelle BSN-afspraak, bank binnen 48u, brieven & bellen)",
+      "Afsluiten van maandelijkse en jaarlijkse corporate service level agreements (SLA's)",
+      "Zorgen voor een vlekkeloze overdracht naar de operationele dossierbeheerders",
     ],
     profile: [
-      "HBO/WO, of vergelijkbare ervaring",
-      "Ervaring als 360°-recruiter, accountmanager of consultant in IT-, engineering- of tech-detachering",
-      "Commercieel gedreven, proactief en relatiegericht",
-      "Ervaring met moderne recruitmentsoftware en matchingtools",
+      "Bewezen trackrecord in B2B consultative selling richting HR of directieniveau",
+      "Commerciële drive gecombineerd met een servicegerichte, ontzorgende instelling",
+      "Vloeiend in Nederlands en Engels; extra talenkennis is een plus",
+      "Affiniteit met expat relocation, kennismigranten en wet- en regelgeving",
     ],
   },
   {
     id: "06",
-    title: "Tech Headhunter (Global AI & Engineering)",
-    domain: "AI & engineering",
-    category: "recruitment",
-    rewardShort: "Salaris + succesfee (tech-specialist)",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Succesfee per geplaatste en geverifieerde tech-specialist (in overleg).",
-    hours: "24–40 per week",
+    title: "Juridisch Consulent Immigratie & IND",
+    domain: "Juridische Ondersteuning & Bezwaar",
+    category: "legal",
+    rewardShort: "Dossiervergoeding per afgeronde zaak",
+    rewardFull: "Vergoeding per dossier: Vaste case-fee per succesvol ingediend bezwaarschrift, toegekende legesvrijstelling of afgeronde aanvraag gesubsidieerde rechtsbijstand (RvR).",
+    hours: "16–32 uur per week",
     location: "100% remote",
-    experience: "Aantoonbare ervaring in tech-sourcing of direct search",
+    experience: "Afgeronde WO/HBO Rechtenstudie met specialisatie in Vreemdelingenrecht of Bestuursrecht",
     description:
-      "Je spoort wereldwijd AI-engineers, systeemarchitecten en senior developers op voor externe B2B-klanten en de eigen R&D-, AI- en hardware-afdelingen. Voor geplaatste kandidaten regelt de groep ook visum en huisvesting.",
+      "Complexe dossiers rond verblijfsvergunningen, legeskosten, BRP-weigeringen en toevoegingen vereisen scherpe juridische kennis. Jij biedt gespecialiseerde ondersteuning op no cure no pay basis.",
     tasks: [
-      "Actief sourcen via GitHub, LinkedIn Recruiter, StackOverflow en eigen sourcing-tools",
-      "Overtuigen van internationaal talent met het totaalpakket: baan, visum, relocatie en huisvesting",
-      "Begeleiden van kandidaten door technische assessments tot contractondertekening",
+      "Beoordelen van IND-besluiten, afwijzingen van gemeentelijke inschrijvingen en legesfacturen",
+      "Opstellen van formele bezwaarschriften, zienswijzen en kwijtscheldingsverzoeken",
+      "Samenwerken met aangesloten advocatenkantoren en Het Juridisch Loket voor toevoegingen",
+      "Adviseren van het Immigratiepunt-team bij complexe casuïstiek rondom verblijfsrechten",
     ],
     profile: [
-      "HBO/WO, of vergelijkbare praktijkervaring",
-      "Ervaring met het sourcen van schaarse developers en engineers",
-      "Bekend met Python, Rust, Kubernetes en LLM-architecturen",
-      "Vloeiend Engels, comfortabel met kandidaten in verschillende tijdzones",
-    ],
-  },
-  {
-    id: "07",
-    title: "High-Ticket Closer (B2B-Proposities)",
-    domain: "B2B-conversie",
-    category: "growth",
-    rewardShort: "Salaris + commissie per transactie",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Commissie per gecontracteerde B2B-transactie (percentage in overleg).",
-    hours: "24–40 per week (flexibele agenda)",
-    location: "100% remote",
-    experience: "Aantoonbaar trackrecord in high-ticket closing",
-    description:
-      "Je voert de eindgesprekken met warme, voorgekwalificeerde zakelijke leads en sluit de deals voor de gecombineerde proposities (compute, digitale infrastructuur, zakelijk vastgoed). Koude acquisitie is geen onderdeel van de functie.",
-    tasks: [
-      "Voeren van consultatieve videocalls en telefoongesprekken met zakelijke beslissers",
-      "Toelichten van de modulaire B2B-pakketten en het rendement van het ecosysteem",
-      "Zorgen dat overeenkomsten tijdens of direct na het gesprek digitaal worden ondertekend",
-      "Afstemmen met marketing en sales over leadkwaliteit",
-    ],
-    profile: [
-      "HBO/WO, of gelijkwaardige saleservaring",
-      "Trackrecord in consultative selling en high-ticket closing (bij voorkeur B2B SaaS, finance, vastgoed of consultancy)",
-      "Sterk in actief luisteren, bezwaren behandelen en vertrouwen opbouwen",
-      "Resultaatgericht en gedisciplineerd",
-    ],
-  },
-  {
-    id: "08",
-    title: "Commercieel Agent (Compute, Cloud & Housing)",
-    domain: "Compute & huisvesting",
-    category: "growth",
-    rewardShort: "Salaris + doorlopende courtage",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Provisie per afgesloten B2B-transactie én doorlopende courtage over contractverlengingen van jouw portefeuille (in overleg).",
-    hours: "Flexibel, 24–40 per week",
-    location: "100% remote (eigen regio-indeling mogelijk)",
-    experience: "Zelfstandige B2B-sales of agentuurervaring",
-    description:
-      "Je vertegenwoordigt de commerciële eindproducten van de operationele clusters in de zakelijke markt: GPU-rekenkracht, zakelijke account-infrastructuur en short-/long-stay huisvesting voor expats en projectteams.",
-    tasks: [
-      "Verkopen van GPU-servers en digitale infrastructuur aan AI-bedrijven, mediabureaus en tech-ondernemingen",
-      "Bemiddelen in B2B-huisvestingscontracten voor bedrijven die internationale specialisten huisvesten",
-      "Opbouwen en beheren van een eigen klantenkring met meerjarige afnamecontracten",
-    ],
-    profile: [
-      "HBO/WO, of gedegen commerciële achtergrond",
-      "Sterk zakelijk netwerk in tech, media of corporate vastgoed",
-      "Zelfstandig, plant eigen agenda, bouwt graag aan terugkerende omzet",
-    ],
-  },
-  {
-    id: "09",
-    title: "B2B Sales Representative (SaaS & Ecosysteem)",
-    domain: "SaaS & ecosysteem",
-    category: "growth",
-    rewardShort: "Salaris + commissie & staffelbonus",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Commissie per gesloten B2B-deal, plus maandelijkse staffelbonus bij behalen van targets (in overleg).",
-    hours: "32–40 per week",
-    location: "100% remote",
-    experience: "Junior / medior / senior",
-    description:
-      "Je vult de commerciële pijplijn: je vertegenwoordigt de B2B SaaS-software (CRM, AI-outreach, workflow-automatisering) en de bredere ecosysteem-proposities, opent deuren bij nieuwe zakelijke klanten en zet contacten om in verkoopkansen.",
-    tasks: [
-      "Uitvoeren van gepersonaliseerde outbound campagnes via telefoon, videomessaging, e-mail en LinkedIn",
-      "Geven van online productdemo's aan MKB- en enterprise-bedrijven",
-      "Kwalificeren van zakelijke partijen en beheren van de eigen salesfunnel in samenwerking met de closers",
-    ],
-    profile: [
-      "HBO/WO, of sterke aantoonbare saleservaring",
-      "Communicatief vaardig, bestand tegen afwijzing, energie van nieuwe contacten",
-      "Affiniteit met B2B SaaS, AI-tools en moderne salesmethodieken",
-    ],
-  },
-  {
-    id: "10",
-    title: "Senior Strategy Consultant (AI, Werkkapitaal & M&A)",
-    domain: "AI, werkkapitaal, M&A",
-    category: "strategy",
-    rewardShort: "Salaris + projectfee / M&A-fee",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Projectfee over de contractwaarde van elk enterprise-implementatietraject of afgeronde M&A-transactie (in overleg).",
-    hours: "32–40 per week",
-    location: "100% remote",
-    experience: "7+ jaar strategy consulting, M&A of enterprise IT",
-    description:
-      "Je adviseert op directie- en C-level over AI-automatisering, werkkapitaaloptimalisatie en het begeleiden van fusies, overnames en integraties binnen het ecosysteem.",
-    tasks: [
-      "Adviseren van middelgrote en grote ondernemingen over AI-executiemotoren, B2B clearing-API's en werkstroomautomatisering",
-      "Identificeren, beoordelen (due diligence) en begeleiden van acquisities van tech-startups, softwarebedrijven en licentiepartners",
-      "Opstellen van business cases op boardroomniveau",
-    ],
-    profile: [
-      "WO-master in business, finance, economie of IT, of gelijkwaardig topniveau door ervaring",
-      "Minimaal 7 jaar ervaring als strategy consultant, M&A-adviseur of enterprise transformation manager",
-      "Diepgaand financieel inzicht (kasstroommodellen, waarderingen, WCO) en begrip van AI- en cloudarchitecturen",
-    ],
-  },
-  {
-    id: "11",
-    title: "Subsidieconsultant (R&D, AI & Duurzaamheid)",
-    domain: "R&D, AI, duurzaamheid",
-    category: "strategy",
-    rewardShort: "Salaris + succespercentage (100% No Cure)",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Succespercentage over elk daadwerkelijk toegekend subsidiebedrag of gerealiseerd fiscaal voordeel (in overleg).",
-    hours: "24–40 per week",
-    location: "100% remote",
-    experience: "3+ jaar als subsidieadviseur of grant writer",
-    description:
-      "Binnen het ecosysteem wordt geïnvesteerd in eigen R&D en duurzame fysieke infrastructuur. Je haalt nationale, Britse en Europese innovatiesubsidies, tech-grants en fiscale regelingen binnen op no cure no pay basis.",
-    tasks: [
-      "In kaart brengen van relevante regelingen (WBSO, MIT, Horizon Europe, UK Innovate, duurzaamheidsfondsen)",
-      "Opstellen en indienen van technisch en financieel onderbouwde aanvragen in samenwerking met developers, AI-architecten en vastgoedmanagers",
-      "Benutten van fiscale voordelen rond kennismigranten en Europese innovatiehubs",
-      "Verzorgen van projectadministratie en eindverantwoording conform UK GAAP en IFRS",
-    ],
-    profile: [
-      "HBO/WO, of vergelijkbare ervaring",
-      "Aantoonbare ervaring als subsidieconsultant met sterk slagingspercentage, bij voorkeur op het snijvlak van IT, AI, innovatie en duurzaamheid",
-      "Sterk in het vertalen van technische projecten naar beoordelingscriteria",
-    ],
-  },
-  {
-    id: "12",
-    title: "Recruitment Consultant (International Talent)",
-    domain: "Internationaal talent & relocatie",
-    category: "recruitment",
-    rewardShort: "Salaris + plaatsingsfee per kandidaat",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Plaatsingsfee per succesvolle, gecontracteerde B2B-plaatsing (in overleg).",
-    hours: "24–40 per week",
-    location: "100% remote",
-    experience: "1+ jaar recruitment of HR",
-    description:
-      "Je bent verantwoordelijk voor de kandidaatkant: je begeleidt gekwalificeerde kennismigranten door het verificatieproces en matcht hen aan openstaande B2B-vacatures op het platform.",
-    tasks: [
-      "Voeren van diepte-interviews en begeleiden van kandidaten door screening en verificatie",
-      "Matchen van gevalideerde IT-, engineering- en tech-specialisten aan openstaande vacatures via het ATS",
-      "Coördineren van de digitale overdracht na plaatsing, zodat zusterentiteiten visum, huisvesting en financiële onboarding in gang zetten",
-    ],
-    profile: [
-      "HBO/WO, of vergelijkbare praktijkervaring",
-      "Mensgericht en organisatorisch sterk",
-      "Gestructureerd, vaardig met moderne HR-software",
-      "Vloeiend Nederlands en Engels",
-    ],
-  },
-  {
-    id: "13",
-    title: "Corporate Funding Broker (Asset-backed & Vastgoed)",
-    domain: "Hardware & vastgoed",
-    category: "finance",
-    rewardShort: "Salaris + bemiddelingscourtage",
-    rewardFull: "Salaris in overleg, afhankelijk van ervaring. Bemiddelingscourtage per afgesloten financieringslijn, hardware-lease of vastgoedhypotheek (in overleg).",
-    hours: "24–40 per week",
-    location: "100% remote",
-    experience: "5+ jaar debt advisory, corporate finance of leasing",
-    description:
-      "Je structureert en bemiddelt zakelijke financieringen voor de uitbreiding van GPU-serverclusters, de vastgoedportefeuille en de interne factoring- en werkkapitaalfaciliteiten.",
-    tasks: [
-      "Ophalen en structureren van kredietlijnen, equipment lease-constructies en zakelijke vastgoedhypotheken",
-      "Bemiddelen bij banken, private debt-fondsen en BaaS/EMI-partners voor factoring- en liquiditeitslijnen",
-      "Presenteren van geconsolideerde cijfers (UK GAAP, IFRS) en onderpandstructuren aan kredietcomités",
-    ],
-    profile: [
-      "HBO/WO, of gelijkwaardig vakmanschap",
-      "Ervaring als zakelijk financieringsadviseur, debt broker, accountmanager grootzakelijk bij een bank of leasing-specialist",
-      "Netwerk van kapitaalverstrekkers, leasemaatschappijen, private debt-fondsen en vastgoedfinanciers",
+      "Juridische opleiding (HBO Sociaal-Juridisch of WO Rechten)",
+      "Aantoonbare ervaring met de Vreemdelingenwet 2000 en de Wet BRP",
+      "Vlijmscherp in schriftelijke argumentatie en termijnbewaking",
+      "Grote maatschappelijke betrokkenheid bij de rechtspositie van nieuwkomers",
     ],
   },
 ];
 
 export const GENERAL_CONDITIONS = [
   {
-    title: "Beloning op No Cure, No Pay Basis",
-    desc: "Vast salaris in overleg, gecombineerd met royale succesfees, commissies, margedeling of plaatsingsfees. Geen plafond op je verdiensten.",
+    title: "Eerlijke No Cure, No Pay Beloning",
+    desc: "Aantrekkelijke provisies, plaatsingsfees en succespercentages gekoppeld aan daadwerkelijk gesloten matches, verhuren of toegekende subsidies.",
     icon: BadgePercent,
   },
   {
-    title: "100% Remote Werkplek",
-    desc: "Volledige vrijheid om thuis of overal ter wereld te werken, inclusief maandelijkse thuiswerkvergoeding.",
+    title: "100% Remote & Flexibel",
+    desc: "Werk volledig vanuit huis of onderweg, met flexibele indeling van je uren (van 16 tot 40 uur per week) afgestemd op jouw agenda.",
     icon: Globe2,
   },
   {
-    title: "27 Vakantiedagen",
-    desc: "Ruime verlofregeling op fulltime basis, met de optie om dagen bij te kopen of te sparen voor een sabbatical.",
-    icon: Calendar,
+    title: "Echte Maatschappelijke Impact",
+    desc: "Geen holle KPI's: elke succesvolle bemiddeling helpt een nieuwkomer direct aan een veilig adres, een vaste baan of financiële zekerheid.",
+    icon: HeartHandshake,
   },
   {
-    title: "Hardware in Bruikleen",
-    desc: "Recente laptop en smartphone met onbeperkt data- en belabonnement, direct geleverd bij start.",
+    title: "Hardware & Onkostenvergoeding",
+    desc: "Laptop en smartphone in bruikleen voor zakelijk gebruik, gecombineerd met een maandelijkse vergoeding voor thuiswerkkosten.",
     icon: Laptop,
   },
   {
-    title: "Ergonomisch Thuiswerkbudget",
-    desc: "Budget voor inrichting van een professionele werkplek: elektrisch zit-sta bureau, 4K monitor en ergonomische stoel.",
-    icon: Coffee,
+    title: "Sterke Partner Ecosystemen",
+    desc: "Directe toegang tot onze gerenommeerde partners: Djobba.nl voor werkgevers, WoningVry.nl voor huisvesting en Xabi World voor bankzaken.",
+    icon: Building2,
   },
   {
-    title: "Interne Academie & Opleiding",
-    desc: "Permanente toegang tot interne masterclasses, certificeringstrajecten en AI-infrastructuur trainingen.",
+    title: "Dossier- & Juridische Kennisbank",
+    desc: "Uitgebreide interne training over de BRP, Participatiewet, IND-richtlijnen en gemeentelijke briefadresprocedures.",
     icon: GraduationCap,
   },
   {
-    title: "Evenementen & Workations",
-    desc: "Kwartaalborrels, jaarlijkse internationale workation met het hele team en gezamenlijke hackathons.",
-    icon: Sparkles,
+    title: "27 Vakantiedagen",
+    desc: "Ruime verlofregeling op fulltime basis, inclusief de optie tot bijkopen of sparen voor een langere reis of sabbatical.",
+    icon: Calendar,
   },
   {
-    title: "HBO- of WO-Denkniveau",
-    desc: "Of aantoonbaar gelijkwaardige praktijkervaring met een overtuigend trackrecord in jouw vakgebied.",
+    title: "HBO/WO-niveau of Werkervaring",
+    desc: "We hechten vooral waarde aan zelfredzaamheid, integriteit, mensenkennis en een bewezen trackrecord in bemiddeling.",
     icon: Award,
   },
 ];
@@ -423,7 +269,7 @@ export default function Vacatures() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [viewMode, setViewMode] = useState<"matrix" | "cards">("matrix");
+  const [viewMode, setViewMode] = useState<"cards" | "matrix">("cards");
   const [activeJobModal, setActiveJobModal] = useState<JobPosition | null>(null);
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const [selectedJobForApply, setSelectedJobForApply] = useState<JobPosition | null>(null);
@@ -433,7 +279,7 @@ export default function Vacatures() {
   const [formEmail, setFormEmail] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formLinkedin, setFormLinkedin] = useState("");
-  const [formHours, setFormHours] = useState("32–40 uur per week");
+  const [formHours, setFormHours] = useState("24–32 uur per week");
   const [formMotivation, setFormMotivation] = useState("");
   const [formTrackrecord, setFormTrackrecord] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -505,10 +351,10 @@ export default function Vacatures() {
   return (
     <>
       <Helmet>
-        <title>No Cure, No Pay Vacatures | Internationale Tech-, AI- & Vastgoedgroep</title>
+        <title>No Cure, No Pay Vacatures | Werken bij Immigratiepunt</title>
         <meta
           name="description"
-          content="Bekijk 13 exclusieve 100% remote vacatures op no cure no pay basis binnen een internationale tech-, AI- en vastgoedgroep. Succesfees, provisies en doorgroeimogelijkheden."
+          content="Bekijk onze 100% remote vacatures op no cure no pay basis rondom werk (Djobba), huisvesting (WoningVry), subsidies, helpers en zakelijke integratie."
         />
       </Helmet>
 
@@ -524,41 +370,41 @@ export default function Vacatures() {
             <div className="flex flex-wrap items-center gap-2 mb-6">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3.5 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
-                100% No Cure, No Pay & Commissiemodel
+                100% No Cure, No Pay & Prestatiegedreven
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3.5 py-1 text-xs font-semibold text-amber-900 border border-amber-200">
                 <Globe2 className="h-3.5 w-3.5 text-amber-700" />
                 100% Remote Werken
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f0eae1] px-3.5 py-1 text-xs font-semibold text-[#6c6a64] border border-[#e6dfd8]">
-                <Clock className="h-3.5 w-3.5 text-[#6c6a64]" />
-                24–40 uur | ZZP of Vast
+                <HeartHandshake className="h-3.5 w-3.5 text-[#6c6a64]" />
+                Maatschappelijke Impact & Reëel Verdienmodel
               </span>
             </div>
 
             {/* Hero Title */}
             <div className="max-w-4xl">
               <div className="font-mono text-xs uppercase tracking-widest text-primary font-bold mb-2">
-                Internationale Tech-, AI- & Vastgoedgroep (naam op aanvraag)
+                Carrières bij Immigratiepunt & Partner-Ecosysteem
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#141413] leading-tight">
-                13 Vacatures op <span className="text-primary underline decoration-primary/30 decoration-wavy">No Cure, No Pay</span> Basis
+                Bouw mee aan integratie met <span className="text-primary underline decoration-primary/30 decoration-wavy">No Cure, No Pay</span> rollen
               </h1>
               <p className="mt-4 max-w-3xl text-sm sm:text-base md:text-lg text-[#6c6a64] leading-relaxed">
-                Op zoek naar maximale vrijheid, high-upside beloningen en een internationaal werkterrein?
-                Wij werven direct voor 13 gespecialiseerde rollen binnen R&D, compute, vastgoed, relocatie en capital markets.
-                Alle functies zijn 100% remote en gekoppeld aan royale succesfees, provisies en margedeling.
+                Wil je maximale vrijheid, flexibele uren en royale vergoedingen combineren met echte maatschappelijke betekenis?
+                Wij werven zelfstandige professionals die immigranten helpen met werk (Djobba), veilige huisvesting (WoningVry), subsidies, postadressen en zakelijke spoedtrajecten.
+                Geen loze KPI&apos;s, maar eerlijke beloningen per geslaagde plaatsing, huurcontract of toegekend potje.
               </p>
             </div>
 
             {/* CTA Buttons & Stats */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="#matrix"
+                href="#posities"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white shadow-xs hover:bg-[#a9583e] transition-colors"
               >
                 <Layers className="h-4 w-4" />
-                <span>Bekijk Overzichtsmatrix (13 functies)</span>
+                <span>Bekijk de 6 Functies</span>
                 <ChevronDown className="h-4 w-4" />
               </a>
 
@@ -578,7 +424,7 @@ export default function Vacatures() {
                 href="#voorwaarden"
                 className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#6c6a64] hover:text-[#141413] px-3 py-2 transition-colors"
               >
-                <span>Bekijk Arbeidsvoorwaarden</span>
+                <span>Bekijk Faciliteiten</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>
@@ -586,27 +432,27 @@ export default function Vacatures() {
             {/* Quick Metrics Bar */}
             <div className="mt-12 grid grid-cols-2 gap-4 border-t border-[#e6dfd8] pt-6 sm:grid-cols-4">
               <div>
-                <div className="text-2xl font-bold text-[#141413]">13</div>
-                <div className="text-xs text-[#6c6a64]">Openstaande no cure, no pay functies</div>
+                <div className="text-2xl font-bold text-[#141413]">6</div>
+                <div className="text-xs text-[#6c6a64]">Reële no cure, no pay functies</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#141413]">100%</div>
                 <div className="text-xs text-[#6c6a64]">Remote (thuiswerkvergoeding + laptop)</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#141413]">27 Dagen</div>
-                <div className="text-xs text-[#6c6a64]">Vakantie met optie tot sparen / bijkopen</div>
+                <div className="text-2xl font-bold text-[#141413]">Direct</div>
+                <div className="text-xs text-[#6c6a64]">Gekoppeld aan Djobba, WoningVry & Fondsen</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#141413]">Geen Plafond</div>
-                <div className="text-xs text-[#6c6a64]">Op commissie, margedeling & succesfees</div>
+                <div className="text-xs text-[#6c6a64]">Op plaatsingsfees, courtages & bonussen</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================== */}
-        {/* 2. ARBEIDSVOORWAARDEN (GELDEN VOOR ALLE 13 FUNCTIES)           */}
+        {/* 2. ARBEIDSVOORWAARDEN (GELDEN VOOR ALLE FUNCTIES)              */}
         {/* ============================================================== */}
         <section id="voorwaarden" className="py-14 md:py-20 border-b border-[#e6dfd8] bg-white">
           <div className="container mx-auto max-w-6xl px-4">
@@ -618,7 +464,7 @@ export default function Vacatures() {
                 Arbeidsvoorwaarden & Faciliteiten
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-[#6c6a64]">
-                Onderstaande voorwaarden gelden uniform voor alle 13 functies, ongeacht je uren of specifieke domein.
+                Heldere, professionele faciliteiten die uniform gelden voor al onze bemiddelaars, adviseurs en recruiters.
               </p>
             </div>
 
@@ -641,37 +487,49 @@ export default function Vacatures() {
             </div>
 
             {/* Note on compensation structure */}
-            <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50/60 p-4 sm:p-5 text-xs text-[#3d3d3a] flex items-start gap-3">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-200 text-amber-900 font-bold">
-                !
+            <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 sm:p-5 text-xs text-emerald-950 flex items-start gap-3">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-200 text-emerald-900 font-bold">
+                ✓
               </div>
               <div>
-                <strong className="font-semibold text-[#141413]">Transparante Beloningsstructuur:</strong> Alle functies combineren een basisafspraak in overleg met prestatiegedreven incentives (succesfees, dealvergoedingen, bemiddelingscourtages, margedeling of succespercentages). Hiermee bouw je direct mee aan het resultaat en profiteer je mee van elke gesloten transactie.
+                <strong className="font-semibold text-emerald-900">Heldere, Eerlijke Geldstromen:</strong> Jouw verdiensten komen voort uit reële markttransacties: Nederlandse werkgevers die betalen voor gematcht personeel (Djobba), verhuurders die een courtage vergoeden (WoningVry), bedrijven die zakelijke urgentie afnemen, of overheidsfondsen waarbij een succesvergoeding geldt. Je werkt met opgeheven hoofd aan echte oplossingen.
               </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================== */}
-        {/* 3. OVERZICHTSMATRIX (13 FUNCTIES)                              */}
+        {/* 3. DE 6 LOGISCHE IMMIGRATIEPUNT POSITIES                       */}
         {/* ============================================================== */}
-        <section id="matrix" className="py-14 md:py-20 border-b border-[#e6dfd8]">
+        <section id="posities" className="py-14 md:py-20 border-b border-[#e6dfd8]">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
               <div>
                 <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-2">
-                  13 Actieve Posities
+                  6 Doelgerichte Rollen
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#141413]">
-                  Overzichtsmatrix van alle Vacatures
+                  Actuele No Cure, No Pay Vacatures
                 </h2>
                 <p className="mt-1 text-xs sm:text-sm text-[#6c6a64]">
-                  Filter op domein, zoek op trefwoord en bekijk de no cure, no pay beloning per rol.
+                  Kies jouw specialisme: werkgeversbemiddeling, huisvesting, subsidies, helpers werven, zakelijke spoed of juridisch.
                 </p>
               </div>
 
               {/* View Switcher */}
               <div className="flex items-center gap-2 rounded-xl border border-[#e6dfd8] bg-white p-1">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("cards")}
+                  className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    viewMode === "cards"
+                      ? "bg-primary text-white"
+                      : "text-[#6c6a64] hover:text-[#141413]"
+                  }`}
+                >
+                  <Briefcase className="h-3.5 w-3.5" />
+                  <span>Kaarten</span>
+                </button>
                 <button
                   type="button"
                   onClick={() => setViewMode("matrix")}
@@ -684,18 +542,6 @@ export default function Vacatures() {
                   <Layers className="h-3.5 w-3.5" />
                   <span>Matrix Tabel</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode("cards")}
-                  className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
-                    viewMode === "cards"
-                      ? "bg-primary text-white"
-                      : "text-[#6c6a64] hover:text-[#141413]"
-                  }`}
-                >
-                  <Briefcase className="h-3.5 w-3.5" />
-                  <span>Uitgebreide Kaarten</span>
-                </button>
               </div>
             </div>
 
@@ -704,10 +550,12 @@ export default function Vacatures() {
               <div className="flex flex-wrap items-center gap-2">
                 {[
                   { id: "all", label: `Alle Rollen (${VACATURES_DATA.length})` },
-                  { id: "finance", label: "Corporate & Finance" },
-                  { id: "growth", label: "Growth, Media & Sales" },
-                  { id: "recruitment", label: "Tech & Headhunting" },
-                  { id: "strategy", label: "Strategie & Subsidies" },
+                  { id: "work", label: "Werk (Djobba)" },
+                  { id: "housing", label: "Wonen (WoningVry)" },
+                  { id: "subsidies", label: "Subsidies & Potjes" },
+                  { id: "helpers", label: "Briefadres Helpers" },
+                  { id: "corporate", label: "Zakelijke Urgentie" },
+                  { id: "legal", label: "Juridisch & IND" },
                 ].map((cat) => (
                   <button
                     key={cat.id}
@@ -729,7 +577,7 @@ export default function Vacatures() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6c6a64]" />
                 <input
                   type="text"
-                  placeholder="Zoek functie, domein, AI, WBSO..."
+                  placeholder="Zoek rol, Djobba, WoningVry, subsidie..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="h-9 w-full rounded-xl border border-[#e6dfd8] bg-white pl-9 pr-3 text-xs outline-none focus:border-primary"
@@ -746,6 +594,74 @@ export default function Vacatures() {
               </div>
             </div>
 
+            {/* CARDS VIEW */}
+            {viewMode === "cards" && (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {filteredJobs.map((job) => (
+                  <div
+                    key={job.id}
+                    className="rounded-2xl border border-[#e6dfd8] bg-white p-6 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all hover:shadow-sm"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 border-b border-[#f0eae1] pb-3 mb-3">
+                        <span className="font-mono text-xs font-bold text-primary">
+                          [{job.id}/06]
+                        </span>
+                        <span className="rounded-full bg-[#f0eae1] px-2.5 py-0.5 text-[10px] font-semibold text-[#3d3d3a]">
+                          {job.domain}
+                        </span>
+                      </div>
+
+                      <h3 className="font-bold text-base text-[#141413] leading-snug">
+                        {job.title}
+                      </h3>
+
+                      <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[11px] text-[#6c6a64]">
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" /> {job.hours}
+                        </span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1">
+                          <Globe2 className="h-3 w-3 text-emerald-600" /> 100% remote
+                        </span>
+                      </div>
+
+                      <p className="mt-3 text-xs text-[#6c6a64] line-clamp-3 leading-relaxed">
+                        {job.description}
+                      </p>
+
+                      {/* Reward Badge */}
+                      <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 text-xs text-emerald-900">
+                        <div className="font-bold text-[11px] uppercase tracking-wider text-emerald-800 flex items-center gap-1">
+                          <BadgePercent className="h-3.5 w-3.5" /> No Cure, No Pay Beloning
+                        </div>
+                        <div className="font-semibold mt-1 text-[11px] leading-snug">{job.rewardShort}</div>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-[#f0eae1] flex items-center justify-between gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setActiveJobModal(job)}
+                        className="text-xs font-semibold text-[#6c6a64] hover:text-[#141413] underline underline-offset-4"
+                      >
+                        Lees alle taken & profiel
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => openApplyForJob(job)}
+                        className="inline-flex h-8 items-center gap-1 rounded-lg bg-primary px-3 text-xs font-semibold text-white hover:bg-[#a9583e]"
+                      >
+                        <span>Solliciteer</span>
+                        <ChevronRight className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* MATRIX TABLE VIEW */}
             {viewMode === "matrix" && (
               <div className="overflow-hidden rounded-2xl border border-[#e6dfd8] bg-white shadow-xs">
@@ -755,7 +671,7 @@ export default function Vacatures() {
                       <tr>
                         <th className="py-3 px-4 w-14">ID</th>
                         <th className="py-3 px-4">Functie</th>
-                        <th className="py-3 px-4">Domein</th>
+                        <th className="py-3 px-4">Domein & Pijler</th>
                         <th className="py-3 px-4">No Cure, No Pay Beloning</th>
                         <th className="py-3 px-4 w-28">Uren</th>
                         <th className="py-3 px-4 text-right w-40">Actie</th>
@@ -765,7 +681,7 @@ export default function Vacatures() {
                       {filteredJobs.length === 0 ? (
                         <tr>
                           <td colSpan={6} className="py-10 text-center text-[#6c6a64]">
-                            Geen vacatures gevonden voor &quot;{searchTerm}&quot;. Pas je zoekterm of filter aan.
+                            Geen vacatures gevonden voor &quot;{searchTerm}&quot;. Pas je zoekfilter aan.
                           </td>
                         </tr>
                       ) : (
@@ -827,74 +743,6 @@ export default function Vacatures() {
                 </div>
               </div>
             )}
-
-            {/* CARDS VIEW */}
-            {viewMode === "cards" && (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredJobs.map((job) => (
-                  <div
-                    key={job.id}
-                    className="rounded-2xl border border-[#e6dfd8] bg-white p-6 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all hover:shadow-sm"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 border-b border-[#f0eae1] pb-3 mb-3">
-                        <span className="font-mono text-xs font-bold text-primary">
-                          [{job.id}/13]
-                        </span>
-                        <span className="rounded-full bg-[#f0eae1] px-2.5 py-0.5 text-[10px] font-semibold text-[#3d3d3a]">
-                          {job.domain}
-                        </span>
-                      </div>
-
-                      <h3 className="font-bold text-base text-[#141413] leading-snug">
-                        {job.title}
-                      </h3>
-
-                      <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[11px] text-[#6c6a64]">
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" /> {job.hours}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <Globe2 className="h-3 w-3 text-emerald-600" /> 100% remote
-                        </span>
-                      </div>
-
-                      <p className="mt-3 text-xs text-[#6c6a64] line-clamp-3 leading-relaxed">
-                        {job.description}
-                      </p>
-
-                      {/* Reward Badge */}
-                      <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-2.5 text-xs text-emerald-900">
-                        <div className="font-bold text-[11px] uppercase tracking-wider text-emerald-800 flex items-center gap-1">
-                          <BadgePercent className="h-3.5 w-3.5" /> No Cure, No Pay Beloning
-                        </div>
-                        <div className="font-semibold mt-0.5 text-[11px]">{job.rewardShort}</div>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 pt-4 border-t border-[#f0eae1] flex items-center justify-between gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setActiveJobModal(job)}
-                        className="text-xs font-semibold text-[#6c6a64] hover:text-[#141413] underline underline-offset-4"
-                      >
-                        Lees alle taken & profiel
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => openApplyForJob(job)}
-                        className="inline-flex h-8 items-center gap-1 rounded-lg bg-primary px-3 text-xs font-semibold text-white hover:bg-[#a9583e]"
-                      >
-                        <span>Solliciteer</span>
-                        <ChevronRight className="h-3 w-3" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </section>
 
@@ -911,7 +759,7 @@ export default function Vacatures() {
                 Het Sollicitatieproces in 4 Stappen
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-[#6c6a64]">
-                Van eerste contact tot start met volledige remote setup binnen gemiddeld 7 werkdagen.
+                Van kennismaking tot start binnen gemiddeld 5 werkdagen.
               </p>
             </div>
 
@@ -919,23 +767,23 @@ export default function Vacatures() {
               {[
                 {
                   step: "01",
-                  title: "Kennismaking",
-                  desc: "Stuur je CV en LinkedIn-profiel in via het formulier met de vermelding van jouw gewenste vacature-ID (01 t/m 13).",
+                  title: "Aanmelding & CV",
+                  desc: "Meld je aan via het formulier met je CV, LinkedIn-profiel en jouw gewenste rol (01 t/m 06).",
                 },
                 {
                   step: "02",
-                  title: "Videogesprek (30 min)",
-                  desc: "Gericht online gesprek over je aantoonbare trackrecord, actuele beschikbaarheid en de concrete no cure no pay vergoedingsstructuur.",
+                  title: "Kennismaking (30 min)",
+                  desc: "Kort online videogesprek over je ervaring, affiniteit met de doelgroep en de commissieafspraken.",
                 },
                 {
                   step: "03",
-                  title: "Contract & Setup",
-                  desc: "Overeenkomst opstellen, bruikleenapparatuur en smartphone verzenden, en toegang activeren tot systemen en de interne academie.",
+                  title: "Toegang & Briefing",
+                  desc: "Overeenkomst, verzending van eventuele apparatuur en directe onboarding in onze systemen en partnerkanalen.",
                 },
                 {
                   step: "04",
                   title: "Start & Begeleiding",
-                  desc: "100% remote aan de slag met intensieve onboarding en begeleiding bij je eerste deals, campagnes of plaatsingen.",
+                  desc: "100% remote van start met directe ondersteuning vanuit het kernteam van Immigratiepunt bij je eerste matches.",
                 },
               ].map((step, idx) => (
                 <div
@@ -954,9 +802,9 @@ export default function Vacatures() {
             {/* Quick Contact Box */}
             <div className="mt-12 rounded-2xl border border-[#e6dfd8] bg-linear-to-r from-[#faf9f5] to-white p-6 sm:p-8 flex flex-wrap items-center justify-between gap-6">
               <div>
-                <h3 className="font-bold text-lg text-[#141413]">Vragen over een functie of beloningsmodel?</h3>
+                <h3 className="font-bold text-lg text-[#141413]">Vragen over een functie of beloningsstructuur?</h3>
                 <p className="mt-1 text-xs sm:text-sm text-[#6c6a64]">
-                  Neem direct contact op met onze talent-coördinatie via <a href="mailto:info@immigratiepunt.nl" className="font-semibold text-primary underline">info@immigratiepunt.nl</a>.
+                  Neem rechtstreeks contact op met ons team via <a href="mailto:info@immigratiepunt.nl" className="font-semibold text-primary underline">info@immigratiepunt.nl</a>.
                 </p>
               </div>
 
@@ -985,7 +833,7 @@ export default function Vacatures() {
                 <DialogHeader className="border-b border-[#f0eae1] pb-4">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="font-mono text-xs font-bold text-primary">
-                      VACATURE [{activeJobModal.id}/13]
+                      VACATURE [{activeJobModal.id}/06]
                     </span>
                     <Badge variant="outline" className="bg-[#f0eae1] text-[#3d3d3a] border-[#e6dfd8]">
                       {activeJobModal.domain}
@@ -1036,7 +884,7 @@ export default function Vacatures() {
                       {activeJobModal.rewardFull}
                     </p>
                     <p className="text-[11px] text-emerald-800 mt-2">
-                      + Uniforme voorwaarden: 27 vakantiedagen, apparatuur in bruikleen, ergonomisch budget, thuiswerkvergoeding en interne academie.
+                      + Uniforme faciliteiten: 27 vakantiedagen, apparatuur in bruikleen, thuiswerkvergoeding en toegang tot de juridische dossier-kennisbank.
                     </p>
                   </div>
                 </div>
@@ -1093,7 +941,7 @@ export default function Vacatures() {
                   Sollicitatie Ontvangen!
                 </h3>
                 <p className="text-xs text-[#6c6a64] max-w-sm mx-auto leading-relaxed">
-                  Bedankt voor je reactie op de rol van <strong>{selectedJobForApply?.title}</strong>. We beoordelen je profiel en sturen binnen 48 uur een uitnodiging voor een 30 minuten durend videogesprek.
+                  Bedankt voor je reactie op de rol van <strong>{selectedJobForApply?.title}</strong>. We beoordelen je profiel en sturen binnen 48 uur een uitnodiging voor een 30 minuten online kennismakingsgesprek.
                 </p>
                 <div className="pt-2">
                   <Button
@@ -1121,7 +969,7 @@ export default function Vacatures() {
                   >
                     {VACATURES_DATA.map((job) => (
                       <option key={job.id} value={job.id}>
-                        [{job.id}] {job.title} — {job.domain} ({job.rewardShort})
+                        [{job.id}] {job.title} — {job.domain}
                       </option>
                     ))}
                   </select>
@@ -1194,8 +1042,8 @@ export default function Vacatures() {
                     onChange={(e) => setFormHours(e.target.value)}
                     className="h-9 w-full rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-3 text-xs outline-none focus:border-primary"
                   >
-                    <option value="24 uur per week">24 uur per week (parttime)</option>
-                    <option value="32 uur per week">32 uur per week</option>
+                    <option value="16–24 uur per week">16–24 uur per week (parttime)</option>
+                    <option value="24–32 uur per week">24–32 uur per week</option>
                     <option value="36–40 uur per week">36–40 uur per week (fulltime)</option>
                     <option value="Flexibel / Projectbasis">Flexibel / Projectbasis (ZZP / Freelance)</option>
                   </select>
@@ -1208,7 +1056,7 @@ export default function Vacatures() {
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="Beschrijf beknopt jouw belangrijkste successen (bijv. gerealiseerde investeringen, deals, placements of subsidies)..."
+                    placeholder="Beschrijf beknopt jouw ervaring met arbeidsbemiddeling, verhuur, subsidies, vrijwilligerswerving of juridische dossiers..."
                     value={formTrackrecord}
                     onChange={(e) => setFormTrackrecord(e.target.value)}
                     className="w-full rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-3 text-xs outline-none focus:border-primary"
@@ -1222,7 +1070,7 @@ export default function Vacatures() {
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="Waarom past het no cure no pay / commissiemodel en deze specifieke rol bij jou?"
+                    placeholder="Waarom past deze rol en het no cure no pay / commissiemodel binnen Immigratiepunt bij jou?"
                     value={formMotivation}
                     onChange={(e) => setFormMotivation(e.target.value)}
                     className="w-full rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-3 text-xs outline-none focus:border-primary"
