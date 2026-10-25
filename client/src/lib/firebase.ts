@@ -1324,3 +1324,43 @@ export function submitPotjeApplication(
   return newApp;
 }
 
+// -------------------------------------------------------------
+// VACATURES & CAREER APPLICATIONS (NO CURE, NO PAY)
+// -------------------------------------------------------------
+export interface JobApplicationDoc {
+  id?: string;
+  jobId: string;
+  jobTitle: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  linkedinUrl: string;
+  hoursPerWeek: string;
+  motivation: string;
+  trackrecord?: string;
+  status: "nieuw" | "gesprek_gepland" | "aangenomen" | "afgewezen";
+  createdAt: number;
+}
+
+const LS_JOB_APPLICATIONS = "immigratiepunt_job_applications";
+
+export function fetchJobApplications(): JobApplicationDoc[] {
+  return getLocal<JobApplicationDoc>(LS_JOB_APPLICATIONS);
+}
+
+export function submitJobApplication(
+  application: Omit<JobApplicationDoc, "id" | "status" | "createdAt">
+): JobApplicationDoc {
+  const newDoc: JobApplicationDoc = {
+    ...application,
+    id: "job-app-" + Date.now(),
+    status: "nieuw",
+    createdAt: Date.now(),
+  };
+
+  const all = getLocal<JobApplicationDoc>(LS_JOB_APPLICATIONS);
+  saveLocal(LS_JOB_APPLICATIONS, [newDoc, ...all]);
+  return newDoc;
+}
+
+
