@@ -70,6 +70,7 @@ import HelperPortal from "./account/HelperPortal";
 import AdminPortal from "./account/AdminPortal";
 import SubscriptionPage from "./account/SubscriptionPage";
 import PotjesRadar from "./account/PotjesRadar";
+import { LogoMark } from "@/components/Logo";
 
 export default function Account() {
   const { t } = useTranslation();
@@ -385,8 +386,14 @@ export default function Account() {
             {/* Sidebar Navigation */}
             <aside className="lg:col-span-1">
               <div className="sticky top-20 rounded-2xl border border-[#e6dfd8] bg-white p-3 shadow-xs space-y-1">
-                <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-[#8c887f]">
-                  {isAdminRole ? "Beheer Navigatie" : isHelperRole ? "Helper Portaal" : "Mijn Integratiereis"}
+                <div className="flex items-center justify-between px-3 py-2 border-b border-[#f0eae1] mb-1">
+                  <div className="flex items-center gap-2">
+                    <LogoMark className="h-4 w-4" />
+                    <span className="font-semibold text-xs text-[#141413]">Immigratiepunt</span>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c887f]">
+                    {isAdminRole ? "Beheer" : isHelperRole ? "Helper" : "Portaal"}
+                  </span>
                 </div>
 
                 <nav className="space-y-1">

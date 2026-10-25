@@ -2,6 +2,7 @@ import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { Check } from "lucide-react";
+import { LogoMark } from "@/components/Logo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SeekerForm } from "@/components/forms/SeekerForm";
 import { HelperForm } from "@/components/forms/HelperForm";
@@ -30,7 +31,10 @@ export default function Registreren() {
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid gap-14 lg:grid-cols-[5fr_7fr]">
             <div>
-              <div className="section-kicker">{t('registerPage.kicker')}</div>
+              <div className="section-kicker flex items-center gap-2">
+                <LogoMark className="h-4 w-4" />
+                <span>{t('registerPage.kicker')}</span>
+              </div>
               <h1 className="font-display mb-6 text-5xl leading-[1.05] tracking-tight text-[#141413]">
                 {t('registration.title')}
               </h1>
