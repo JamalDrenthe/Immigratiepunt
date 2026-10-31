@@ -40,6 +40,9 @@ import {
   topUpWallet,
   fetchOnboardingData,
   saveOnboardingData,
+  subscribeSubscription,
+  subscribeUrgentieRequests,
+  subscribeOnboarding,
 } from "@/lib/firebase";
 import {
   Dialog,
@@ -98,6 +101,22 @@ export default function SubscriptionPage({ member, role }: SubscriptionPageProps
   const [onboardingStep, setOnboardingStep] = useState<1 | 2 | 3>(1);
   const [onboardingForm, setOnboardingForm] = useState<OnboardingData>(onboarding);
   const [onboardingSaved, setOnboardingSaved] = useState(false);
+
+  // Real-time Firebase data sync
+  useEffect(() => {
+    const unsubSub = subscribeSubscription(member.email, role, (s) => setSubscription(s));
+    const unsubUrg = subscribeUrgentieRequests((u) => setUrgentieRequests(u), role === "admin" ? undefined : member.email);
+    const unsubOnb = subscribeOnboarding(member.email, (o) => {
+      setOnboarding(o);
+      setOnboardingForm(o);
+    });
+
+    return () => {
+      unsubSub();
+      unsubUrg();
+      unsubOnb();
+    };
+  }, [member.email, role]);
 
   // Reload data
   const reloadData = () => {

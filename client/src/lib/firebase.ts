@@ -1,5 +1,12 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  User,
+} from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -11,6 +18,9 @@ import {
   orderBy,
   serverTimestamp,
   Timestamp,
+  onSnapshot,
+  where,
+  Unsubscribe,
 } from "firebase/firestore";
 
 export const firebaseConfig = {
@@ -27,7 +37,19 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-export { signInWithPopup, firebaseSignOut };
+export { signInWithPopup, firebaseSignOut, onAuthStateChanged, onSnapshot };
+export type { Unsubscribe, User };
+
+// Event bus for real-time local reactivity synchronized across tabs and components
+export const DATA_CHANGE_EVENT = "ip_data_change";
+
+export function notifyDataChange(collectionName: string): void {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent(DATA_CHANGE_EVENT, { detail: { collection: collectionName } })
+    );
+  }
+}
 
 // Types
 export type RegistrationDoc = {
@@ -324,6 +346,7 @@ export async function saveRegistration(data: Omit<RegistrationDoc, "id" | "statu
   // Always update local cache for instant UI availability
   const current = getLocal<RegistrationDoc>(LS_REGISTRATIONS);
   saveLocal(LS_REGISTRATIONS, [newReg, ...current]);
+  notifyDataChange("registrations");
   return newReg;
 }
 
@@ -348,6 +371,7 @@ export async function saveHelper(data: Omit<HelperDoc, "id" | "status" | "regist
 
   const current = getLocal<HelperDoc>(LS_HELPERS);
   saveLocal(LS_HELPERS, [newHelper, ...current]);
+  notifyDataChange("helpers");
   return newHelper;
 }
 
@@ -418,6 +442,7 @@ export async function updateRegistrationStatusInDb(id: string, status: Registrat
   const list = getLocal<RegistrationDoc>(LS_REGISTRATIONS);
   const updated = list.map((item) => (item.id === id ? { ...item, status, ...(notes !== undefined ? { notes } : {}) } : item));
   saveLocal(LS_REGISTRATIONS, updated);
+  notifyDataChange("registrations");
 }
 
 export async function logLetter(helperEmail: string, sender: string, recipientName: string, notes?: string): Promise<LetterLogDoc> {
@@ -453,6 +478,8 @@ export async function logLetter(helperEmail: string, sender: string, recipientNa
   );
   saveLocal(LS_HELPERS, updatedHelpers);
 
+  notifyDataChange("letters");
+  notifyDataChange("helpers");
   return newLetter;
 }
 
@@ -599,12 +626,14 @@ export function saveUserDocument(docData: Omit<UserDocument, "id" | "uploadedAt"
   };
   const all = getLocal<UserDocument>(LS_DOCUMENTS);
   saveLocal(LS_DOCUMENTS, [newDoc, ...all]);
+  notifyDataChange("documents");
   return newDoc;
 }
 
 export function deleteUserDocument(id: string): void {
   const all = getLocal<UserDocument>(LS_DOCUMENTS);
   saveLocal(LS_DOCUMENTS, all.filter((d) => d.id !== id));
+  notifyDataChange("documents");
 }
 
 // -------------------------------------------------------------
@@ -647,6 +676,7 @@ export function sendSupportMessage(msgData: Omit<SupportMessage, "id" | "status"
   };
   const all = getLocal<SupportMessage>(LS_MESSAGES);
   saveLocal(LS_MESSAGES, [newMsg, ...all]);
+  notifyDataChange("messages");
   return newMsg;
 }
 
@@ -656,6 +686,7 @@ export function replySupportMessage(id: string, replyText: string): void {
     m.id === id ? { ...m, status: "beantwoord" as const, reply: replyText } : m
   );
   saveLocal(LS_MESSAGES, updated);
+  notifyDataChange("messages");
 }
 
 // -------------------------------------------------------------
@@ -700,6 +731,7 @@ export function saveHelperSettings(settings: HelperSettings): void {
   const all = getLocal<HelperSettings>(LS_HELPER_SETTINGS);
   const filtered = all.filter((s) => s.email.toLowerCase() !== settings.email.toLowerCase());
   saveLocal(LS_HELPER_SETTINGS, [settings, ...filtered]);
+  notifyDataChange("helper_settings");
 }
 
 // -------------------------------------------------------------
@@ -755,6 +787,7 @@ export function requestPayout(
   };
   const all = getLocal<PayoutRecord>(LS_PAYOUTS);
   saveLocal(LS_PAYOUTS, [newPayout, ...all]);
+  notifyDataChange("payouts");
   return newPayout;
 }
 
@@ -799,6 +832,7 @@ export function saveIntegrationProfile(profile: IntegrationProfile): void {
   const all = getLocal<IntegrationProfile>(LS_INTEGRATION_PROFILES);
   const filtered = all.filter((p) => p.userEmail.toLowerCase() !== profile.userEmail.toLowerCase());
   saveLocal(LS_INTEGRATION_PROFILES, [profile, ...filtered]);
+  notifyDataChange("integration");
 }
 
 // -------------------------------------------------------------
@@ -825,6 +859,8 @@ export async function matchNewcomerToHelper(
       : h
   );
   saveLocal(LS_HELPERS, updatedHelpers);
+  notifyDataChange("helpers");
+  notifyDataChange("registrations");
 }
 
 // -------------------------------------------------------------
@@ -837,6 +873,7 @@ export function updateLetterStatus(
   const all = getLocal<LetterLogDoc>(LS_LETTERS);
   const updated = all.map((l) => (l.id === id ? { ...l, status } : l));
   saveLocal(LS_LETTERS, updated);
+  notifyDataChange("letters");
 }
 
 // -------------------------------------------------------------
@@ -884,6 +921,7 @@ export function markNotificationRead(id: string): void {
   const all = getLocal<InAppNotification>(LS_NOTIFICATIONS);
   const updated = all.map((n) => (n.id === id ? { ...n, read: true } : n));
   saveLocal(LS_NOTIFICATIONS, updated);
+  notifyDataChange("notifications");
 }
 
 // -------------------------------------------------------------
@@ -967,6 +1005,7 @@ export function saveSubscription(sub: AccountSubscription): void {
   const all = getLocal<AccountSubscription>(LS_SUBSCRIPTIONS);
   const filtered = all.filter((s) => s.userEmail.toLowerCase() !== sub.userEmail.toLowerCase());
   saveLocal(LS_SUBSCRIPTIONS, [sub, ...filtered]);
+  notifyDataChange("subscriptions");
 }
 
 const SEED_URGENTIE_REQUESTS: UrgentieServiceRequest[] = [
@@ -1038,6 +1077,8 @@ export function createUrgentieRequest(
 
   const all = getLocal<UrgentieServiceRequest>(LS_URGENTIE_REQUESTS);
   saveLocal(LS_URGENTIE_REQUESTS, [newReq, ...all]);
+  notifyDataChange("urgentie");
+  notifyDataChange("subscriptions");
 
   return { request: newReq };
 }
@@ -1087,6 +1128,7 @@ export function saveOnboardingData(data: OnboardingData): void {
   const all = getLocal<OnboardingData>(LS_ONBOARDING);
   const filtered = all.filter((o) => o.userEmail.toLowerCase() !== data.userEmail.toLowerCase());
   saveLocal(LS_ONBOARDING, [data, ...filtered]);
+  notifyDataChange("onboarding");
 }
 
 // -------------------------------------------------------------
@@ -1321,11 +1363,12 @@ export function submitPotjeApplication(
 
   const all = getLocal<PotjeApplication>(LS_POTJES_APPLICATIONS);
   saveLocal(LS_POTJES_APPLICATIONS, [newApp, ...all]);
+  notifyDataChange("potjes");
   return newApp;
 }
 
 // -------------------------------------------------------------
-// VACATURES & CAREER APPLICATIONS (NO CURE, NO PAY)
+// VACATURES & CAREER APPLICATIONS
 // -------------------------------------------------------------
 export interface JobApplicationDoc {
   id?: string;
@@ -1360,7 +1403,414 @@ export function submitJobApplication(
 
   const all = getLocal<JobApplicationDoc>(LS_JOB_APPLICATIONS);
   saveLocal(LS_JOB_APPLICATIONS, [newDoc, ...all]);
+  notifyDataChange("jobs");
   return newDoc;
+}
+
+// =============================================================
+// FULL FIREBASE REAL-TIME SUBSCRIPTION HELPERS
+// =============================================================
+
+export function subscribeRegistrations(callback: (items: RegistrationDoc[]) => void): () => void {
+  // 1. Initial cached/stored push
+  fetchAllRegistrations().then(callback).catch(() => {
+    callback(getLocal<RegistrationDoc>(LS_REGISTRATIONS));
+  });
+
+  // 2. Real-time Firestore onSnapshot listener
+  let unsubFirestore: Unsubscribe | null = null;
+  try {
+    const q = query(collection(db, "registrations"), orderBy("createdAtServer", "desc"));
+    unsubFirestore = onSnapshot(
+      q,
+      (snap) => {
+        if (!snap.empty) {
+          const items: RegistrationDoc[] = [];
+          snap.forEach((d) => {
+            const dData = d.data();
+            items.push({
+              ...(dData as RegistrationDoc),
+              id: d.id,
+              createdAt:
+                dData.createdAtServer instanceof Timestamp
+                  ? dData.createdAtServer.toMillis()
+                  : dData.createdAt || Date.now(),
+            });
+          });
+          saveLocal(LS_REGISTRATIONS, items);
+          callback(items);
+        }
+      },
+      () => {
+        // Fallback to local store silently on permission or offline
+      }
+    );
+  } catch (err) {
+    // Ignore onSnapshot initialization errors
+  }
+
+  // 3. Reactive event bus & cross-tab sync
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "registrations") {
+      const items = getLocal<RegistrationDoc>(LS_REGISTRATIONS);
+      callback(items.length > 0 ? items : SEED_REGISTRATIONS);
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    if (unsubFirestore) unsubFirestore();
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeHelpers(callback: (items: HelperDoc[]) => void): () => void {
+  fetchAllHelpers().then(callback).catch(() => {
+    callback(getLocal<HelperDoc>(LS_HELPERS));
+  });
+
+  let unsubFirestore: Unsubscribe | null = null;
+  try {
+    const q = query(collection(db, "helpers"), orderBy("createdAtServer", "desc"));
+    unsubFirestore = onSnapshot(
+      q,
+      (snap) => {
+        if (!snap.empty) {
+          const items: HelperDoc[] = [];
+          snap.forEach((d) => {
+            const dData = d.data();
+            items.push({
+              ...(dData as HelperDoc),
+              id: d.id,
+              createdAt:
+                dData.createdAtServer instanceof Timestamp
+                  ? dData.createdAtServer.toMillis()
+                  : dData.createdAt || Date.now(),
+            });
+          });
+          saveLocal(LS_HELPERS, items);
+          callback(items);
+        }
+      },
+      () => {}
+    );
+  } catch (err) {
+    // Ignore onSnapshot errors
+  }
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "helpers") {
+      const items = getLocal<HelperDoc>(LS_HELPERS);
+      callback(items.length > 0 ? items : SEED_HELPERS);
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    if (unsubFirestore) unsubFirestore();
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeLetters(
+  callback: (items: LetterLogDoc[]) => void,
+  filter?: { helperEmail?: string; recipientName?: string }
+): () => void {
+  const deliver = () => {
+    if (filter?.helperEmail) {
+      callback(fetchLettersForHelper(filter.helperEmail));
+    } else if (filter?.recipientName) {
+      callback(fetchLettersForNewcomer(filter.recipientName));
+    } else {
+      callback(getLocal<LetterLogDoc>(LS_LETTERS));
+    }
+  };
+
+  deliver();
+
+  let unsubFirestore: Unsubscribe | null = null;
+  try {
+    const q = query(collection(db, "letters"), orderBy("createdAtServer", "desc"));
+    unsubFirestore = onSnapshot(
+      q,
+      (snap) => {
+        if (!snap.empty) {
+          const items: LetterLogDoc[] = [];
+          snap.forEach((d) => {
+            const dData = d.data();
+            items.push({
+              ...(dData as LetterLogDoc),
+              id: d.id,
+              createdAt:
+                dData.createdAtServer instanceof Timestamp
+                  ? dData.createdAtServer.toMillis()
+                  : dData.createdAt || Date.now(),
+            });
+          });
+          saveLocal(LS_LETTERS, items);
+          deliver();
+        }
+      },
+      () => {}
+    );
+  } catch (err) {
+    // Ignore onSnapshot
+  }
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "letters") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    if (unsubFirestore) unsubFirestore();
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeDocuments(
+  userEmail: string,
+  callback: (docs: UserDocument[]) => void
+): () => void {
+  const deliver = () => callback(fetchDocumentsForUser(userEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "documents") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeSupportMessages(
+  callback: (msgs: SupportMessage[]) => void,
+  fromEmail?: string
+): () => void {
+  const deliver = () => callback(fetchSupportMessages(fromEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "messages") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeNotifications(
+  role: "admin" | "helper" | "newcomer",
+  callback: (notifs: InAppNotification[]) => void
+): () => void {
+  const deliver = () => callback(fetchNotificationsForRole(role));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "notifications") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeSubscription(
+  userEmail: string,
+  role: string,
+  callback: (sub: AccountSubscription) => void
+): () => void {
+  const deliver = () => callback(fetchSubscriptionForUser(userEmail, role));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "subscriptions") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeUrgentieRequests(
+  callback: (reqs: UrgentieServiceRequest[]) => void,
+  userEmail?: string
+): () => void {
+  const deliver = () => callback(fetchUrgentieRequests(userEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "urgentie") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeOnboarding(
+  userEmail: string,
+  callback: (data: OnboardingData) => void
+): () => void {
+  const deliver = () => callback(fetchOnboardingData(userEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "onboarding") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribePotjeApplications(
+  callback: (apps: PotjeApplication[]) => void,
+  userEmail?: string
+): () => void {
+  const deliver = () => callback(fetchPotjeApplications(userEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "potjes") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeIntegrationProfile(
+  userEmail: string,
+  callback: (profile: IntegrationProfile) => void
+): () => void {
+  const deliver = () => callback(fetchIntegrationProfile(userEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "integration") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribeHelperSettings(
+  helperEmail: string,
+  callback: (settings: HelperSettings) => void
+): () => void {
+  const deliver = () => callback(fetchHelperSettings(helperEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "helper_settings") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
+}
+
+export function subscribePayouts(
+  helperEmail: string,
+  callback: (payouts: PayoutRecord[]) => void
+): () => void {
+  const deliver = () => callback(fetchPayoutsForHelper(helperEmail));
+  deliver();
+
+  const handleEvent = (e: Event) => {
+    const customEvent = e as CustomEvent;
+    if (!customEvent.detail || customEvent.detail.collection === "payouts") {
+      deliver();
+    }
+  };
+
+  window.addEventListener(DATA_CHANGE_EVENT, handleEvent);
+  window.addEventListener("storage", handleEvent);
+
+  return () => {
+    window.removeEventListener(DATA_CHANGE_EVENT, handleEvent);
+    window.removeEventListener("storage", handleEvent);
+  };
 }
 
 

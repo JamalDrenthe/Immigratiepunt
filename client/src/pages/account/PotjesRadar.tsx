@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -31,6 +31,7 @@ import {
   fetchAvailablePotjes,
   fetchPotjeApplications,
   submitPotjeApplication,
+  subscribePotjeApplications,
 } from "@/lib/firebase";
 import {
   Dialog,
@@ -68,6 +69,12 @@ export default function PotjesRadar({ member, onOpenUrgentie }: PotjesRadarProps
   const [applications, setApplications] = useState<PotjeApplication[]>(() =>
     fetchPotjeApplications(member.email)
   );
+
+  // Real-time Firebase sync
+  useEffect(() => {
+    const unsub = subscribePotjeApplications((apps) => setApplications(apps), member.email);
+    return () => unsub();
+  }, [member.email]);
 
   // Application Modal state
   const [selectedPotje, setSelectedPotje] = useState<PotjeGrant | null>(null);

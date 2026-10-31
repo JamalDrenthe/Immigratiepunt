@@ -41,7 +41,15 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { getMember, signOut, signInAsDemo, MemberRole, isEmailAdmin } from "@/lib/auth";
+import {
+  getMember,
+  signOut,
+  signInAsDemo,
+  MemberRole,
+  isEmailAdmin,
+  subscribeAuth,
+  Member,
+} from "@/lib/auth";
 import {
   fetchAllRegistrations,
   fetchAllHelpers,
@@ -54,6 +62,15 @@ import {
   fetchIntegrationProfile,
   fetchNotificationsForRole,
   markNotificationRead,
+  subscribeRegistrations,
+  subscribeHelpers,
+  subscribeLetters,
+  subscribeDocuments,
+  subscribeSupportMessages,
+  subscribeNotifications,
+  subscribeIntegrationProfile,
+  subscribeHelperSettings,
+  subscribePayouts,
   RegistrationDoc,
   HelperDoc,
   LetterLogDoc,
@@ -75,7 +92,7 @@ import { LogoMark } from "@/components/Logo";
 export default function Account() {
   const { t } = useTranslation();
   const [, navigate] = useLocation();
-  const member = getMember();
+  const [member, setMember] = useState<Member | null>(() => getMember());
 
   // Navigation tab state
   const [activeTab, setActiveTab] = useState<string>("overview");
@@ -113,35 +130,49 @@ export default function Account() {
 
   const [isLoadingAdmin, setIsLoadingAdmin] = useState(false);
 
+  // 1. Live Auth State Subscription
   useEffect(() => {
-    if (!member) {
-      navigate("/inloggen");
-      return;
-    }
+    const unsubAuth = subscribeAuth((m) => {
+      setMember(m);
+      if (!m) {
+        navigate("/inloggen");
+      }
+    });
+
+    return () => {
+      unsubAuth();
+    };
+  }, [navigate]);
+
+  // 2. Live Full Firebase Data Subscriptions
+  useEffect(() => {
+    if (!member) return;
 
     const isAdminRole = member.role === "admin" || isEmailAdmin(member.email);
-    const notifs = fetchNotificationsForRole(isAdminRole ? "admin" : member.role);
-    setNotifications(notifs);
+    const isHelper = member.role === "helper";
+
+    // Notifications live subscription
+    const unsubNotifs = subscribeNotifications(
+      isAdminRole ? "admin" : isHelper ? "helper" : "newcomer",
+      setNotifications
+    );
+
+    const cleanups: (() => void)[] = [unsubNotifs];
 
     if (isAdminRole) {
-      loadAdminData();
-    } else if (member.role === "helper") {
-      const helperLetters = fetchLettersForHelper(member.email);
-      setLetters(helperLetters);
-      const settings = fetchHelperSettings(member.email);
-      setHelperSettings(settings);
-      const helperPayouts = fetchPayoutsForHelper(member.email);
-      setPayouts(helperPayouts);
+      cleanups.push(subscribeRegistrations(setRegistrations));
+      cleanups.push(subscribeHelpers(setHelpers));
+      cleanups.push(subscribeLetters(setLetters));
+      cleanups.push(subscribeSupportMessages(setSupportMessages));
+    } else if (isHelper) {
+      cleanups.push(subscribeLetters(setLetters, { helperEmail: member.email }));
+      cleanups.push(subscribeHelperSettings(member.email, setHelperSettings));
+      cleanups.push(subscribePayouts(member.email, setPayouts));
     } else {
-      // Newcomer
-      const newcomerLetters = fetchLettersForNewcomer(member.name);
-      setLetters(newcomerLetters);
-      const docs = fetchDocumentsForUser(member.email);
-      setDocuments(docs);
-      const msgs = fetchSupportMessages(member.email);
-      setSupportMessages(msgs);
-      const profile = fetchIntegrationProfile(member.email);
-      setIntegrationProfile(profile);
+      cleanups.push(subscribeLetters(setLetters, { recipientName: member.name }));
+      cleanups.push(subscribeDocuments(member.email, setDocuments));
+      cleanups.push(subscribeSupportMessages(setSupportMessages, member.email));
+      cleanups.push(subscribeIntegrationProfile(member.email, setIntegrationProfile));
     }
 
     // Check URL path for direct subscription or potjes navigation
@@ -158,7 +189,11 @@ export default function Account() {
     ) {
       setActiveTab("potjes");
     }
-  }, [member, navigate]);
+
+    return () => {
+      cleanups.forEach((fn) => fn());
+    };
+  }, [member?.email, member?.role, member?.name]);
 
   if (!member) return null;
 
@@ -183,7 +218,6 @@ export default function Account() {
 
   const handleRoleSwitch = (role: MemberRole) => {
     signInAsDemo(role);
-    window.location.reload();
   };
 
   const unreadNotifsCount = notifications.filter((n) => !n.read).length;
@@ -243,148 +277,293 @@ export default function Account() {
         <meta name="description" content={t("account.meta.description")} />
       </Helmet>
 
-      <section className="bg-[#faf9f5] py-6 md:py-10 min-h-screen">
-        <div className="container mx-auto max-w-7xl px-4">
+      <section className="bg-[#faf9f5] py-4 sm:py-6 md:py-10 min-h-screen">
+        <div className="container mx-auto max-w-7xl px-3 sm:px-4">
           {/* Top User Bar */}
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#e6dfd8] bg-white p-4 md:p-5 shadow-xs">
-            <div className="flex items-center gap-3.5">
-              <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl shadow-xs ${
-                  isAdminRole
-                    ? "bg-purple-100 text-purple-700"
-                    : isHelperRole
-                    ? "bg-blue-100 text-blue-700"
-                    : "bg-emerald-100 text-emerald-700"
-                }`}
-              >
-                {isAdminRole ? (
-                  <ShieldCheck className="h-6 w-6" />
-                ) : isHelperRole ? (
-                  <HeartHandshake className="h-6 w-6" />
-                ) : (
-                  <UserRound className="h-6 w-6" />
-                )}
+          <div className="mb-4 sm:mb-6 rounded-2xl border border-[#e6dfd8] bg-white p-3.5 sm:p-5 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              {/* Left: Avatar & Role Header */}
+              <div className="flex items-center gap-3">
+                <div
+                  className={`flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl shadow-xs shrink-0 ${
+                    isAdminRole
+                      ? "bg-purple-100 text-purple-700"
+                      : isHelperRole
+                      ? "bg-blue-100 text-blue-700"
+                      : "bg-emerald-100 text-emerald-700"
+                  }`}
+                >
+                  {isAdminRole ? (
+                    <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
+                  ) : isHelperRole ? (
+                    <HeartHandshake className="h-5 w-5 sm:h-6 sm:w-6" />
+                  ) : (
+                    <UserRound className="h-5 w-5 sm:h-6 sm:w-6" />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <h1 className="font-display text-base sm:text-lg md:text-xl font-bold tracking-tight text-[#141413] truncate max-w-[180px] sm:max-w-xs">
+                      {member.name}
+                    </h1>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-semibold shrink-0 ${
+                        isAdminRole
+                          ? "bg-purple-100 text-purple-800"
+                          : isHelperRole
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-emerald-100 text-emerald-800"
+                      }`}
+                    >
+                      {isAdminRole ? "Beheerder" : isHelperRole ? "Postadres-Helper" : "Nieuwkomer"}
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-[#6c6a64] truncate max-w-[200px] sm:max-w-sm">{member.email}</p>
+                </div>
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="font-display text-lg font-bold tracking-tight text-[#141413] md:text-xl">
-                    {member.name}
-                  </h1>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                      isAdminRole
-                        ? "bg-purple-100 text-purple-800"
-                        : isHelperRole
-                        ? "bg-blue-100 text-blue-800"
-                        : "bg-emerald-100 text-emerald-800"
+
+              {/* Right: Demo Switcher + Meldingen + Hamburger Menu Toggle */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {/* Desktop Demo Switcher */}
+                <div className="hidden md:flex items-center gap-1 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-1 text-xs">
+                  <span className="px-1 text-[11px] text-[#8c887f]">Demo Rol:</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRoleSwitch("newcomer")}
+                    className={`rounded px-2.5 py-1 font-medium transition-colors ${
+                      isNewcomerRole ? "bg-emerald-100 text-emerald-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
                     }`}
                   >
-                    {isAdminRole ? "Beheerder" : isHelperRole ? "Postadres-Helper" : "Nieuwkomer"}
-                  </span>
+                    Nieuwkomer
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleRoleSwitch("helper")}
+                    className={`rounded px-2.5 py-1 font-medium transition-colors ${
+                      isHelperRole ? "bg-blue-100 text-blue-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
+                    }`}
+                  >
+                    Helper
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleRoleSwitch("admin")}
+                    className={`rounded px-2.5 py-1 font-medium transition-colors ${
+                      isAdminRole ? "bg-purple-100 text-purple-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
+                    }`}
+                  >
+                    Admin
+                  </button>
                 </div>
-                <p className="text-xs text-[#6c6a64]">{member.email}</p>
+
+                {/* In-app Notification Bell */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setShowNotifications(!showNotifications)}
+                    className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfd8] bg-[#faf9f5] text-[#3d3d3a] hover:bg-[#efe9de] transition-colors"
+                    aria-label="Meldingen"
+                  >
+                    <Bell className="h-4 w-4" />
+                    {unreadNotifsCount > 0 && (
+                      <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">
+                        {unreadNotifsCount}
+                      </span>
+                    )}
+                  </button>
+
+                  {showNotifications && (
+                    <div className="absolute right-0 mt-2 z-50 w-[calc(100vw-2rem)] sm:w-80 max-w-sm rounded-2xl border border-[#e6dfd8] bg-white p-3.5 shadow-xl">
+                      <div className="mb-2 flex items-center justify-between border-b border-[#f0eae1] pb-2 text-xs font-semibold text-[#141413]">
+                        <span>Meldingen & Updates</span>
+                        <span className="text-[11px] text-[#6c6a64]">{notifications.length} updates</span>
+                      </div>
+                      <div className="space-y-2 max-h-64 overflow-y-auto">
+                        {notifications.map((n) => (
+                          <div
+                            key={n.id}
+                            onClick={() => {
+                              markNotificationRead(n.id);
+                              setNotifications((prev) =>
+                                prev.map((item) => (item.id === n.id ? { ...item, read: true } : item))
+                              );
+                            }}
+                            className={`cursor-pointer rounded-lg p-2.5 text-xs transition-colors ${
+                              n.read ? "bg-white text-[#6c6a64]" : "bg-emerald-50/70 text-[#141413] font-medium"
+                            }`}
+                          >
+                            <div className="flex justify-between items-center text-[11px]">
+                              <span className="font-semibold text-primary">{n.title}</span>
+                              <span className="text-[#8c887f]">{n.date}</span>
+                            </div>
+                            <p className="mt-1 text-[11px] leading-relaxed">{n.message}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Mobile Hamburger Menu Toggle Button */}
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="flex lg:hidden h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfd8] bg-[#faf9f5] text-[#3d3d3a] hover:bg-[#efe9de] transition-colors"
+                  aria-label="Menu openen"
+                >
+                  {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                </button>
+
+                {/* Sign Out (Desktop / Tablet) */}
+                <button
+                  onClick={() => {
+                    signOut();
+                    navigate("/");
+                  }}
+                  className="hidden sm:inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-3 text-xs font-semibold text-[#3d3d3a] hover:bg-[#efe9de] transition-colors"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  {t("account.signOut")}
+                </button>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
-              {/* In-app Notification Bell */}
-              <div className="relative">
+            {/* Mobile Drawer (Collapsible) */}
+            {mobileMenuOpen && (
+              <div className="mt-4 pt-4 border-t border-[#f0eae1] lg:hidden space-y-3">
+                {/* Mobile Demo Switcher */}
+                <div className="rounded-xl border border-[#e6dfd8] bg-[#faf9f5] p-2.5">
+                  <div className="text-[11px] font-semibold text-[#8c887f] mb-1.5">Wissel Demo Rol:</div>
+                  <div className="grid grid-cols-3 gap-1.5 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleRoleSwitch("newcomer");
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`rounded-lg py-1.5 px-2 text-center font-medium transition-colors ${
+                        isNewcomerRole ? "bg-emerald-600 text-white font-semibold shadow-xs" : "bg-white text-[#3d3d3a] border border-[#e6dfd8]"
+                      }`}
+                    >
+                      Nieuwkomer
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleRoleSwitch("helper");
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`rounded-lg py-1.5 px-2 text-center font-medium transition-colors ${
+                        isHelperRole ? "bg-blue-600 text-white font-semibold shadow-xs" : "bg-white text-[#3d3d3a] border border-[#e6dfd8]"
+                      }`}
+                    >
+                      Helper
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleRoleSwitch("admin");
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`rounded-lg py-1.5 px-2 text-center font-medium transition-colors ${
+                        isAdminRole ? "bg-purple-600 text-white font-semibold shadow-xs" : "bg-white text-[#3d3d3a] border border-[#e6dfd8]"
+                      }`}
+                    >
+                      Admin
+                    </button>
+                  </div>
+                </div>
+
+                {/* Mobile Full Menu List */}
+                <div className="space-y-1">
+                  {currentMenuItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeTab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold transition-all ${
+                          isActive
+                            ? "bg-primary text-white shadow-xs"
+                            : "text-[#3d3d3a] hover:bg-[#faf9f5]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <Icon className={`h-4 w-4 ${isActive ? "text-white" : "text-[#6c6a64]"}`} />
+                          <span>{item.label}</span>
+                        </div>
+                        {item.badge !== undefined && (typeof item.badge === "number" ? item.badge > 0 : Boolean(item.badge)) && (
+                          <span
+                            className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                              isActive ? "bg-white/20 text-white" : "bg-[#f0eae1] text-[#3d3d3a]"
+                            }`}
+                          >
+                            {item.badge}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-[#f0eae1]">
+                  <span className="text-xs text-[#6c6a64]">info@immigratiepunt.nl</span>
+                  <button
+                    onClick={() => {
+                      signOut();
+                      navigate("/");
+                    }}
+                    className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#e6dfd8] bg-white px-3 text-xs font-semibold text-rose-600 hover:bg-rose-50"
+                  >
+                    <LogOut className="h-3.5 w-3.5" />
+                    {t("account.signOut")}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Horizontal Pill Navigation Bar (Instant tactile switch, scrollable) */}
+          <div className="mb-4 sm:mb-6 lg:hidden -mx-3 px-3 sm:-mx-4 sm:px-4 overflow-x-auto scrollbar-none flex items-center gap-2 pb-1 touch-pan-x">
+            {currentMenuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
                 <button
+                  key={item.id}
                   type="button"
-                  onClick={() => setShowNotifications(!showNotifications)}
-                  className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-[#e6dfd8] bg-[#faf9f5] text-[#3d3d3a] hover:bg-[#efe9de] transition-colors"
-                  aria-label="Meldingen"
+                  onClick={() => setActiveTab(item.id)}
+                  className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold shrink-0 transition-all ${
+                    isActive
+                      ? "bg-primary text-white shadow-xs ring-1 ring-primary/20"
+                      : "border border-[#e6dfd8] bg-white text-[#3d3d3a] hover:bg-[#faf9f5]"
+                  }`}
                 >
-                  <Bell className="h-4 w-4" />
-                  {unreadNotifsCount > 0 && (
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">
-                      {unreadNotifsCount}
+                  <Icon className={`h-3.5 w-3.5 ${isActive ? "text-white" : "text-[#6c6a64]"}`} />
+                  <span>{item.label}</span>
+                  {item.badge !== undefined && (typeof item.badge === "number" ? item.badge > 0 : Boolean(item.badge)) && (
+                    <span
+                      className={`rounded-full px-1.5 py-0.2 text-[9px] font-bold ${
+                        isActive ? "bg-white/25 text-white" : "bg-[#efe9de] text-[#3d3d3a]"
+                      }`}
+                    >
+                      {item.badge}
                     </span>
                   )}
                 </button>
-
-                {showNotifications && (
-                  <div className="absolute right-0 mt-2 z-50 w-80 rounded-2xl border border-[#e6dfd8] bg-white p-3.5 shadow-xl">
-                    <div className="mb-2 flex items-center justify-between border-b border-[#f0eae1] pb-2 text-xs font-semibold text-[#141413]">
-                      <span>Meldingen & Updates</span>
-                      <span className="text-[11px] text-[#6c6a64]">{notifications.length} updates</span>
-                    </div>
-                    <div className="space-y-2 max-h-64 overflow-y-auto">
-                      {notifications.map((n) => (
-                        <div
-                          key={n.id}
-                          onClick={() => {
-                            markNotificationRead(n.id);
-                            setNotifications((prev) =>
-                              prev.map((item) => (item.id === n.id ? { ...item, read: true } : item))
-                            );
-                          }}
-                          className={`cursor-pointer rounded-lg p-2.5 text-xs transition-colors ${
-                            n.read ? "bg-white text-[#6c6a64]" : "bg-emerald-50/70 text-[#141413] font-medium"
-                          }`}
-                        >
-                          <div className="flex justify-between items-center text-[11px]">
-                            <span className="font-semibold text-primary">{n.title}</span>
-                            <span className="text-[#8c887f]">{n.date}</span>
-                          </div>
-                          <p className="mt-1 text-[11px] leading-relaxed">{n.message}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Demo Account Switcher */}
-              <div className="hidden sm:flex items-center gap-1 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-1 text-xs">
-                <span className="px-1 text-[11px] text-[#8c887f]">Demo Rol:</span>
-                <button
-                  type="button"
-                  onClick={() => handleRoleSwitch("newcomer")}
-                  className={`rounded px-2.5 py-1 font-medium transition-colors ${
-                    isNewcomerRole ? "bg-emerald-100 text-emerald-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
-                  }`}
-                >
-                  Nieuwkomer
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleRoleSwitch("helper")}
-                  className={`rounded px-2.5 py-1 font-medium transition-colors ${
-                    isHelperRole ? "bg-blue-100 text-blue-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
-                  }`}
-                >
-                  Helper
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleRoleSwitch("admin")}
-                  className={`rounded px-2.5 py-1 font-medium transition-colors ${
-                    isAdminRole ? "bg-purple-100 text-purple-800 font-semibold shadow-xs" : "text-[#6c6a64] hover:text-[#141413]"
-                  }`}
-                >
-                  Admin
-                </button>
-              </div>
-
-              {/* Sign Out */}
-              <button
-                onClick={() => {
-                  signOut();
-                  navigate("/");
-                }}
-                className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-3 text-xs font-semibold text-[#3d3d3a] hover:bg-[#efe9de] transition-colors"
-              >
-                <LogOut className="h-3.5 w-3.5" />
-                {t("account.signOut")}
-              </button>
-            </div>
+              );
+            })}
           </div>
 
-          {/* Main Layout: Responsive Sidebar Navigation + Content Area */}
+          {/* Main Layout: Responsive Sidebar Navigation (Desktop) + Content Area */}
           <div className="grid gap-6 lg:grid-cols-4 xl:grid-cols-5">
-            {/* Sidebar Navigation */}
-            <aside className="lg:col-span-1">
+            {/* Desktop Sidebar Navigation */}
+            <aside className="hidden lg:block lg:col-span-1">
               <div className="sticky top-20 rounded-2xl border border-[#e6dfd8] bg-white p-3 shadow-xs space-y-1">
                 <div className="flex items-center justify-between px-3 py-2 border-b border-[#f0eae1] mb-1">
                   <div className="flex items-center gap-2">
@@ -439,7 +618,7 @@ export default function Account() {
             </aside>
 
             {/* Main Content Area */}
-            <main className="lg:col-span-3 xl:col-span-4">
+            <main className="w-full min-w-0 lg:col-span-3 xl:col-span-4">
               {activeTab === "subscription" ? (
                 <SubscriptionPage
                   member={member}

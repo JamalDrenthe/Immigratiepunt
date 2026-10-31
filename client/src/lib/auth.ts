@@ -1,6 +1,13 @@
-import { auth, googleProvider, signInWithPopup, firebaseSignOut } from "./firebase";
+import { auth, googleProvider, signInWithPopup, firebaseSignOut, onAuthStateChanged } from "./firebase";
 
 const KEY = "ip_member";
+const AUTH_EVENT = "ip_auth_change";
+
+function notifyAuthChange(member: Member | null) {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(AUTH_EVENT, { detail: { member } }));
+  }
+}
 
 export type MemberRole = "admin" | "newcomer" | "helper";
 
@@ -73,6 +80,7 @@ export function signIn(member: Member): Member {
     title: isTargetAdmin ? "Beheerder / Admin" : member.title,
   };
   localStorage.setItem(KEY, JSON.stringify(updatedMember));
+  notifyAuthChange(updatedMember);
   return updatedMember;
 }
 
@@ -112,4 +120,48 @@ export function signOut(): void {
     // Ignore signOut errors
   }
   localStorage.removeItem(KEY);
+  notifyAuthChange(null);
+}
+
+export function subscribeAuth(callback: (member: Member | null) => void): () => void {
+  callback(getMember());
+
+  const handleCustom = (e: Event) => {
+    const custom = e as CustomEvent;
+    callback(custom.detail?.member ?? getMember());
+  };
+  const handleStorage = (e: StorageEvent) => {
+    if (e.key === KEY) {
+      callback(getMember());
+    }
+  };
+
+  window.addEventListener(AUTH_EVENT, handleCustom);
+  window.addEventListener("storage", handleStorage);
+
+  const unsubFirebase = onAuthStateChanged(auth, (firebaseUser) => {
+    if (firebaseUser) {
+      const current = getMember();
+      const email = firebaseUser.email || "";
+      const isTargetAdmin = isEmailAdmin(email);
+      if (!current || current.provider === "google") {
+        const liveMember: Member = {
+          email,
+          name: isTargetAdmin ? "Beheerder Immigratiepunt" : (firebaseUser.displayName || email.split("@")[0] || "Gebruiker"),
+          role: isTargetAdmin ? "admin" : (current?.role || "newcomer"),
+          title: isTargetAdmin ? "Beheerder / Admin" : (current?.title || "Nieuwkomer / Immigrant"),
+          avatarUrl: firebaseUser.photoURL || undefined,
+          provider: "google",
+        };
+        localStorage.setItem(KEY, JSON.stringify(liveMember));
+        callback(liveMember);
+      }
+    }
+  });
+
+  return () => {
+    window.removeEventListener(AUTH_EVENT, handleCustom);
+    window.removeEventListener("storage", handleStorage);
+    unsubFirebase();
+  };
 }
