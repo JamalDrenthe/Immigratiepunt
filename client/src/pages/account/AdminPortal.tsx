@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Users,
   HeartHandshake,
@@ -20,6 +20,10 @@ import {
   ArrowRight,
   Send,
   SlidersHorizontal,
+  Database,
+  Check,
+  AlertCircle,
+  Share2,
 } from "lucide-react";
 import { Member } from "@/lib/auth";
 import {
@@ -31,7 +35,20 @@ import {
   matchNewcomerToHelper,
   replySupportMessage,
   exportRegistrationsToCsv,
+  fetchJobApplications,
 } from "@/lib/firebase";
+import {
+  CRMOS_CONFIG,
+  searchCrmos,
+  fetchCrmosContacts,
+  upsertCrmosContact,
+  syncRegistrationToCrmos,
+  syncHelperToCrmos,
+  syncJobApplicationToCrmos,
+  getCrmosSyncLogs,
+  CrmosSyncLog,
+  CrmosContactUpsertPayload,
+} from "@/lib/crmos";
 
 interface AdminPortalProps {
   member: Member;
@@ -78,6 +95,118 @@ export default function AdminPortal({
   // Notes state per registration
   const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
   const [notesDraft, setNotesDraft] = useState("");
+
+  // CRMos Bi-directional State
+  const [crmosSearchTerm, setCrmosSearchTerm] = useState("");
+  const [crmosSearchResults, setCrmosSearchResults] = useState<any[]>([]);
+  const [isSearchingCrmos, setIsSearchingCrmos] = useState(false);
+  const [crmosSyncStatus, setCrmosSyncStatus] = useState<string>("");
+  const [isSyncingCrmos, setIsSyncingCrmos] = useState(false);
+  const [crmosLogs, setCrmosLogs] = useState<CrmosSyncLog[]>(() => getCrmosSyncLogs());
+
+  // Manual Upsert Form State
+  const [upsertForm, setUpsertForm] = useState<CrmosContactUpsertPayload>({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    company: "Immigratiepunt Relatie",
+    tags: ["#immigratiepunt", "Nieuwe Lead"],
+    notes: "",
+    status: "qualified",
+  });
+  const [upsertResult, setUpsertResult] = useState<string>("");
+
+  const refreshCrmosLogs = () => {
+    setCrmosLogs(getCrmosSyncLogs());
+  };
+
+  const handleCrmosSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!crmosSearchTerm.trim()) return;
+    setIsSearchingCrmos(true);
+    try {
+      const data = await searchCrmos(crmosSearchTerm.trim());
+      const results = Array.isArray(data) ? data : data.results || (data.contacts || []);
+      setCrmosSearchResults(results);
+    } catch (err: any) {
+      console.warn("CRMos Search error:", err);
+    } finally {
+      setIsSearchingCrmos(false);
+    }
+  };
+
+  const handleBulkSyncRegistrations = async () => {
+    setIsSyncingCrmos(true);
+    setCrmosSyncStatus("Synchroniseren van nieuwkomers naar CRMos...");
+    try {
+      for (const reg of registrations) {
+        await syncRegistrationToCrmos(reg);
+      }
+      refreshCrmosLogs();
+      setCrmosSyncStatus(`Succesvol ${registrations.length} nieuwkomers gesynchroniseerd naar CRMos!`);
+    } catch (err: any) {
+      setCrmosSyncStatus("Fout bij synchroniseren: " + (err?.message || err));
+    } finally {
+      setIsSyncingCrmos(false);
+    }
+  };
+
+  const handleBulkSyncHelpers = async () => {
+    setIsSyncingCrmos(true);
+    setCrmosSyncStatus("Synchroniseren van postadres-helpers naar CRMos...");
+    try {
+      for (const h of helpers) {
+        await syncHelperToCrmos(h);
+      }
+      refreshCrmosLogs();
+      setCrmosSyncStatus(`Succesvol ${helpers.length} helpers gesynchroniseerd naar CRMos!`);
+    } catch (err: any) {
+      setCrmosSyncStatus("Fout bij synchroniseren: " + (err?.message || err));
+    } finally {
+      setIsSyncingCrmos(false);
+    }
+  };
+
+  const handleBulkSyncJobApps = async () => {
+    setIsSyncingCrmos(true);
+    setCrmosSyncStatus("Synchroniseren van sollicitanten naar CRMos kandidaten...");
+    try {
+      const jobApps = fetchJobApplications();
+      for (const ja of jobApps) {
+        await syncJobApplicationToCrmos(ja);
+      }
+      refreshCrmosLogs();
+      setCrmosSyncStatus(`Succesvol ${jobApps.length} vacaturesollicitanten gesynchroniseerd naar CRMos!`);
+    } catch (err: any) {
+      setCrmosSyncStatus("Fout bij synchroniseren: " + (err?.message || err));
+    } finally {
+      setIsSyncingCrmos(false);
+    }
+  };
+
+  const handleManualUpsertSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!upsertForm.email || !upsertForm.first_name) return;
+    setUpsertResult("Opslaan in CRMos...");
+    const res = await upsertCrmosContact(upsertForm);
+    if (res.error) {
+      setUpsertResult(`Lokaal opgeslagen (${res.error})`);
+    } else {
+      setUpsertResult("Contact succesvol geüpsert in CRMos!");
+      setUpsertForm({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        company: "Immigratiepunt Relatie",
+        tags: ["#immigratiepunt", "Nieuwe Lead"],
+        notes: "",
+        status: "qualified",
+      });
+    }
+    refreshCrmosLogs();
+  };
 
   const handleStatusChange = async (id: string, newStatus: RegistrationDoc["status"]) => {
     await updateRegistrationStatusInDb(id, newStatus);
@@ -782,6 +911,263 @@ export default function AdminPortal({
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* 6. CRMOS ECOSYSTEEM SYNC & BEHEER                               */}
+      {/* ============================================================== */}
+      {activeTab === "crmos" && (
+        <div className="space-y-6">
+          {/* Header Card */}
+          <div className="rounded-2xl border border-purple-200 bg-linear-to-r from-purple-50/70 via-white to-blue-50/40 p-6 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-xs">
+                  <Database className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-display text-lg font-bold text-[#141413]">
+                      CRMos REST API — Ecosysteem Hub
+                    </h3>
+                    <span className="rounded-full bg-emerald-100 text-emerald-800 px-2.5 py-0.5 text-[10px] font-bold">
+                      Bi-directioneel Actief
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#6c6a64] mt-0.5">
+                    Realtime synchronisatie tussen Immigratiepunt en het bredere CRMos partner-ecosysteem (lezen én schrijven).
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs">
+                <span className="rounded-lg border border-[#e6dfd8] bg-white px-3 py-1.5 font-mono text-[11px] text-[#3d3d3a]">
+                  Endpoint: <span className="font-bold text-purple-700">{CRMOS_CONFIG.baseUrl}</span>
+                </span>
+                <span className="rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 font-semibold text-emerald-800">
+                  Tag: {CRMOS_CONFIG.systemTag}
+                </span>
+              </div>
+            </div>
+
+            {/* Quick Bulk Sync Actions Bar */}
+            <div className="mt-6 border-t border-purple-100/70 pt-4">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="text-xs font-bold text-[#141413]">
+                  Directe Ecosysteem Synchronisaties:
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    disabled={isSyncingCrmos}
+                    onClick={handleBulkSyncRegistrations}
+                    className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-emerald-700 px-3 text-xs font-semibold text-white shadow-xs hover:bg-emerald-800 disabled:opacity-50"
+                  >
+                    <RefreshCw className={`h-3.5 w-3.5 ${isSyncingCrmos ? "animate-spin" : ""}`} />
+                    Sync Nieuwkomers ({registrations.length})
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={isSyncingCrmos}
+                    onClick={handleBulkSyncHelpers}
+                    className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-blue-700 px-3 text-xs font-semibold text-white shadow-xs hover:bg-blue-800 disabled:opacity-50"
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                    Sync Helpers ({helpers.length})
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={isSyncingCrmos}
+                    onClick={handleBulkSyncJobApps}
+                    className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-purple-700 px-3 text-xs font-semibold text-white shadow-xs hover:bg-purple-800 disabled:opacity-50"
+                  >
+                    <FileText className="h-3.5 w-3.5" />
+                    Sync Sollicitanten
+                  </button>
+                </div>
+              </div>
+
+              {crmosSyncStatus && (
+                <div className="mt-3 rounded-lg bg-purple-100/60 p-2.5 text-xs font-medium text-purple-900 flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-purple-700 shrink-0" />
+                  <span>{crmosSyncStatus}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Search in CRMos & Manual Upsert Grid */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Left: Real-Time Universal Search (GET /api/v1/search?q=...) */}
+            <div className="rounded-2xl border border-[#e6dfd8] bg-white p-5 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-[#f0eae1] pb-3">
+                <div className="flex items-center gap-2">
+                  <Search className="h-4 w-4 text-purple-700" />
+                  <h4 className="font-bold text-sm text-[#141413]">1. Universeel Zoeken in CRMos (GET)</h4>
+                </div>
+                <span className="text-[11px] text-[#8c887f]">GET /api/v1/search</span>
+              </div>
+              <p className="text-xs text-[#6c6a64] leading-relaxed">
+                Doorzoekt direct alle contacten, deals, kandidaten en teams in CRMos.
+              </p>
+
+              <form onSubmit={handleCrmosSearch} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Zoek op naam, e-mail of tag (bijv. Fatima, #spontiva)..."
+                  value={crmosSearchTerm}
+                  onChange={(e) => setCrmosSearchTerm(e.target.value)}
+                  className="h-9 flex-1 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-3 text-xs outline-none focus:border-purple-600"
+                />
+                <button
+                  type="submit"
+                  disabled={isSearchingCrmos}
+                  className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-purple-700 px-3 text-xs font-semibold text-white hover:bg-purple-800 disabled:opacity-50"
+                >
+                  <Search className={`h-3.5 w-3.5 ${isSearchingCrmos ? "animate-spin" : ""}`} />
+                  Zoek
+                </button>
+              </form>
+
+              {crmosSearchResults.length > 0 ? (
+                <div className="space-y-2 max-h-60 overflow-y-auto pt-2 border-t border-[#f0eae1]">
+                  {crmosSearchResults.map((r, i) => (
+                    <div key={i} className="rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-2.5 text-xs">
+                      <div className="font-semibold text-[#141413]">
+                        {r.name || `${r.first_name || ""} ${r.last_name || ""}`.trim() || r.title || "Resultaat"}
+                      </div>
+                      <div className="text-[11px] text-[#6c6a64] mt-0.5 flex gap-2">
+                        {r.email && <span>{r.email}</span>}
+                        {r.company && <span>• {r.company}</span>}
+                        {r.status && <span className="font-medium text-emerald-700">• {r.status}</span>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-[11px] text-[#8c887f] italic py-2">
+                  Typ een zoekterm en druk op 'Zoek' om door het CRMos ecosysteem te zoeken.
+                </div>
+              )}
+            </div>
+
+            {/* Right: Manual Contact Upsert (POST /api/v1/contacts/upsert) */}
+            <div className="rounded-2xl border border-[#e6dfd8] bg-white p-5 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-[#f0eae1] pb-3">
+                <div className="flex items-center gap-2">
+                  <Share2 className="h-4 w-4 text-purple-700" />
+                  <h4 className="font-bold text-sm text-[#141413]">2. Contact Upsert / Verrijken (POST)</h4>
+                </div>
+                <span className="text-[11px] text-[#8c887f]">POST /api/v1/contacts/upsert</span>
+              </div>
+              <p className="text-xs text-[#6c6a64] leading-relaxed">
+                Schrijf een contact direct in of verrijk bestaande tags en notities via het universele upsert endpoint.
+              </p>
+
+              <form onSubmit={handleManualUpsertSubmit} className="space-y-2.5 text-xs">
+                <div className="grid grid-cols-2 gap-2">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Voornaam"
+                    value={upsertForm.first_name}
+                    onChange={(e) => setUpsertForm({ ...upsertForm, first_name: e.target.value })}
+                    className="h-8 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-2.5 text-xs outline-none focus:border-purple-600"
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder="Achternaam"
+                    value={upsertForm.last_name}
+                    onChange={(e) => setUpsertForm({ ...upsertForm, last_name: e.target.value })}
+                    className="h-8 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-2.5 text-xs outline-none focus:border-purple-600"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <input
+                    type="email"
+                    required
+                    placeholder="E-mailadres"
+                    value={upsertForm.email}
+                    onChange={(e) => setUpsertForm({ ...upsertForm, email: e.target.value })}
+                    className="h-8 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-2.5 text-xs outline-none focus:border-purple-600"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Telefoonnummer"
+                    value={upsertForm.phone}
+                    onChange={(e) => setUpsertForm({ ...upsertForm, phone: e.target.value })}
+                    className="h-8 rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-2.5 text-xs outline-none focus:border-purple-600"
+                  />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Notitie / Behoefte"
+                  value={upsertForm.notes}
+                  onChange={(e) => setUpsertForm({ ...upsertForm, notes: e.target.value })}
+                  className="h-8 w-full rounded-lg border border-[#e6dfd8] bg-[#faf9f5] px-2.5 text-xs outline-none focus:border-purple-600"
+                />
+                <div className="flex items-center justify-between pt-1">
+                  <span className="text-[11px] text-purple-700 font-semibold">{upsertResult}</span>
+                  <button
+                    type="submit"
+                    className="h-8 rounded-lg bg-primary px-3 text-xs font-semibold text-white hover:bg-[#a9583e]"
+                  >
+                    Verstuur naar CRMos
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Sync Activity Log */}
+          <div className="rounded-2xl border border-[#e6dfd8] bg-white p-5 shadow-xs space-y-3">
+            <div className="flex items-center justify-between border-b border-[#f0eae1] pb-3">
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-[#6c6a64]" />
+                <h4 className="font-bold text-sm text-[#141413]">Recente CRMos Synchronisatielog</h4>
+              </div>
+              <span className="text-xs text-[#8c887f]">{crmosLogs.length} gelogde acties</span>
+            </div>
+
+            {crmosLogs.length > 0 ? (
+              <div className="space-y-2 max-h-60 overflow-y-auto">
+                {crmosLogs.map((log) => (
+                  <div
+                    key={log.id}
+                    className="flex items-center justify-between rounded-lg border border-[#e6dfd8] bg-[#faf9f5] p-2.5 text-xs"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
+                          log.status === "success"
+                            ? "bg-emerald-100 text-emerald-800"
+                            : "bg-amber-100 text-amber-800"
+                        }`}
+                      >
+                        {log.status === "success" ? "Geslaagd" : "Lokaal Resilient"}
+                      </span>
+                      <div>
+                        <span className="font-bold text-[#141413]">{log.entityName}</span>
+                        <span className="text-[11px] text-[#6c6a64] ml-2">({log.email})</span>
+                        <div className="text-[11px] text-[#8c887f]">{log.message}</div>
+                      </div>
+                    </div>
+                    <span className="text-[10px] text-[#8c887f]">
+                      {new Date(log.timestamp).toLocaleTimeString("nl-NL")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-xs text-[#8c887f] py-4 text-center">
+                Nog geen synchronisatieacties gelogd. Klik hierboven op 'Sync Nieuwkomers' om te testen.
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

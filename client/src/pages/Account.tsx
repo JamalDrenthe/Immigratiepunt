@@ -40,6 +40,7 @@ import {
   ChevronRight,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react";
 import {
   getMember,
@@ -249,6 +250,7 @@ export default function Account() {
     { id: "matchmaker", label: "Matchmaker Engine", icon: HeartHandshake, badge: registrations.filter((r) => r.status === "nieuw").length },
     { id: "dossiers", label: "Nieuwkomers Dossiers", icon: FileCheck, badge: registrations.length },
     { id: "helpers", label: "Postadres-Helpers", icon: Users, badge: helpers.length },
+    { id: "crmos", label: "CRMos Ecosysteem Sync", icon: Sparkles },
     { id: "helpdesk", label: "Helpdesk & Vragen", icon: HelpCircle, badge: supportMessages.filter((m) => m.status === "open").length },
   ];
 

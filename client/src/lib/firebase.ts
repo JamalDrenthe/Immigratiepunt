@@ -22,6 +22,11 @@ import {
   where,
   Unsubscribe,
 } from "firebase/firestore";
+import {
+  syncRegistrationToCrmos,
+  syncHelperToCrmos,
+  syncJobApplicationToCrmos,
+} from "./crmos";
 
 export const firebaseConfig = {
   projectId: "immigratiepunt-dev",
@@ -347,6 +352,12 @@ export async function saveRegistration(data: Omit<RegistrationDoc, "id" | "statu
   const current = getLocal<RegistrationDoc>(LS_REGISTRATIONS);
   saveLocal(LS_REGISTRATIONS, [newReg, ...current]);
   notifyDataChange("registrations");
+
+  // Asynchronous background CRMos bi-directional upsert
+  syncRegistrationToCrmos(newReg).catch((e) =>
+    console.warn("CRMos sync registration error:", e)
+  );
+
   return newReg;
 }
 
@@ -372,6 +383,12 @@ export async function saveHelper(data: Omit<HelperDoc, "id" | "status" | "regist
   const current = getLocal<HelperDoc>(LS_HELPERS);
   saveLocal(LS_HELPERS, [newHelper, ...current]);
   notifyDataChange("helpers");
+
+  // Asynchronous background CRMos bi-directional upsert
+  syncHelperToCrmos(newHelper).catch((e) =>
+    console.warn("CRMos sync helper error:", e)
+  );
+
   return newHelper;
 }
 
@@ -1404,6 +1421,12 @@ export function submitJobApplication(
   const all = getLocal<JobApplicationDoc>(LS_JOB_APPLICATIONS);
   saveLocal(LS_JOB_APPLICATIONS, [newDoc, ...all]);
   notifyDataChange("jobs");
+
+  // Asynchronous background CRMos candidate registration
+  syncJobApplicationToCrmos(newDoc).catch((e) =>
+    console.warn("CRMos sync job app error:", e)
+  );
+
   return newDoc;
 }
 
